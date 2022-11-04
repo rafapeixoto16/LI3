@@ -24,3 +24,30 @@ void initHashTableRides(){
         hashTableRides[i]=NULL;
     }
 }
+
+void printTableRides(){
+    for (int i = 0; i < hashMaxRides; i++){
+        if (hashTableRides[i]!=NULL)
+            printf("siu");
+        else
+            printf(";(");
+    }
+}
+
+bool hashTableInsertRides(RIDES *ride){
+    if(ride==NULL) return false;
+    int index = hashRides((*ride)->id);
+    if(hashTableRides[index]!=NULL){
+        return false;
+    }
+    hashTableRides[index]=ride;
+}
+
+RIDES *hashTableLookupRides(char *id){
+    int index = hashRides(id);
+    if(hashTableRides[index]!=NULL && strcmp((*hashTableRides[index])->id,id)==0)
+        return hashTableRides[index];
+    else
+        return NULL;
+
+}
