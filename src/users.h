@@ -7,8 +7,4 @@
 
 typedef struct user *USERS;
 
-
-
-
-
 #endif //LI3_USERS_H
