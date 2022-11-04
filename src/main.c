@@ -2,7 +2,7 @@
 int main (){
     printf("aqui");
     FILE *fpDrivers;
-    fpDrivers = fopen ("../Dataset_Fase1/drivers.cvs","r");
+    fpDrivers = fopen ("dataset/drivers.cvs","r");
     char linha[500];
     int n =fgets(linha,500,fpDrivers);
     if (n!=NULL)
