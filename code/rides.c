@@ -1,4 +1,4 @@
-#include rides.h;
+#include "rides.h"
 
 struct ride {
 	char *id;
@@ -11,4 +11,4 @@ struct ride {
 	char *score_driver;
 	char *tip;
 	char *comment;
-}
+};
