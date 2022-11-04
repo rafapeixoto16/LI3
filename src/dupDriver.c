@@ -3,5 +3,5 @@
 //
 #include "dupDriver.h"
 struct dupDriver{
-    
+    DRIVERS *drivers;
 };
