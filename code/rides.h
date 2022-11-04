@@ -10,8 +10,9 @@
 
 typedef struct ride *RIDES;
 
-unsigned int hashDrives(char *id);
-void initHashTableDrives();
-
+unsigned int hashRides(char *id);
+void initHashTableRides();
+void printTableRides();
+bool hashTableInsertRides(RIDES *driver);
 
 #endif
