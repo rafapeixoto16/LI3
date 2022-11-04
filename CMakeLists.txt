@@ -10,6 +10,10 @@ add_executable(li3
         code/parser.c
         code/parser.h
         code/rides.c
-        code/rides.h)
+        code/rides.h
+        code/drivers.c
+        code/drivers.h
+        code/users.c
+        code/users.h)
 
 target_link_libraries(li3 m)
