@@ -12,3 +12,15 @@ struct ride {
 	char *tip;
 	char *comment;
 };
+
+unsigned int hashRides(char *id){
+    return ((atoi(id)-1));
+}
+
+RIDES *hashTableRides[hashMaxRides];
+
+void initHashTableRides(){
+    for (int i = 0; i < hashMaxRides; i++) {
+        hashTableRides[i]=NULL;
+    }
+}

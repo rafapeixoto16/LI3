@@ -14,7 +14,6 @@
 
 typedef struct driver *DRIVERS;
 
-unsigned int hashRides(char *id);
 unsigned int hashDrivers(char *id);
 void initHashTableDrivers();
 void printTableDrivers();
