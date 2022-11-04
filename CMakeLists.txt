@@ -3,7 +3,7 @@ project(li3 C)
 
 set(CMAKE_C_STANDARD 11)
 
-include_directories(code)
+include_directories(src)
 
 add_executable(li3
         code/main.c
