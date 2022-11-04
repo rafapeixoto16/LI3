@@ -2,10 +2,8 @@
 int main (){
     printf("aqui");
     FILE *fpDrivers;
-    fpDrivers = fopen ("dataset/drivers.cvs","r");
-    char linha[500];
-    int n =fgets(linha,500,fpDrivers);
-    if (n!=NULL)
-        printf("d");
+    fpDrivers = fopen ("../datasetfase1/drivers.csv","r");
+    char linha [1000];
+    fgets(linha,1000,fpDrivers);
     return 0;
 }
