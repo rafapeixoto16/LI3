@@ -13,6 +13,6 @@ typedef struct ride *RIDES;
 unsigned int hashRides(char *id);
 void initHashTableRides();
 void printTableRides();
-bool hashTableInsertRides(RIDES *driver);
+bool hashTableInsertRides(RIDES *ride);
 
 #endif

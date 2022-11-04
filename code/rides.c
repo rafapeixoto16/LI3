@@ -42,3 +42,12 @@ bool hashTableInsertRides(RIDES *ride){
     }
     hashTableRides[index]=ride;
 }
+
+RIDES *hashTableLookupRides(char *id){
+    int index = hashRides(id);
+    if(hashTableRides[index]!=NULL && strcmp((*hashTableRides[index])->id,id)==0)
+        return hashTableRides[index];
+    else
+        return NULL;
+
+}
