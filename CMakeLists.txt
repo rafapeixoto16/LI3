@@ -15,7 +15,6 @@ add_executable(li3
         code/drivers.h
         code/users.c
         code/users.h
-        code/hashtable.c
-        code/hashtable.h)
+        )
 
 target_link_libraries(li3 m)

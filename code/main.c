@@ -1,7 +1,5 @@
-#include "hashtable.h"
 #include <stdio.h>
 int main (){
-    printf("%d", hashDrivers("002"));
-
+    printf("merda");
     return 0;
 }
