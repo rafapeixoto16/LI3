@@ -7,6 +7,7 @@
 #include<string.h>
 #include<stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
 #define hashMaxUsers 100000
 
 typedef struct user *USERS;

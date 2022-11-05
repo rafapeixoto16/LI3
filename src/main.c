@@ -46,9 +46,9 @@ int main (){
     fgets(linha,250,fpDrivers);
 
     while(fgets(linha,250,fpRides)!=NULL){
-        //userParsing(linha);
+        userParsing(linha);
     }
-
+    printTableUsers();
     //free();
     return 0;
 }
