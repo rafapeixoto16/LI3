@@ -8,11 +8,11 @@ int main (){
 
     fpDrivers = fopen ("../datasetfase1/drivers.csv","r");//linha lixo
 
-    char linha [1000];
+    char linha [250];
 
-    fgets(linha,200,fpDrivers);
+    fgets(linha,250,fpDrivers);
 
-    while(fgets(linha,200,fpDrivers)!=NULL){
+    while(fgets(linha,250,fpDrivers)!=NULL){
         driversParsing(linha);
 
     }
@@ -25,9 +25,9 @@ int main (){
 
     fpRides = fopen ("../datasetfase1/rides.csv","r");//linha lixo
 
-    fgets(linha,1000,fpRides);
+    fgets(linha,250,fpRides);
 
-    while(fgets(linha,1000,fpRides)!=NULL){
+    while(fgets(linha,250,fpRides)!=NULL){
 
     }
 
