@@ -14,10 +14,12 @@
 
 typedef struct driver *DRIVERS;
 
-unsigned int hashDrivers(char *id);
+int hashDrivers(char *id);
 void initHashTableDrivers();
 void printTableDrivers();
 void driversParsing(char *linha);
-bool hashTableInsertDrivers(DRIVERS *driver);
+DRIVERS hashTableLookupDrivers(char *id);
+char *lookupDrivers(char *i);
+bool hashTableInsertDrivers(DRIVERS driver);
 
 #endif //LI3_DRIVERS_H

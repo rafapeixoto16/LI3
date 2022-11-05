@@ -16,12 +16,12 @@ struct driver {
     char *account_status;
 };
 
-unsigned int hashDrivers(char *id){
+int hashDrivers(char *id){
     return ((atoi(id)-1));
 }
 
 
-DRIVERS *hashTableDrivers[hashMaxDrivers];
+DRIVERS hashTableDrivers[hashMaxDrivers];
 
 void initHashTableDrivers(){
     for (int i = 0; i < hashMaxDrivers; i++) {
@@ -29,21 +29,18 @@ void initHashTableDrivers(){
     }
 }
 
-void printTableDrivers(){
-    int j=1;
-    for (int i = 0; i < hashMaxDrivers; i++){
-        if (hashTableDrivers[i]!=NULL) {
-           printf("%d\n",j);
-           j++;
-        }
-        else
-            printf(";(");
+void printTableDrivers() {
+
+    for (int i = 0; i < hashMaxDrivers; i++) {
+        if (hashTableDrivers[i] != NULL) {
+            printf("\t%s\n", ((hashTableDrivers[i])->id));
+        } else
+            printf("errou\n");
     }
 }
-
-bool hashTableInsertDrivers(DRIVERS *driver){
+bool hashTableInsertDrivers(DRIVERS driver){
     if(driver==NULL) return false;
-    int index = hashDrivers((*driver)->id);
+    int index = hashDrivers(((driver)->id));
     if(hashTableDrivers[index]!=NULL){
         return false;
     }
@@ -51,13 +48,12 @@ bool hashTableInsertDrivers(DRIVERS *driver){
     return true;
 }
 
-DRIVERS *hashTableLookupDrivers(char *id){
+DRIVERS hashTableLookupDrivers(char *id){
     int index = hashDrivers(id);
-    if(hashTableDrivers[index]!=NULL && strcmp((*hashTableDrivers[index])->id,id)==0)
+    if(hashTableDrivers[index]!=NULL && strcmp((hashTableDrivers[index])->id,id)==0)
         return hashTableDrivers[index];
     else
         return NULL;
-
 }
 
 void driversParsing(char *linha){
@@ -65,52 +61,55 @@ void driversParsing(char *linha){
     DRIVERS driver1 = malloc(sizeof (struct driver ));
     char *head;
     char *tail;
+    int i ;
 
     head = strtok_r(linha,";",&tail);
-    int i = *(int *)strlen(head);
+    i = strlen(head);
     head[i]='\0';
     driver1->id= strdup(head);
 
     head = strtok_r(NULL,";",&tail);
-    i = *(int *) strlen(head);
+    i = strlen(head);
     head[i]='\0';
     driver1->name= strdup(head);
 
     head = strtok_r(NULL,";",&tail);
-    i= *(int *) strlen(head);
+    i= strlen(head);
     head[i]='\0';
     driver1->birth_day= strdup(head);
 
     head = strtok_r(NULL,";",&tail);
-    i = *(int *) strlen(head);
+    i = strlen(head);
     head[i]='\0';
     driver1->gender= strdup(head);
 
     head = strtok_r(NULL,";",&tail);
-    i = *(int *) strlen(head);
+    i = strlen(head);
     head[i]='\0';
     driver1->car_class= strdup(head);
 
     head = strtok_r(NULL,";",&tail);
-    i = *(int *) strlen(head);
+    i = strlen(head);
     head[i]='\0';
     driver1->license_plate= strdup(head);
 
     head = strtok_r(NULL,";",&tail);
-    i = *(int *) strlen(head);
+    i = strlen(head);
     head[i]='\0';
     driver1->city= strdup(head);
 
     head = strtok_r(NULL,";",&tail);
-    i = *(int *) strlen(head);
+    i = strlen(head);
     head[i]='\0';
     driver1->account_creation= strdup(head);
 
     head = strtok_r(NULL,";",&tail);
-    i = *(int *) strlen(head);
+    i = strlen(head);
     head[i]='\0';
     driver1->account_status= strdup(head);
 
-    hashTableInsertDrivers(&driver1);
+    bool bools =hashTableInsertDrivers(driver1);
+    if(!bools){
 
+    }
 }
