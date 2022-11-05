@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "drivers.h"
+#include "rides.h"
 int main (){
 
     //Drivers
@@ -21,6 +22,7 @@ int main (){
     fclose(fpDrivers);
 
     //Rides
+    initHashTableRides();
 
     FILE *fpRides;
 
@@ -29,8 +31,10 @@ int main (){
     fgets(linha,250,fpRides);
 
     while(fgets(linha,250,fpRides)!=NULL){
-
+        ridesParsing(linha);
     }
+    printTableRides();
+    fclose(fpRides);
 
     return 0;
 }
