@@ -26,10 +26,50 @@ unsigned int hashUser(char *username){
     return hashTableUserV;
 }
 
-void initHashTable(){
+void initHashTable() {
     for (int i = 0; i < hashMaxUsers; i++) {
-        hashTableUsers[i]=NULL;
+        hashTableUsers[i] = NULL;
     }
 }
 
-void
+void printTableUsers() {
+    for (int i = 0; i < hashMaxUsers; i++) {
+        if (hashTableUsers[i] != NULL) {
+            printf("\t%s\n", ((hashTableUsers[i])->username));
+        } else
+            printf("errou---EMPTY--------\n");
+    }
+}
+
+bool hashTableInsertUsers (USERS user){
+    if(user==NULL)
+        return false;
+
+    int index = hashUser(user->username);
+
+    if(hashTableUsers[index]!=NULL)
+        return false;
+
+    hashTableUsers[index]=user;
+    return true;
+}
+
+USERS hashTableLookupUsers(char *username){
+    unsigned int index = hashUser(username);
+    if(hashTableUsers!=NULL && strncmp(hashTableUsers[index]->username,username,hashMaxUsers)==0){
+        return hashTableUsers[index];
+    }
+    else
+        return NULL;
+}
+
+USERS hashTableDeleteUsers (char *username){
+    int index = hashUser(username);
+    if(hashTableUsers!=NULL && strncmp(hashTableUsers[index]->username,username,hashMaxUsers)==0){
+        USERS temp=hashTableUsers[index];
+        hashTableUsers[index]=NULL;
+        return temp;
+    }
+    else
+        return NULL;
+}
