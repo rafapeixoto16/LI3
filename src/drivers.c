@@ -16,7 +16,7 @@ struct driver {
     char *account_status;
 };
 
-int hashDrivers(char *id){
+unsigned int hashDrivers(char *id){
     return ((atoi(id)-1));
 }
 
@@ -109,7 +109,21 @@ void driversParsing(char *linha){
     driver1->account_status= strdup(head);
 
     bool bools =hashTableInsertDrivers(driver1);
-    if(!bools){
 
-    }
+    if(!bools){}
+
 }
+void printDriver(DRIVERS drivers){
+    printf("id = %s, name = %s, birth_day = %s, gender = %s, car_class = %s, license_plate = %s, city = %s, accou_creation = %s, account_status = %s \n",
+           drivers -> id,
+           drivers -> name,
+           drivers ->birth_day,
+           drivers->gender,
+           drivers-> car_class,
+           drivers-> license_plate,
+           drivers-> city,
+           drivers-> account_creation,
+           drivers-> account_status);
+
+}
+

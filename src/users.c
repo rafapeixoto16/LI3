@@ -13,3 +13,21 @@ struct user {
     char *pay_method;
     char *account_status;
 };
+
+USERS hashTableUsers [hashMaxUsers];
+
+unsigned int hashUser(char *username){
+    int length = strnlen(username,150);
+    unsigned int hashTableUserV = 1;
+    for (int i =0;i<length;i++){
+        hashTableUserV*=username[i];
+        hashTableUserV=(hashTableUserV * username[i]) % hashTableUserV;
+    }
+    return hashTableUserV;
+}
+
+void initHashTable(){
+    for (int i = 0; i < hashMaxUsers; i++) {
+        hashTableUsers[i];
+    }
+}

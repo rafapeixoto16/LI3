@@ -4,7 +4,12 @@
 
 #ifndef LI3_USERS_H
 #define LI3_USERS_H
+#include<string.h>
+#define hashMaxUsers 100000
 
 typedef struct user *USERS;
+
+void initHashTable();
+void userParsing(char *linha);
 
 #endif //LI3_USERS_H

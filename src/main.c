@@ -1,10 +1,15 @@
 #include <stdio.h>
 #include "drivers.h"
 #include "rides.h"
+#include "users.h"
+
 int main (){
 
-    //Drivers
     initHashTableDrivers();
+    initHashTableRides();
+    initHashTable();
+    //Drivers
+
     FILE *fpDrivers;
 
     fpDrivers = fopen ("../datasetfase1/drivers.csv","r");//linha lixo
@@ -16,6 +21,7 @@ int main (){
         driversParsing(linha);
     }
     printTableDrivers();
+
     fclose(fpDrivers);
 
     //Rides
@@ -28,10 +34,21 @@ int main (){
     while(fgets(linha,250,fpRides)!=NULL){
         ridesParsing(linha);
     }
+    printTableRides();
+
     fclose(fpRides);
 
-    return 0;
 
+    //Users
+    FILE *fpUsers;
+    fpDrivers = fopen ("../datasetfase1/drivers.csv","r");//linha lixo
+
+    fgets(linha,250,fpDrivers);
+
+    while(fgets(linha,250,fpRides)!=NULL){
+        //userParsing(linha);
+    }
 
     //free();
+    return 0;
 }
