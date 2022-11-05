@@ -91,5 +91,22 @@ void ridesParsing (char *linha){
     head = strtok_r(linha,";",&tail);
     i = *(int *) strlen(head);
     head[i]='\0';
+    ride1->score_user= strdup(head);
+
+    head = strtok_r(linha,";",&tail);
+    i = *(int *) strlen(head);
+    head[i]='\0';
     ride1->score_driver= strdup(head);
+
+    head = strtok_r(linha,";",&tail);
+    i = *(int *) strlen(head);
+    head[i]='\0';
+    ride1->tip= strdup(head);
+
+    head = strtok_r(linha,";",&tail);
+    i = *(int *) strlen(head);
+    head[i]='\0';
+    ride1->comment=strdup(head);
+
+    hashTableInsertRides(&ride1);
 }
