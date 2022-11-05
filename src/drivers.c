@@ -61,6 +61,7 @@ DRIVERS *hashTableLookupDrivers(char *id){
 }
 
 void driversParsing(char *linha){
+
     DRIVERS driver1 = malloc(sizeof (struct driver ));
     char *head;
     char *tail;
