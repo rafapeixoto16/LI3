@@ -4,6 +4,7 @@ int main (){
 
     //Drivers
     initHashTableDrivers();
+
     FILE *fpDrivers;
 
     fpDrivers = fopen ("../datasetfase1/drivers.csv","r");//linha lixo

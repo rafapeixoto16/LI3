@@ -66,47 +66,47 @@ void driversParsing(char *linha){
     char *tail;
 
     head = strtok_r(linha,";",&tail);
-    int i = strlen(head);
+    int i = *(int *)strlen(head);
     head[i]='\0';
     driver1->id= strdup(head);
 
     head = strtok_r(NULL,";",&tail);
-    i = strlen(head);
+    i = *(int *) strlen(head);
     head[i]='\0';
     driver1->name= strdup(head);
 
     head = strtok_r(NULL,";",&tail);
-    i= strlen(head);
+    i= *(int *) strlen(head);
     head[i]='\0';
     driver1->birth_day= strdup(head);
 
     head = strtok_r(NULL,";",&tail);
-    i = strlen(head);
+    i = *(int *) strlen(head);
     head[i]='\0';
     driver1->gender= strdup(head);
 
     head = strtok_r(NULL,";",&tail);
-    i = strlen(head);
+    i = *(int *) strlen(head);
     head[i]='\0';
     driver1->car_class= strdup(head);
 
     head = strtok_r(NULL,";",&tail);
-    i = strlen(head);
+    i = *(int *) strlen(head);
     head[i]='\0';
     driver1->license_plate= strdup(head);
 
     head = strtok_r(NULL,";",&tail);
-    i = strlen(head);
+    i = *(int *) strlen(head);
     head[i]='\0';
     driver1->city= strdup(head);
 
     head = strtok_r(NULL,";",&tail);
-    i = strlen(head);
+    i = *(int *) strlen(head);
     head[i]='\0';
     driver1->account_creation= strdup(head);
 
     head = strtok_r(NULL,";",&tail);
-    i = strlen(head);
+    i = *(int *) strlen(head);
     head[i]='\0';
     driver1->account_status= strdup(head);
 
