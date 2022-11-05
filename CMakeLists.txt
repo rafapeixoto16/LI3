@@ -13,6 +13,6 @@ add_executable(li3
         src/drivers.h
         src/users.c
         src/users.h
-        src/dupDriver.h)
+        )
 
 target_link_libraries(li3 m)

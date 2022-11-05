@@ -10,10 +10,12 @@
 
 typedef struct ride *RIDES;
 
-unsigned int hashRides(char *id);
+int hashRides(char *id);
 void initHashTableRides();
 void printTableRides();
 void ridesParsing(char *linha);
-bool hashTableInsertRides(RIDES *ride);
+RIDES hashTableLookupRides(char *id);
+char *lookupRides(char *i);
+bool hashTableInsertRides(RIDES ride);
 
 #endif

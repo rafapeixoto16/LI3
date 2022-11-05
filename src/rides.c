@@ -13,11 +13,11 @@ struct ride {
 	char *comment;
 };
 
-unsigned int hashRides(char *id){
+int hashRides(char *id){
     return ((atoi(id)-1));
 }
 
-RIDES *hashTableRides[hashMaxRides];
+RIDES hashTableRides[hashMaxRides];
 
 void initHashTableRides(){
     for (int i = 0; i < hashMaxRides; i++) {
@@ -27,16 +27,16 @@ void initHashTableRides(){
 
 void printTableRides(){
     for (int i = 0; i < hashMaxRides; i++){
-        if (hashTableRides[i]!=NULL)
-            printf("siu");
-        else
-            printf(";(");
+        if (hashTableRides[i]!=NULL){
+            printf("\t%s\n", ((hashTableRides[i])->id));
+    } else
+        printf("errou\n");
     }
 }
 
-bool hashTableInsertRides(RIDES *ride){
+bool hashTableInsertRides(RIDES ride){
     if(ride==NULL) return false;
-    int index = hashRides((*ride)->id);
+    int index = hashRides(((ride)->id));
     if(hashTableRides[index]!=NULL){
         return false;
     }
@@ -44,9 +44,9 @@ bool hashTableInsertRides(RIDES *ride){
     return true;
 }
 
-RIDES *hashTableLookupRides(char *id){
+RIDES hashTableLookupRides(char *id){
     int index = hashRides(id);
-    if(hashTableRides[index]!=NULL && strcmp((*hashTableRides[index])->id,id)==0)
+    if(hashTableRides[index]!=NULL && strcmp((hashTableRides[index])->id,id)==0)
         return hashTableRides[index];
     else
         return NULL;
@@ -110,5 +110,8 @@ void ridesParsing (char *linha){
     head[i]='\0';
     ride1->comment=strdup(head);
 
-    hashTableInsertRides(&ride1);
+    bool bools =hashTableInsertRides(ride1);
+    if(!bools){
+
+    }
 }
