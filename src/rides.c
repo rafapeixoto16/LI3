@@ -13,7 +13,7 @@ struct ride {
 	char *comment;
 };
 
-int hashRides(char *id){
+unsigned int hashRides(char *id){
     return ((atoi(id)-1));
 }
 
