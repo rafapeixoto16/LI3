@@ -1,10 +1,11 @@
 #include <stdio.h>
+#include "drivers.h"
 int main (){
 
     printf("aqui");
 
     //Drivers
-
+    initHashTableDrivers();
     FILE *fpDrivers;
 
     fpDrivers = fopen ("../datasetfase1/drivers.csv","r");
@@ -14,9 +15,9 @@ int main (){
     fgets(linha,1000,fpDrivers);
 
     while(fgets(linha,1000,fpDrivers)!=NULL){
-
+        driversParsing(linha);
     }
-
+    fclose(fpDrivers);
     //Rides
 
     FILE *fpRides;

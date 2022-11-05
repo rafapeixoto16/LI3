@@ -55,3 +55,40 @@ DRIVERS *hashTableLookupDrivers(char *id){
         return NULL;
 
 }
+
+void driversParsing(char *linha){
+    DRIVERS *driver1 = malloc(sizeof (struct driver));
+    char *head;
+    char *tail;
+
+    head = strtok_r(linha,";",&tail);
+    strcpy((*driver1)->id,head);
+    printf("%d", atoi((*driver1)->id));
+    head = strtok_r(NULL,";",&tail);
+    /**strcpy((*driver1)->name,head);
+
+    head = strtok_r(NULL,";",&tail);
+    strcpy((*driver1)->birth_day,head);
+
+    head = strtok_r(NULL,";",&tail);
+    strcpy((*driver1)->gender,head);
+
+    head = strtok_r(NULL,";",&tail);
+    strcpy((*driver1)->car_class,head);
+
+    head = strtok_r(NULL,";",&tail);
+    strcpy((*driver1)->license_plate,head);
+
+    head = strtok_r(NULL,";",&tail);
+    strcpy((*driver1)->city,head);
+
+    head = strtok_r(NULL,";",&tail);
+    strcpy((*driver1)->account_creation,head);
+
+    head = strtok_r(NULL,";",&tail);
+    strcpy((*driver1)->account_status,head);
+
+    hashTableInsertDrivers(driver1);
+
+     **/
+}

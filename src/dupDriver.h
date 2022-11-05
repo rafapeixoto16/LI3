@@ -7,7 +7,6 @@
 #include "drivers.h"
 typedef struct dupDriver *DupDrivers;
 
-DupDrivers novoDupDrivers();
-void addDriver(DRIVERS driver,DupDrivers dup);
+void addHash(DRIVERS* ola);
 #endif //LI3_DUPDRIVER_H
 

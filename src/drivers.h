@@ -17,6 +17,7 @@ typedef struct driver *DRIVERS;
 unsigned int hashDrivers(char *id);
 void initHashTableDrivers();
 void printTableDrivers();
+void driversParsing(char *linha);
 bool hashTableInsertDrivers(DRIVERS *driver);
 
 #endif //LI3_DRIVERS_H
