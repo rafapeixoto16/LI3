@@ -52,3 +52,26 @@ RIDES *hashTableLookupRides(char *id){
 
 }
 
+void ridesParsing (char *linha){
+
+    RIDES ride1 = malloc(sizeof (struct ride));
+    char *head;
+    char *tail;
+
+    head = strtok_r(linha,";",&tail);
+    int i = *(int *)strlen(head);
+    head[i]='\0';
+    ride1->id= strdup(head);
+
+    head = strtok_r(linha,";",&tail);
+    i = *(int *)strlen(head);
+    head[i]='\0';
+    ride1->date= strdup(head);
+
+    head = strtok_r(linha,";",&tail);
+    i = *(int *) strlen(head);
+    head[i]='\0';
+    ride1->driver= strdup(head);
+
+
+}
