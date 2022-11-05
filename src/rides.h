@@ -10,7 +10,7 @@
 
 typedef struct ride *RIDES;
 
-int hashRides(char *id);
+unsigned int hashRides(char *id);
 void initHashTableRides();
 void printTableRides();
 void ridesParsing(char *linha);
