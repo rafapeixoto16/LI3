@@ -64,7 +64,7 @@ void ridesParsing (char *linha){
     ride1->id= strdup(head);
 
     head = strtok_r(linha,";",&tail);
-    i = *(int *)strlen(head);
+    i = *(int *) strlen(head);
     head[i]='\0';
     ride1->date= strdup(head);
 
@@ -73,5 +73,23 @@ void ridesParsing (char *linha){
     head[i]='\0';
     ride1->driver= strdup(head);
 
+    head = strtok_r(linha,";",&tail);
+    i = *(int *) strlen(head);
+    head[i]='\0';
+    ride1->user= strdup(head);
 
+    head = strtok_r(linha,";",&tail);
+    i = *(int *) strlen(head);
+    head[i]='\0';
+    ride1->city= strdup(head);
+
+    head = strtok_r(linha,";",&tail);
+    i = *(int *) strlen(head);
+    head[i]='\0';
+    ride1->distance= strdup(head);
+
+    head = strtok_r(linha,";",&tail);
+    i = *(int *) strlen(head);
+    head[i]='\0';
+    ride1->score_driver= strdup(head);
 }
