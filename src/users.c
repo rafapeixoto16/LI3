@@ -28,6 +28,8 @@ unsigned int hashUser(char *username){
 
 void initHashTable(){
     for (int i = 0; i < hashMaxUsers; i++) {
-        hashTableUsers[i];
+        hashTableUsers[i]=NULL;
     }
 }
+
+void

@@ -30,7 +30,6 @@ void initHashTableDrivers(){
 }
 
 void printTableDrivers() {
-
     for (int i = 0; i < hashMaxDrivers; i++) {
         if (hashTableDrivers[i] != NULL) {
             printf("\t%s\n", ((hashTableDrivers[i])->id));
@@ -38,6 +37,7 @@ void printTableDrivers() {
             printf("errou\n");
     }
 }
+
 bool hashTableInsertDrivers(DRIVERS driver){
     if(driver==NULL) return false;
     int index = hashDrivers(((driver)->id));
@@ -113,17 +113,18 @@ void driversParsing(char *linha){
     if(!bools){}
 
 }
+
 void printDriver(DRIVERS drivers){
     printf("id = %s, name = %s, birth_day = %s, gender = %s, car_class = %s, license_plate = %s, city = %s, accou_creation = %s, account_status = %s \n",
            drivers -> id,
            drivers -> name,
-           drivers ->birth_day,
-           drivers->gender,
-           drivers-> car_class,
-           drivers-> license_plate,
-           drivers-> city,
-           drivers-> account_creation,
-           drivers-> account_status);
+           drivers -> birth_day,
+           drivers -> gender,
+           drivers -> car_class,
+           drivers -> license_plate,
+           drivers -> city,
+           drivers -> account_creation,
+           drivers -> account_status);
 
 }
 
