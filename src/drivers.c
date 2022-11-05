@@ -30,9 +30,12 @@ void initHashTableDrivers(){
 }
 
 void printTableDrivers(){
+    int j=1;
     for (int i = 0; i < hashMaxDrivers; i++){
-        if (hashTableDrivers[i]!=NULL)
-            printf("siu");
+        if (hashTableDrivers[i]!=NULL) {
+           printf("%d\n",j);
+           j++;
+        }
         else
             printf(";(");
     }
@@ -45,6 +48,7 @@ bool hashTableInsertDrivers(DRIVERS *driver){
         return false;
     }
     hashTableDrivers[index]=driver;
+    return true;
 }
 
 DRIVERS *hashTableLookupDrivers(char *id){
@@ -57,38 +61,55 @@ DRIVERS *hashTableLookupDrivers(char *id){
 }
 
 void driversParsing(char *linha){
-    DRIVERS *driver1 = malloc(sizeof (struct driver));
+    DRIVERS driver1 = malloc(sizeof (struct driver ));
     char *head;
     char *tail;
 
     head = strtok_r(linha,";",&tail);
-    strcpy((*driver1)->id,head);
-    printf("%d", atoi((*driver1)->id));
-    head = strtok_r(NULL,";",&tail);
-    /**strcpy((*driver1)->name,head);
+    int i = strlen(head);
+    head[i]='\0';
+    driver1->id= strdup(head);
 
     head = strtok_r(NULL,";",&tail);
-    strcpy((*driver1)->birth_day,head);
+    i = strlen(head);
+    head[i]='\0';
+    driver1->name= strdup(head);
 
     head = strtok_r(NULL,";",&tail);
-    strcpy((*driver1)->gender,head);
+    i= strlen(head);
+    head[i]='\0';
+    driver1->birth_day= strdup(head);
 
     head = strtok_r(NULL,";",&tail);
-    strcpy((*driver1)->car_class,head);
+    i = strlen(head);
+    head[i]='\0';
+    driver1->gender= strdup(head);
 
     head = strtok_r(NULL,";",&tail);
-    strcpy((*driver1)->license_plate,head);
+    i = strlen(head);
+    head[i]='\0';
+    driver1->car_class= strdup(head);
 
     head = strtok_r(NULL,";",&tail);
-    strcpy((*driver1)->city,head);
+    i = strlen(head);
+    head[i]='\0';
+    driver1->license_plate= strdup(head);
 
     head = strtok_r(NULL,";",&tail);
-    strcpy((*driver1)->account_creation,head);
+    i = strlen(head);
+    head[i]='\0';
+    driver1->city= strdup(head);
 
     head = strtok_r(NULL,";",&tail);
-    strcpy((*driver1)->account_status,head);
+    i = strlen(head);
+    head[i]='\0';
+    driver1->account_creation= strdup(head);
 
-    hashTableInsertDrivers(driver1);
+    head = strtok_r(NULL,";",&tail);
+    i = strlen(head);
+    head[i]='\0';
+    driver1->account_status= strdup(head);
 
-     **/
+    hashTableInsertDrivers(&driver1);
+
 }

@@ -2,27 +2,28 @@
 #include "drivers.h"
 int main (){
 
-    printf("aqui");
-
     //Drivers
     initHashTableDrivers();
     FILE *fpDrivers;
 
-    fpDrivers = fopen ("../datasetfase1/drivers.csv","r");
+    fpDrivers = fopen ("../datasetfase1/drivers.csv","r");//linha lixo
 
     char linha [1000];
 
-    fgets(linha,1000,fpDrivers);
+    fgets(linha,200,fpDrivers);
 
-    while(fgets(linha,1000,fpDrivers)!=NULL){
+    while(fgets(linha,200,fpDrivers)!=NULL){
         driversParsing(linha);
+
     }
+    printTableDrivers();
     fclose(fpDrivers);
+
     //Rides
 
     FILE *fpRides;
 
-    fpRides = fopen ("../datasetfase1/rides.csv","r");
+    fpRides = fopen ("../datasetfase1/rides.csv","r");//linha lixo
 
     fgets(linha,1000,fpRides);
 
