@@ -58,29 +58,30 @@ void ridesParsing (char *linha){
     RIDES ride1 = malloc(sizeof (struct ride));
     char *head;
     char *tail;
+    int i;
 
     head = strtok_r(linha,";",&tail);
-    int i = *(int *)strlen(head);
+    i = strlen(head);
     head[i]='\0';
     ride1->id= strdup(head);
 
     head = strtok_r(linha,";",&tail);
-    i = *(int *) strlen(head);
+    i = strlen(head);
     head[i]='\0';
     ride1->date= strdup(head);
 
     head = strtok_r(linha,";",&tail);
-    i = *(int *) strlen(head);
+    i = strlen(head);
     head[i]='\0';
     ride1->driver= strdup(head);
 
     head = strtok_r(linha,";",&tail);
-    i = *(int *) strlen(head);
+    i = strlen(head);
     head[i]='\0';
     ride1->user= strdup(head);
 
     head = strtok_r(linha,";",&tail);
-    i = *(int *) strlen(head);
+    i = strlen(head);
     head[i]='\0';
     ride1->city= strdup(head);
 
@@ -95,17 +96,17 @@ void ridesParsing (char *linha){
     ride1->score_user= strdup(head);
 
     head = strtok_r(linha,";",&tail);
-    i = *(int *) strlen(head);
+    i = strlen(head);
     head[i]='\0';
     ride1->score_driver= strdup(head);
 
     head = strtok_r(linha,";",&tail);
-    i = *(int *) strlen(head);
+    i = strlen(head);
     head[i]='\0';
     ride1->tip= strdup(head);
 
     head = strtok_r(linha,";",&tail);
-    i = *(int *) strlen(head);
+    i = strlen(head);
     head[i]='\0';
     ride1->comment=strdup(head);
 
