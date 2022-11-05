@@ -86,12 +86,12 @@ void ridesParsing (char *linha){
     ride1->city= strdup(head);
 
     head = strtok_r(linha,";",&tail);
-    i = *(int *) strlen(head);
+    i = strlen(head);
     head[i]='\0';
     ride1->distance= strdup(head);
 
     head = strtok_r(linha,";",&tail);
-    i = *(int *) strlen(head);
+    i = strlen(head);
     head[i]='\0';
     ride1->score_user= strdup(head);
 
