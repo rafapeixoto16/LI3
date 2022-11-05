@@ -41,6 +41,7 @@ bool hashTableInsertRides(RIDES *ride){
         return false;
     }
     hashTableRides[index]=ride;
+    return true;
 }
 
 RIDES *hashTableLookupRides(char *id){
