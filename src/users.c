@@ -27,7 +27,7 @@ unsigned int hashUser(char *username){
     return hashTableUserV;
 }
 
-void initHashTable(){
+void initHashTableUsers(){
     for (int i = 0; i < hashMaxUsers; i++) {
         hashTableUsers[i]=NULL;
     }

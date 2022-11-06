@@ -12,7 +12,7 @@
 
 typedef struct user *USERS;
 
-void initHashTable();
+void initHashTableUsers();
 void userParsing(char *linha);
 bool hashTableInsertUsers (USERS user);
 unsigned int hashUser(char *username);
