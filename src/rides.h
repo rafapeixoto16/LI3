@@ -1,5 +1,5 @@
-#ifndef RIDES_H;
-#define RIDES_H;
+#ifndef RIDES_H
+#define RIDES_H
 
 #include <stdlib.h>
 #include <stdbool.h>
