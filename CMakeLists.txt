@@ -17,6 +17,6 @@ add_executable(li3
         src/parsing.h
         src/queries.c
         src/queries.h
-        src/quary4.c src/quary5.c src/quary6.c)
+        src/query4.c src/query5.c src/query6.c)
 
 target_link_libraries(li3 m)

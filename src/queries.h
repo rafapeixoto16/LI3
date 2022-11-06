@@ -10,6 +10,10 @@
 #include "drivers.h"
 #include <stdlib.h>
 #include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
 
-double quary4(char *cidade);
+double query4(char *cidade);
+double query5(char *dataInicio,char *dataFim);
+
 #endif //LI3_QUERIES_H

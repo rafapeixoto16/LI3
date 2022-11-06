@@ -8,6 +8,8 @@
 
 #define hashMaxRides 1000000
 
+#define dataDia "9/10/2022"
+
 typedef struct ride *RIDES;
 
 unsigned int hashRides(char *id);
