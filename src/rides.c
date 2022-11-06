@@ -65,47 +65,47 @@ void ridesParsing (char *linha){
     head[i]='\0';
     ride1->id= strdup(head);
 
-    head = strtok_r(linha,";",&tail);
+    head = strtok_r(NULL,";",&tail);
     i = strlen(head);
     head[i]='\0';
     ride1->date= strdup(head);
 
-    head = strtok_r(linha,";",&tail);
+    head = strtok_r(NULL,";",&tail);
     i = strlen(head);
     head[i]='\0';
     ride1->driver= strdup(head);
 
-    head = strtok_r(linha,";",&tail);
+    head = strtok_r(NULL,";",&tail);
     i = strlen(head);
     head[i]='\0';
     ride1->user= strdup(head);
 
-    head = strtok_r(linha,";",&tail);
+    head = strtok_r(NULL,";",&tail);
     i = strlen(head);
     head[i]='\0';
     ride1->city= strdup(head);
 
-    head = strtok_r(linha,";",&tail);
+    head = strtok_r(NULL,";",&tail);
     i = strlen(head);
     head[i]='\0';
     ride1->distance= strdup(head);
 
-    head = strtok_r(linha,";",&tail);
+    head = strtok_r(NULL,";",&tail);
     i = strlen(head);
     head[i]='\0';
     ride1->score_user= strdup(head);
 
-    head = strtok_r(linha,";",&tail);
+    head = strtok_r(NULL,";",&tail);
     i = strlen(head);
     head[i]='\0';
     ride1->score_driver= strdup(head);
 
-    head = strtok_r(linha,";",&tail);
+    head = strtok_r(NULL,";",&tail);
     i = strlen(head);
     head[i]='\0';
     ride1->tip= strdup(head);
 
-    head = strtok_r(linha,";",&tail);
+    head = strtok_r(NULL,";",&tail);
     i = strlen(head);
     head[i]='\0';
     ride1->comment=strdup(head);
