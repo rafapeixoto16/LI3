@@ -41,14 +41,14 @@ int main (){
 
     //Users
     FILE *fpUsers;
-    fpDrivers = fopen ("../datasetfase1/drivers.csv","r");//linha lixo
+    fpDrivers = fopen ("../datasetfase1/users.csv","r");//linha lixo
 
     fgets(linha,250,fpDrivers);
 
     while(fgets(linha,250,fpRides)!=NULL){
-        //userParsing(linha);
+        userParsing(linha);
     }
-    //printTableUsers();
+    printTableUsers();
     //free();
     return 0;
 }

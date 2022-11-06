@@ -12,15 +12,16 @@ struct user {
     char *account_creation;
     char *pay_method;
     char *account_status;
+    struct user * next;
 };
 
 USERS hashTableUsers [hashMaxUsers];
 
 unsigned int hashUser(char *username){
     int length = strnlen(username,150);
-    unsigned int hashTableUserV = 1;
+    unsigned int hashTableUserV = 0;
     for (int i =0;i<length;i++){
-        hashTableUserV*=username[i];
+        hashTableUserV +=username[i];
         hashTableUserV=(hashTableUserV * username[i]) % hashTableUserV;
     }
     return hashTableUserV;
@@ -33,11 +34,19 @@ void initHashTable(){
 }
 
 void printTableUsers() {
+    int j =1;
     for (int i = 0; i < hashMaxUsers; i++) {
-        if (hashTableUsers[i] != NULL) {
-            printf("\t%s\n", ((hashTableUsers[i])->username));
-        } else
-            printf("errou---EMPTY--------\n");
+        if (hashTableUsers[i] == NULL) {
+        }
+        else{
+            USERS tmp = hashTableUsers[i];
+            while (tmp!=NULL){
+                printf("%s %d- \n",tmp->username,j);
+                tmp=tmp->next;
+                j++;
+            }
+            //printf("\n");
+        }
     }
 }
 
@@ -45,39 +54,39 @@ bool hashTableInsertUsers (USERS user){
     if(user==NULL)
         return false;
     int index= hashUser(user->username);
-    for (int i = 0; i <hashMaxUsers;i++) {
-        int try = (i+index) % hashMaxUsers;
-        if(hashTableUsers[try]==NULL){
-            hashTableUsers[try]=user;
-            return true;
-        }
-    }
-
-    return false;
+    user->next=hashTableUsers[index];
+    hashTableUsers[index]=user;
+    return true;
 }
+
 
 USERS hashTableLookupUsers(char *username) {
     unsigned int index = hashUser(username);
-    for (int i = 0; i < hashMaxUsers; i++) {
-        int try = (index + i) % hashMaxUsers;
-        if (hashTableUsers[try] != NULL && strncmp(hashTableUsers[try]->username, username, hashMaxUsers) == 0) {
-            return hashTableUsers[try];
-        }
+    USERS tmp = hashTableUsers[index];
+    while (tmp != NULL && strncmp(tmp->username, username, 50) != 0) {
+        tmp = tmp->next;
     }
-    return NULL;
+    return tmp;
 }
 
 USERS hashTableDeleteUsers (char *username) {
     unsigned int index = hashUser(username);
-    for (int i = 0; i < hashMaxUsers; i++) {
-        int try = (index + i) % hashMaxUsers;
-        if (hashTableUsers[try] != NULL && strncmp(hashTableUsers[try]->username, username, hashMaxUsers) == 0) {
-            USERS temp=hashTableUsers[try];
-            hashTableUsers[try]=NULL;
-            return temp;
-        }
+    USERS tmp = hashTableUsers[index];
+    USERS prev = NULL;
+    while (tmp != NULL && strncmp(tmp->username, username, 50) != 0){
+        prev=tmp;
+        tmp=tmp->next;
     }
-    return NULL;
+    if(tmp == NULL)
+        return NULL;
+
+    if(prev == NULL)
+        hashTableUsers[index] = tmp->next;
+
+    else{
+        prev->next=tmp->next;
+    }
+    return tmp;
 }
 
 void userParsing (char *linha){
@@ -92,36 +101,37 @@ void userParsing (char *linha){
     head[i]='\0';
     user1->username= strdup(head);
 
-    head = strtok_r(linha,";",&tail);
+    head = strtok_r(NULL,";",&tail);
     i = strlen(head);
     head[i]='\0';
     user1->name= strdup(head);
 
-    head = strtok_r(linha,";",&tail);
+    head = strtok_r(NULL,";",&tail);
     i = strlen(head);
     head[i]='\0';
     user1->gender= strdup(head);
 
-    head = strtok_r(linha,";",&tail);
+    head = strtok_r(NULL,";",&tail);
     i = strlen(head);
     head[i]='\0';
     user1->birth_date= strdup(head);
 
-    head = strtok_r(linha,";",&tail);
+    head = strtok_r(NULL,";",&tail);
     i = strlen(head);
     head[i]='\0';
     user1->account_creation= strdup(head);
 
-    head = strtok_r(linha,";",&tail);
+    head = strtok_r(NULL,";",&tail);
     i = strlen(head);
     head[i]='\0';
     user1->pay_method= strdup(head);
 
-    head = strtok_r(linha,";",&tail);
+    head = strtok_r(NULL,";",&tail);
     i = strlen(head);
     head[i]='\0';
     user1->account_status= strdup(head);
 
+    user1->next=NULL;
 
     bool bools =hashTableInsertUsers(user1);
 
