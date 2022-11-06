@@ -21,6 +21,7 @@ void driversParsing(char *linha);
 DRIVERS hashTableLookupDrivers(char *id);
 void printDriver(DRIVERS drivers);
 char *lookupDrivers(char *i);
+double precoViagem(int distancia,char *id);
 bool hashTableInsertDrivers(DRIVERS driver);
 
 #endif //LI3_DRIVERS_H

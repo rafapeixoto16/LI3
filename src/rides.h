@@ -16,6 +16,10 @@ void printTableRides();
 void ridesParsing(char *linha);
 RIDES hashTableLookupRides(char *id);
 char *lookupRides(char *i);
+char *lookupDriverRides(int i);
+int lookupDistanceRides(int i);
+bool lookupCidadeRides(int i ,char *cidade);
 bool hashTableInsertRides(RIDES ride);
+
 
 #endif

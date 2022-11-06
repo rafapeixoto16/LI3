@@ -114,4 +114,19 @@ void ridesParsing (char *linha){
     if(!bools){
 
     }
+
+}
+
+bool lookupCidadeRides(int i ,char *cidade){
+    if(strcmp(hashTableRides[i]->city,cidade)==0)
+        return true;
+    return false;
+}
+
+char *lookupDriverRides(int i){
+    return hashTableRides[i]->driver;
+}
+
+int lookupDistanceRides(int i){
+    return atoi(hashTableRides[i]->distance);
 }

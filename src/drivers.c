@@ -40,7 +40,7 @@ void printTableDrivers() {
 
 bool hashTableInsertDrivers(DRIVERS driver){
     if(driver==NULL) return false;
-    int index = hashDrivers(((driver)->id));
+    unsigned int index = hashDrivers(((driver)->id));
     if(hashTableDrivers[index]!=NULL){
         return false;
     }
@@ -49,7 +49,7 @@ bool hashTableInsertDrivers(DRIVERS driver){
 }
 
 DRIVERS hashTableLookupDrivers(char *id){
-    int index = hashDrivers(id);
+    unsigned int index = hashDrivers(id);
     if(hashTableDrivers[index]!=NULL && strcmp((hashTableDrivers[index])->id,id)==0)
         return hashTableDrivers[index];
     else
@@ -125,6 +125,20 @@ void printDriver(DRIVERS drivers){
            drivers -> city,
            drivers -> account_creation,
            drivers -> account_status);
-
 }
 
+double precoViagem(int distancia,char *id){
+    double valor=0;
+    DRIVERS tmp= hashTableLookupDrivers(id);
+
+    if(strcmp("basic",tmp->car_class)==0)
+        valor=3.25+0.62*distancia;
+
+    else if(strcmp("green",tmp->car_class)==0){
+        valor=4.00+0.79*distancia;
+    }
+    else if(strcmp("premium",tmp->car_class)==0)
+        valor=5.20+0.94*distancia;
+
+    return valor;
+}

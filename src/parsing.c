@@ -7,7 +7,7 @@
 
 void parsing(){
 
-    //inicializaçao das HashTables
+    //inicializaçao das HashTables-Com valor NULL
     initHashTableDrivers();
     initHashTableRides();
     initHashTableUsers();
@@ -18,10 +18,12 @@ void parsing(){
     fpDrivers = fopen ("../datasetfase1/drivers.csv","r");
 
     char linha [250];
-    fgets(linha,250,fpDrivers);//linha lixo
+    char *drop1 =fgets(linha,250,fpDrivers);//linha lixo
 
-    while(fgets(linha,250,fpDrivers)!=NULL){
-        driversParsing(linha);
+    if(drop1!=NULL) {
+        while (fgets(linha, 250, fpDrivers) != NULL) {
+            driversParsing(linha);
+        }
     }
     printTableDrivers();
 
@@ -32,10 +34,12 @@ void parsing(){
 
     fpRides = fopen ("../datasetfase1/rides.csv","r");
 
-    fgets(linha,250,fpRides);//linha lixo
+    char *drop2 = fgets(linha,250,fpRides);//linha lixo
 
-    while(fgets(linha,250,fpRides)!=NULL){
-        ridesParsing(linha);
+    if(drop2!=NULL ){
+        while (fgets(linha, 250, fpRides) != NULL) {
+            ridesParsing(linha);
+        }
     }
     printTableRides();
 
@@ -46,10 +50,12 @@ void parsing(){
     FILE *fpUsers;
     fpUsers = fopen ("../datasetfase1/users.csv","r");
 
-    fgets(linha,250,fpDrivers);//linha lixo
+    char *drop3 =fgets(linha,250,fpDrivers);//linha lixo
 
-    while(fgets(linha,250,fpRides)!=NULL){
-        userParsing(linha);
+    if(drop3!=NULL) {
+        while (fgets(linha, 250, fpRides) != NULL) {
+            userParsing(linha);
+        }
     }
     printTableUsers();
 
