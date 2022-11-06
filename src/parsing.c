@@ -7,11 +7,12 @@
 
 void parsing(){
 
+    //inicializaçao das HashTables
     initHashTableDrivers();
     initHashTableRides();
     initHashTableUsers();
-    //Drivers
 
+    //Drivers
     FILE *fpDrivers;
 
     fpDrivers = fopen ("../datasetfase1/drivers.csv","r");
@@ -53,6 +54,4 @@ void parsing(){
     printTableUsers();
 
     fclose(fpUsers);
-
-
 }

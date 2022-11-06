@@ -7,7 +7,6 @@ int main (int argc,char *argv[]){
     parsing();
 
     //Operaçao em batch
-
     for (int i = 0; i <argc ; i++) {
         printf("argv[%d]= %s\n",argc,argv[i]);
     }
