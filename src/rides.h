@@ -61,16 +61,16 @@ int lookupDistanceRides(int i);
 
 /*!
 * Função que dá uma determinada corrida (ride).
-* @param i
-* @return
+* @param i Posição na hashtable.
+* @return Retorna o id do condutor (driver)
 */
 char *lookupDriverRides(int i);
 
 /*!
-* Função que
-* @param i
-* @param cidade
-* @return
+* Função que retorna verdadeiro ou falso.
+* @param i Posição na hashtable.
+* @param cidade Uma cidade.
+* @return Retorna true se a cidade na posição da hash table é igual á do input.
 */
 bool lookupCidadeRides(int i ,char *cidade);
 
