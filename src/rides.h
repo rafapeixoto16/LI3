@@ -34,8 +34,8 @@ void printTableRides();
 
 /*!
  * Função que insere um novo elemento á hashtable.
- * @param ride
- * @return
+ * @param ride Elemento a inserir
+ * @return Retorna falso se não conseguir inserir na hashtable e verdadeiro caso consiga
  */
 bool hashTableInsertRides(RIDES ride);
 
