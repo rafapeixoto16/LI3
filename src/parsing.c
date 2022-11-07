@@ -25,7 +25,7 @@ void parsing(){
             driversParsing(linha);
         }
     }
-    //printTableDrivers();
+    printTableDrivers();
 
     fclose(fpDrivers);
 
@@ -41,7 +41,7 @@ void parsing(){
             ridesParsing(linha);
         }
     }
-    //printTableRides();
+    printTableRides();
 
     fclose(fpRides);
 
@@ -57,7 +57,8 @@ void parsing(){
             userParsing(linha);
         }
     }
-    //printTableUsers();
+    printTableUsers();
 
     fclose(fpUsers);
+
 }

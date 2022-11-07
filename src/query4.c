@@ -3,6 +3,7 @@
 //
 #include "queries.h"
 
+
 double query4 (char *cidade) {
     double divide = 0, valor = 0.00;
 
