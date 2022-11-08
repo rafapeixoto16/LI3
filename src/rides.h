@@ -47,7 +47,7 @@ bool hashTableInsertRides(RIDES ride);
 RIDES hashTableLookupRides(char *id);
 
 /*!
-* Função que cria um objeto do tipo *DRIVERS e adiciona-o á hashtable
+* Função que cria um objeto do tipo *RIDES e adiciona-o á hashtable
 * @param linha Dados do condutor (driver).
 */
 void ridesParsing(char *linha);
