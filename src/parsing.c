@@ -15,49 +15,50 @@ void parsing(){
     //Drivers
     FILE *fpDrivers;
 
-    fpDrivers = fopen ("../datasetfase1/drivers.csv","r");
+    fpDrivers = fopen ("datasetfase1/drivers.csv","r");
 
     char linha [232];
-    char *drop1 =fgets(linha,232,fpDrivers);//linha lixo
+    fgets(linha,232,fpDrivers);//linha lixo
 
-    if(drop1!=NULL) {
-        while (fgets(linha, 232, fpDrivers) != NULL) {
-            driversParsing(linha);
-        }
+
+    while (fgets(linha, 232, fpDrivers) != NULL) {
+        driversParsing(linha);
     }
-    //printTableDrivers();
+
+    printTableDrivers();
 
     fclose(fpDrivers);
 
     //Rides
     FILE *fpRides;
 
-    fpRides = fopen ("../datasetfase1/rides.csv","r");
+    fopen ("datasetfase1/rides.csv","r");
 
-    char *drop2 = fgets(linha,232,fpRides);//linha lixo
+    fgets(linha,232,fpRides);//linha lixo
 
-    if(drop2!=NULL ){
-        while (fgets(linha, 232, fpRides) != NULL) {
+
+    while (fgets(linha, 232, fpRides) != NULL) {
             ridesParsing(linha);
-        }
     }
-    //printTableRides();
+
+    printTableRides();
 
     fclose(fpRides);
 
 
     //Users
     FILE *fpUsers;
-    fpUsers = fopen ("../datasetfase1/users.csv","r");
+    fpUsers = fopen ("datasetfase1/users.csv","r");
 
-    char *drop3 =fgets(linha,232,fpDrivers);//linha lixo
+    fgets(linha,232,fpDrivers);//linha lixo
 
-    if(drop3!=NULL) {
-        while (fgets(linha,  232 , fpRides) != NULL) {
-            userParsing(linha);
-        }
+
+    while (fgets(linha,  232 , fpRides) != NULL) {
+        userParsing(linha);
     }
-    //printTableUsers();
+
+    printTableUsers();
 
     fclose(fpUsers);
+
 }

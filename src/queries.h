@@ -13,7 +13,15 @@
 #include <stdlib.h>
 #include <string.h>
 
+/*!
+ * Esta funçao vai a hashtable de "corridas" (rides) e procura na hashtable as ocorrencias da cidade e faz o valor medio gasto (sem tips).
+ * @param cidade Nome da cidade a procurar.
+ * @return Da return da media de dinheiro gasto na aquela cidade.
+ */
+
 double query4(char *cidade);
+
+
 double query5(char *dataInicio,char *dataFim);
 
 #endif //LI3_QUERIES_H
