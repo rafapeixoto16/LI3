@@ -13,6 +13,7 @@
 /*!
 * Define a struct ride.
 */
+
 typedef struct ride *RIDES;
 
 /*!
@@ -20,16 +21,19 @@ typedef struct ride *RIDES;
 * @param id O id de condutor (driver).
 * @return A localização na tabela.
 */
+
 unsigned int hashRides(char *id);
 
 /*!
 * Função que inicia a hashtable com posições a NULL.
 */
+
 void initHashTableRides();
 
 /*!
 * Função que dá print da hash table com todos os seus elementos.
 */
+
 void printTableRides();
 
 /*!
@@ -37,19 +41,22 @@ void printTableRides();
  * @param ride Elemento a inserir
  * @return Retorna falso se não conseguir inserir na hashtable e verdadeiro caso consiga
  */
+
 bool hashTableInsertRides(RIDES ride);
 
 /*!
 * Função que procura por um dado condutor (driver).
 * @param id Id do condutor esperado.
-* @return Dados do condutor (driver).
+* @return Dados da corrida (ride).
 */
+
 RIDES hashTableLookupRides(char *id);
 
 /*!
 * Função que cria um objeto do tipo *RIDES e adiciona-o á hashtable
-* @param linha Dados do condutor (driver).
+* @param linha Dados da corrida (ride).
 */
+
 void ridesParsing(char *linha);
 
 /*!
@@ -57,6 +64,7 @@ void ridesParsing(char *linha);
 * @param linha Dados de um condutor (driver).
 * @return Retorna o valor da distância.
 */
+
 int lookupDistanceRides(int i);
 
 /*!
@@ -64,6 +72,7 @@ int lookupDistanceRides(int i);
 * @param i Posição na hashtable.
 * @return Retorna o id do condutor (driver)
 */
+
 char *lookupDriverRides(int i);
 
 /*!
@@ -72,6 +81,7 @@ char *lookupDriverRides(int i);
 * @param cidade Uma cidade.
 * @return Retorna true se a cidade na posição da hash table é igual á do input.
 */
+
 bool lookupCidadeRides(int i ,char *cidade);
 
 
