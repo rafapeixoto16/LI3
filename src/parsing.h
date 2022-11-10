@@ -7,6 +7,6 @@
 #include "rides.h"
 #include "users.h"
 
-void parsing();
+void parsing(char *dataset);
 
 #endif //LI3_PARSING_H

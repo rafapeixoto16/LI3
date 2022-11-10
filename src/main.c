@@ -4,15 +4,17 @@ int main (int argc,char *argv[]){
     //Start
     //Parsing dos ficheiros(csv)
 
-    parsing();
-    //Operaçao em batch
+    char *dataset=argv[1];
+    char *input =argv[2];
 
-    if (argc<2){
-        printf("Argumentos insufecientes");
+    if(argc<2){
+        printf("argumentos insufecientes\n");
         return 0;
     }
-    for (int i = 0; i <argc ; i++) {
 
-    }
+    parsing(dataset);
+
+    //Operaçao em batch
+
     return 0;
 }

@@ -5,60 +5,75 @@
 #include "parsing.h"
 
 
-void parsing(){
+void parsing(char *dataset){
 
     //inicializaçao das HashTables-Com valor NULL
     initHashTableDrivers();
     initHashTableRides();
     initHashTableUsers();
 
+    //Linha
+    char linha [232];
+
     //Drivers
     FILE *fpDrivers;
 
-    fpDrivers = fopen ("datasetfase1/drivers.csv","r");
+    char *path= strdup(dataset);
+    strcat(path,"drivers.csv");
+    fpDrivers = fopen (path,"r");
 
-    char linha [232];
-    fgets(linha,232,fpDrivers);//linha lixo
+    char *drop1 = fgets(linha,232,fpDrivers);//linha lixo
 
 
-    while (fgets(linha, 232, fpDrivers) != NULL) {
-        driversParsing(linha);
+    if(drop1!=NULL) {
+        while (fgets(linha, 232, fpDrivers) != NULL) {
+            driversParsing(linha);
+        }
     }
 
     printTableDrivers();
-
     fclose(fpDrivers);
+    free(path);
 
     //Rides
     FILE *fpRides;
 
-    fopen ("datasetfase1/rides.csv","r");
+    path= strdup(dataset);
+    strcat(path,"rides.csv");
+    fpRides = fopen (path,"r");
 
-    fgets(linha,232,fpRides);//linha lixo
+    char *drop2 = fgets(linha,232,fpRides);//linha lixo
 
-
-    while (fgets(linha, 232, fpRides) != NULL) {
+    if(drop2 != NULL ){
+        while (fgets(linha, 232, fpRides) != NULL) {
             ridesParsing(linha);
+        }
     }
 
     printTableRides();
 
     fclose(fpRides);
+    free(path);
 
 
     //Users
     FILE *fpUsers;
-    fpUsers = fopen ("datasetfase1/users.csv","r");
 
-    fgets(linha,232,fpDrivers);//linha lixo
+    path = strdup(dataset);
+    strcat(path,"users.csv");
+    fpUsers = fopen (path,"r");
 
+    char *drop3 = fgets(linha,232,fpUsers);//linha lixo
 
-    while (fgets(linha,  232 , fpRides) != NULL) {
-        userParsing(linha);
+    if(drop3 != NULL) {
+        while (fgets(linha, 232, fpRides) != NULL) {
+            userParsing(linha);
+        }
     }
 
     printTableUsers();
 
     fclose(fpUsers);
+    free(path);
 
 }
