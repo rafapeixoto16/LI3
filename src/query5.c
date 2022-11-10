@@ -14,7 +14,8 @@ double query5(char *dataInicio,char *dataFim) {
     int mesFim = atoi(strtok_r(NULL,"/",&temp));
     int anoFim = atoi(strtok_r(NULL,"/",&temp));
 
-    int precoAtual=0;
+    double precoAtual=0;
+    double divide=0;
 
     for (int i = 0; i < hashMaxRides; i++) {
 
@@ -26,15 +27,58 @@ double query5(char *dataInicio,char *dataFim) {
         if(anoFim<anoAtual || anoInicio>anoAtual){
             continue;
         }
+
         else if (anoInicio<anoAtual<anoInicio){
-            //todo fazer isto
+            precoAtual += valor(i);
         }
+
         else if (anoInicio==anoAtual){
-            if(1);
+            if(mesInicio > mesAtual)
+                continue;
+
+            else if(mesInicio<mesAtual) {
+                precoAtual += valor(i);
+                divide++;
+            }
+
+            else if(mesInicio==mesAtual){
+                if(diaInicio>diaAtual)
+                    continue;
+                else{
+                    precoAtual += valor(i);
+                    divide++;
+                }
+            }
         }
+
+
         else {
-            //todo anoFim==anoAtual
+
+            if(mesFim < mesAtual)
+                continue;
+
+            else if(mesFim > mesAtual) {
+                precoAtual += valor(i);
+                divide++;
+            }
+
+            else if(mesInicio==mesAtual){
+                if(diaFim<diaAtual)
+                    continue;
+                else {
+                    precoAtual += valor(i);
+                    divide;
+                }
+            }
         }
     }
 
+    return (precoAtual/divide);
 }
+
+double valor(int id){
+    char *idR = lookupDriverRides(id);
+    int distancia = lookupDistanceRides(id);
+    return precoViagem(distancia, idR);
+}
+

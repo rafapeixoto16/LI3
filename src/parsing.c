@@ -12,20 +12,15 @@ void parsing(char *dataset){
     initHashTableRides();
     initHashTableUsers();
 
-
     //Linha
     char linha[250];
-
 
     //Drivers
     FILE *fpDrivers;
 
     snprintf(linha,250,"%s%s",dataset,"drivers.csv");
     fpDrivers = fopen (linha,"r");
-    if(fpDrivers == NULL) {
-        perror("Error opening file");
-        return;
-    }
+
     char *drop1 = fgets(linha,250,fpDrivers);//linha lixo
 
     if(drop1!=NULL) {
@@ -36,7 +31,6 @@ void parsing(char *dataset){
 
     printTableDrivers();
     fclose(fpDrivers);
-    //free(path);
 
 
     //Rides
@@ -55,14 +49,9 @@ void parsing(char *dataset){
     printTableRides();
 
     fclose(fpRides);
-    //free(path);
-
 
     //Users
     FILE *fpUsers;
-
-    //path = strdup(dataset);
-    // strcat(path,"users.csv");
 
     snprintf(linha,250,"%s%s",dataset,"users.csv");
     fpUsers = fopen (linha,"r");
@@ -78,6 +67,6 @@ void parsing(char *dataset){
     printTableUsers();
 
     fclose(fpUsers);
-    //free(path);
+
 
 }

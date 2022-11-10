@@ -23,5 +23,6 @@ double query4(char *cidade);
 
 
 double query5(char *dataInicio,char *dataFim);
+double valor(int id)
 
 #endif //LI3_QUERIES_H
