@@ -67,7 +67,7 @@ double query5(char *dataInicio,char *dataFim) {
                     continue;
                 else {
                     precoAtual += valor(i);
-                    divide;
+                    divide++;
                 }
             }
         }

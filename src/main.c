@@ -2,7 +2,6 @@
 
 int main (int argc,char *argv[]){
     //Start
-    //Parsing dos ficheiros(csv)
 
     char *dataset=argv[1];
     char *input =argv[2];
@@ -11,9 +10,11 @@ int main (int argc,char *argv[]){
         printf("argumentos insufecientes\n");
         return 0;
     }
+
     if(dataset==NULL)
         return 1;
 
+    //Parsing dos ficheiros(csv)
     parsing(dataset);
 
     //Operaçao em batch
