@@ -28,8 +28,9 @@ double query5(char *dataInicio,char *dataFim) {
             continue;
         }
 
-        else if (anoInicio<anoAtual<anoInicio){
+        else if (anoInicio < anoAtual && anoAtual < anoInicio){
             precoAtual += valor(i);
+            divide++;
         }
 
         else if (anoInicio==anoAtual){
