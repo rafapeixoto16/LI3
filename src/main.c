@@ -11,6 +11,8 @@ int main (int argc,char *argv[]){
         printf("argumentos insufecientes\n");
         return 0;
     }
+    if(dataset==NULL)
+        return 1;
 
     parsing(dataset);
 

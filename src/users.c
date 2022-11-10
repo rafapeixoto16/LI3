@@ -18,7 +18,7 @@ struct user {
 USERS hashTableUsers [hashMaxUsers];
 
 unsigned int hashUser(char *username){
-    int length = strnlen(username,150);
+    unsigned int length = strnlen(username,150);
     unsigned int hashTableUserV = 0;
     for (int i =0;i<length;i++){
         hashTableUserV +=username[i];
@@ -53,7 +53,7 @@ void printTableUsers() {
 bool hashTableInsertUsers (USERS user){
     if(user==NULL)
         return false;
-    int index= hashUser(user->username);
+    unsigned int index= hashUser(user->username);
     user->next=hashTableUsers[index];
     hashTableUsers[index]=user;
     return true;
@@ -94,7 +94,7 @@ void userParsing (char *linha){
     USERS user1 = malloc(sizeof (struct user));
     char *head;
     char *tail;
-    int i;
+    unsigned long i;
 
     head = strtok_r(linha,";",&tail);
     i = strlen(head);

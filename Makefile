@@ -1,7 +1,7 @@
 all: final
 
 final:
-	gcc -Wall -g ./src/main.c ./src/drivers.c ./src/rides.c ./src/users.c ./src/parsing.c -O2 -o final
+	gcc -Wall -g ./src/main.c ./src/drivers.c ./src/rides.c ./src/users.c ./src/parsing.c -o final -O2
 
 main.o:		./src/main.c ./src/parsing.h
 	gcc -c ./src/main.c

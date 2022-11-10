@@ -84,5 +84,7 @@ char *lookupDriverRides(int i);
 
 bool lookupCidadeRides(int i ,char *cidade);
 
+char *lookupDateRides(int i);
+
 
 #endif

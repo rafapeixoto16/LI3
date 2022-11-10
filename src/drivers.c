@@ -61,7 +61,7 @@ void driversParsing(char *linha){
     DRIVERS driver1 = malloc(sizeof (struct driver ));
     char *head;
     char *tail;
-    int i ;
+    unsigned long i ;
 
     head = strtok_r(linha,";",&tail);
     i = strlen(head);

@@ -36,7 +36,7 @@ void printTableRides(){
 
 bool hashTableInsertRides(RIDES ride){
     if(ride==NULL) return false;
-    int index = hashRides(((ride)->id));
+    unsigned int index = hashRides(((ride)->id));
     if(hashTableRides[index]!=NULL){
         return false;
     }
@@ -45,7 +45,7 @@ bool hashTableInsertRides(RIDES ride){
 }
 
 RIDES hashTableLookupRides(char *id){
-    int index = hashRides(id);
+    unsigned int index = hashRides(id);
     if(hashTableRides[index]!=NULL && strcmp((hashTableRides[index])->id,id)==0)
         return hashTableRides[index];
     else
@@ -58,7 +58,7 @@ void ridesParsing (char *linha){
     RIDES ride1 = malloc(sizeof (struct ride));
     char *head;
     char *tail;
-    int i;
+    unsigned long i;
 
     head = strtok_r(linha,";",&tail);
     i = strlen(head);
@@ -129,4 +129,8 @@ char *lookupDriverRides(int i){
 
 int lookupDistanceRides(int i){
     return atoi(hashTableRides[i]->distance);
+}
+
+char *lookupDateRides(int i){
+    return hashTableRides[i]->date;
 }
