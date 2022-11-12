@@ -142,3 +142,37 @@ double precoViagem(int distancia,char *id){
 
     return valor;
 }
+
+char *lookupStatusDriver(char *id){
+    unsigned int index = hashDrivers(id);
+    return hashTableDrivers[index]->account_status;
+}
+
+char *lookupNomeDriver(char *id){
+    unsigned int index = hashDrivers(id);
+    return hashTableDrivers[index]->name;
+}
+
+char *lookupGeneroDriver(char *id){
+    unsigned int index = hashDrivers(id);
+    return hashTableDrivers[index]->gender;
+}
+
+int lookupIdadeDriver(char *id){
+    char *temp2;
+    unsigned int index = hashDrivers(id);
+    char *data = hashTableDrivers[index]->birth_day;
+
+    int idade;
+    int dia = 9, mes = 10, ano = 2022;
+    int diaAniv = atoi(strtok_r(data, "/", &temp2));
+    int mesAniv = atoi(strtok_r(NULL, "/", &temp2));
+    int anoAniv = atoi(strtok_r(NULL, "/", &temp2));
+
+    idade = ano-anoAniv-1;
+
+    if((mesAniv<mes)||(mesAniv==mes && diaAniv<=dia))
+        idade = idade + 1;
+
+    return idade;
+}

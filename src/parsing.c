@@ -8,11 +8,11 @@
 void parsing(char *dataset){
 
     //inicializaçao das HashTables-Com valor NULL
-    initHashTableDrivers();
-    initHashTableRides();
-    initHashTableUsers();
+    initHashTableDrivers ();
+    initHashTableRides   ();
+    initHashTableUsers   ();
 
-    //Linha
+
     char linha[250];
 
     //Drivers
@@ -38,6 +38,7 @@ void parsing(char *dataset){
 
     snprintf(linha,250,"%s%s",dataset,"rides.csv");
     fpRides = fopen (linha,"r");//linha lixo
+
     char *drop2 = fgets(linha,250,fpRides);
 
     if(drop2 != NULL ){

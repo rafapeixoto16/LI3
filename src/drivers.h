@@ -11,7 +11,7 @@
 #include <string.h>
 
 #define hashMaxDrivers 10000
-
+#define dataAniv (09/10/2022)
 /*!
  * Informaçoes do condutor (driver).
  !*/
@@ -84,5 +84,13 @@ double precoViagem(int distancia,char *id);
  */
 
 bool hashTableInsertDrivers(DRIVERS driver);
+
+char *lookupStatusDriver(char *id);
+
+char *lookupNomeDriver(char *id);
+
+char *lookupGeneroDriver(char *id);
+
+int lookupIdadeDriver(char *id);
 
 #endif //LI3_DRIVERS_H

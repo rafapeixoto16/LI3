@@ -14,20 +14,23 @@ void parsingInput(char *input){
     FILE *fpInput= fopen(input,"r");
 
     while (fgets(linha, 250,fpInput ) != NULL) {
-        printf("%s",linha);
+        //printf("%s",linha);
         char *retorno = parsingQueries(linha);
+
         if(retorno!=NULL) {
-            snprintf(nomeFile, 250, "%s%i%s", "resultados/command", contador, "_output");
+            snprintf(nomeFile, 250, "%s%i%s", "resultados/command", contador, "_output.txt");
             FILE *fileopen = fopen(nomeFile, "w");
             fprintf(fileopen, "%s", retorno);
             fclose(fileopen);
         }
-        else{
+
+        else {
             snprintf(nomeFile, 250, "%s%i%s", "resultados/command", contador, "_output.txt");
             FILE *fileopen = fopen(nomeFile, "w");
-            fprintf(fileopen, "%s", "Ainda nao defenida");
             fclose(fileopen);
         }
+
+        free(retorno);
         contador++;
     }
 }

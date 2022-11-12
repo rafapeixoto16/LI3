@@ -139,3 +139,38 @@ void userParsing (char *linha){
 
     }
 }
+
+char *lookupStatusUser(char *id){
+    unsigned int index = hashUser(id);
+    return hashTableUsers[index]->account_status;
+}
+
+char *lookupNomeUser(char *id){
+    unsigned int index = hashUser(id);
+    return hashTableUsers[index]->name;
+}
+
+char *lookupGeneroUser(char *id){
+    unsigned int index = hashUser(id);
+    return hashTableUsers[index]->gender;
+}
+
+int lookupIdadeUser(char *id){
+    char *temp2;
+    unsigned int index = hashUser(id);
+    char *data         = hashTableUsers[index]->birth_date;
+
+    int idade;
+    int dia = 9, mes = 10, ano = 2022;
+    int diaAniv = atoi(strtok_r(data, "/", &temp2));
+    int mesAniv = atoi(strtok_r(NULL, "/", &temp2));
+    int anoAniv = atoi(strtok_r(NULL, "/", &temp2));
+
+    idade = ano-anoAniv-1;
+
+    if((mesAniv<mes)||(mesAniv==mes && diaAniv<=dia))
+        idade = idade + 1;
+
+    return idade;
+}
+

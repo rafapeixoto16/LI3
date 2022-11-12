@@ -12,11 +12,17 @@ char *parsingQueries(char *linhaQ){
 
     switch(query){
 
-        /*case 1:{
-            //query1
+        case 1:{
+            char *id=strtok_r(NULL," ",&save);
+            char retorno;
+            query1(id,&retorno);
+
+            string = strdup(&retorno);
+            break;
+
         }
 
-        case 2:{
+        /*case 2:{
             //query2
         }
 
@@ -33,20 +39,20 @@ char *parsingQueries(char *linhaQ){
             break;
         }
 
-        case 5:{
+        /*case 5:{
             char *dataInicio = strtok_r(NULL," ",&save);
-            char *dataFim = strtok_r(NULL," ",&save);
+            char *dataFim = strtok_r(NULL,"\n",&save);
 
             double retorno = query5(dataInicio,dataFim);
             snprintf(copia,250,"%.3f",retorno);
             string= strdup(copia);
             break;
-        }
+        }*/
 
         case 6:{
             char *cidade = strtok_r(NULL," ",&save);
             char *dataInicio = strtok_r(NULL," ",&save);
-            char *dataFim = strtok_r(NULL," ",&save);
+            char *dataFim = strtok_r(NULL,"\n",&save);
 
             double retorno = query6(cidade,dataInicio,dataFim);
             snprintf(copia,250,"%.3f",retorno);
@@ -67,7 +73,7 @@ char *parsingQueries(char *linhaQ){
         }*/
 
         default:
-            string = "nao defenido";
+            string = NULL;
             break;
     }
     return string;

@@ -5,6 +5,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
+#include "drivers.h"
 
 #define hashMaxRides 1000000
 
@@ -83,7 +84,11 @@ char *lookupDriverRides(int i);
 */
 char *lookupCidadeRides(int i);
 
+
 char *lookupDateRides(int i);
 
+void lookupAvalNViagemTotAufDrivers(char *id,double *avaliacaoMedia,int *numeroViagens,double *totalAuferido);
 
+
+void lookupAvalNViagemTotAufUser(char *id   ,double *avaliacaoMedia,int *numeroViagens,double *totalGasto);
 #endif

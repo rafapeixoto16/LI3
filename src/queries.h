@@ -12,11 +12,14 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 
 
 char *parsingQueries(char *linhaQ);
 
+
+void query1(char *id,char *retorno);
 
 /*!
  * Esta funçao vai a hashtable de "corridas" (rides) e procura na hashtable as ocorrencias da cidade e faz o valor medio gasto (sem tips).

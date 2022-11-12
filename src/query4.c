@@ -11,10 +11,11 @@ double query4 (char *cidade) {
 
     for (int i = 0; i < hashMaxRides; i++) {
         char *cidadeAtual = lookupCidadeRides(i);
+
         if (strcmp(cidadeAtual,cidade)==0) {
-            char *id = lookupDriverRides(i);
+            char *id      = lookupDriverRides(i);
             int distancia = lookupDistanceRides(i);
-            valor += precoViagem(distancia, id);
+            valor        += precoViagem(distancia, id);
             divide++;
         }
     }
