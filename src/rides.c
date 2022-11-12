@@ -117,10 +117,8 @@ void ridesParsing (char *linha){
 
 }
 
-bool lookupCidadeRides(int i ,char *cidade){
-    if(strcmp(hashTableRides[i]->city,cidade)==0)
-        return true;
-    return false;
+char *lookupCidadeRides(int i ){
+    return hashTableRides[i]->city;
 }
 
 char *lookupDriverRides(int i){

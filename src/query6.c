@@ -18,8 +18,9 @@ double query6(char *cidade,char *dataInicio,char *dataFim) {
     double divide = 0;
 
     for (int i = 0; i < hashMaxRides; i++) {
+        char *cidadeAtual = lookupCidadeRides(i);
+        if(strcmp(cidadeAtual,cidade)==0) {
 
-        if(lookupCidadeRides(i,cidade)) {
             char *data = lookupDateRides(i);
             int diaAtual = atoi(strtok_r(data, "/", &temp));
             int mesAtual = atoi(strtok_r(NULL, "/", &temp));

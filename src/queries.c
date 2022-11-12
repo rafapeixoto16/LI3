@@ -25,7 +25,7 @@ char *parsingQueries(char *linhaQ){
         }*/
 
         case 4:{
-            char *cidade = strtok_r(NULL," ",&save);
+            char *cidade = save;
 
             double retorno = query4(cidade);
             snprintf(copia,250,"%.3f",retorno);
@@ -67,7 +67,7 @@ char *parsingQueries(char *linhaQ){
         }*/
 
         default:
-            string= NULL;
+            string = "nao defenido";
             break;
     }
     return string;

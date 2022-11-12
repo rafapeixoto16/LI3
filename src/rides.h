@@ -81,8 +81,7 @@ char *lookupDriverRides(int i);
 * @param cidade Uma cidade.
 * @return Retorna true se a cidade na posição da hash table é igual á do input.
 */
-
-bool lookupCidadeRides(int i ,char *cidade);
+char *lookupCidadeRides(int i);
 
 char *lookupDateRides(int i);
 

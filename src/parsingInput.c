@@ -14,7 +14,7 @@ void parsingInput(char *input){
     FILE *fpInput= fopen(input,"r");
 
     while (fgets(linha, 250,fpInput ) != NULL) {
-
+        printf("%s",linha);
         char *retorno = parsingQueries(linha);
         if(retorno!=NULL) {
             snprintf(nomeFile, 250, "%s%i%s", "resultados/command", contador, "_output");
