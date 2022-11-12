@@ -17,3 +17,4 @@ double query4 (char *cidade) {
     }
     return (valor/divide);
 }
+

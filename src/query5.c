@@ -45,6 +45,7 @@ double query5(char *dataInicio,char *dataFim) {
             else if(mesInicio==mesAtual){
                 if(diaInicio>diaAtual)
                     continue;
+
                 else{
                     precoAtual += valor(i);
                     divide++;
@@ -66,6 +67,7 @@ double query5(char *dataInicio,char *dataFim) {
             else if(mesInicio==mesAtual){
                 if(diaFim<diaAtual)
                     continue;
+
                 else {
                     precoAtual += valor(i);
                     divide++;
@@ -73,11 +75,11 @@ double query5(char *dataInicio,char *dataFim) {
             }
         }
     }
-
     return (precoAtual/divide);
 }
 
 double valor(int id){
+
     char *idR = lookupDriverRides(id);
     int distancia = lookupDistanceRides(id);
     return precoViagem(distancia, idR);

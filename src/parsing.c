@@ -29,7 +29,7 @@ void parsing(char *dataset){
         }
     }
 
-    printTableDrivers();
+    //printTableDrivers();
     fclose(fpDrivers);
 
 
@@ -46,7 +46,7 @@ void parsing(char *dataset){
         }
     }
 
-    printTableRides();
+    //printTableRides();
 
     fclose(fpRides);
 
@@ -64,7 +64,7 @@ void parsing(char *dataset){
         }
     }
 
-    printTableUsers();
+    //printTableUsers();
 
     fclose(fpUsers);
 

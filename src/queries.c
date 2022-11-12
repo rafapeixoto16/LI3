@@ -4,29 +4,15 @@
 
 #include "queries.h"
 
-/*
-char parsingQueries(char *linhaQ){
-    char *query;//primeira parte da linha
-    if(strcmp("4",query)==0){
-        //alguma coisa
-        query4("Braga");//em vez de
-    }
-    else if(strcmp("4",query)==0){
+char *parsingQueries(char *linhaQ){
+    char *save,*string;
 
-    }
-    else if(strcmp("4",query)==0){
+    int query= atoi(strtok_r(linhaQ," ",&save));
+    char copia[250];
 
-    }
-    else return NULL;
-}
- */
+    switch(query){
 
-char parsingQueries(char *linhaQ){
-    char *query;
-
-    switch(*query){
-
-        case 1:{
+        /*case 1:{
             //query1
         }
 
@@ -36,21 +22,39 @@ char parsingQueries(char *linhaQ){
 
         case 3:{
             //query3
-        }
+        }*/
 
         case 4:{
-            query4(NULL);
+            char *cidade = strtok_r(NULL," ",&save);
+
+            double retorno = query4(cidade);
+            snprintf(copia,250,"%.3f",retorno);
+            string= strdup(copia);
+            break;
         }
 
         case 5:{
-            //query5
+            char *dataInicio = strtok_r(NULL," ",&save);
+            char *dataFim = strtok_r(NULL," ",&save);
+
+            double retorno = query5(dataInicio,dataFim);
+            snprintf(copia,250,"%.3f",retorno);
+            string= strdup(copia);
+            break;
         }
 
         case 6:{
-            //query6
+            char *cidade = strtok_r(NULL," ",&save);
+            char *dataInicio = strtok_r(NULL," ",&save);
+            char *dataFim = strtok_r(NULL," ",&save);
+
+            double retorno = query6(cidade,dataInicio,dataFim);
+            snprintf(copia,250,"%.3f",retorno);
+            string= strdup(copia);
+            break;
         }
 
-        case 7:{
+        /*case 7:{
             //query7
         }
 
@@ -60,10 +64,11 @@ char parsingQueries(char *linhaQ){
 
         case 9:{
             //query9
-        }
+        }*/
 
         default:
-            return NULL;
+            string= NULL;
+            break;
     }
-
+    return string;
 }

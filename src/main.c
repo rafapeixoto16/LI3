@@ -1,4 +1,5 @@
 #include "parsing.h"
+#include "parsingInput.h"
 
 int main (int argc,char *argv[]){
     //Start
@@ -7,17 +8,18 @@ int main (int argc,char *argv[]){
     char *input =argv[2];
 
     if(argc<2){
-        printf("argumentos insufecientes\n");
+        printf("Argumentos insufecientes\n");
         return 0;
     }
 
-    if(dataset==NULL)
+    if(dataset==NULL || input==NULL)
         return 1;
 
     //Parsing dos ficheiros(csv)
     parsing(dataset);
 
-    //Operaçao em batch
+    //Parsing do Input (input.txt)
+    parsingInput(input);
 
     return 0;
 }
