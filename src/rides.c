@@ -130,7 +130,7 @@ int lookupDistanceRides(int i){
 }
 
 char *lookupDateRides(int i){
-    char *retorna =hashTableRides[i]->date;
+    char *retorna = hashTableRides[i]->date;
     return retorna;
 }
 

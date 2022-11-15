@@ -20,37 +20,30 @@ double query5(char *dataInicio,char *dataFim) {
     for (int i = 0; i < hashMaxRides; i++) {
         char *data=lookupDateRides(i);
 
-        char  *diaAtualSq5 = strtok_r(data, "/" , &temp);
-        char  *mesAtualSq5 = strtok_r(NULL, "/" , &temp);
-        char  *anoAtualSq5 = strtok_r(NULL, "\0", &temp);
+        int diaAtual ,mesAtual ,anoAtual;
+        paraInt(data,&diaAtual,&mesAtual,&anoAtual);
 
-        int diaAtualq5 = atoi(diaAtualSq5);
-        int mesAtualq5 = atoi(mesAtualSq5);
-        int anoAtualq5 = atoi(anoAtualSq5);
-
-
-
-        if(anoFim<anoAtualq5 || anoInicio>anoAtualq5){
+        if(anoFim < anoAtual || anoInicio > anoAtual){
             continue;
         }
 
-        else if (anoInicio < anoAtualq5 && anoAtualq5 < anoFim){
+        else if (anoInicio < anoAtual && anoAtual < anoFim){
             precoAtual += valor(i);
             divide++;
         }
 
-        else if (anoInicio==anoAtualq5){
-            if(mesInicio > mesAtualq5)
-                ;
+        else if (anoInicio==anoAtual){
+            if(mesInicio > mesAtual)
+                continue;
 
-            else if(mesInicio<mesAtualq5) {
+            else if(mesInicio<mesAtual) {
                 precoAtual += valor(i);
                 divide++;
             }
 
-            else if(mesInicio==mesAtualq5){
-                if(diaInicio>diaAtualq5)
-                    ;
+            else if(mesInicio==mesAtual){
+                if(diaInicio>diaAtual)
+                    continue;
 
                 else{
                     precoAtual += valor(i);
@@ -62,17 +55,17 @@ double query5(char *dataInicio,char *dataFim) {
 
         else {
 
-            if(mesFim < mesAtualq5)
-                    ;
+            if(mesFim < mesAtual)
+                continue;
 
-            else if(mesFim > mesAtualq5) {
+            else if(mesFim > mesAtual) {
                 precoAtual += valor(i);
                 divide++;
             }
 
-            else if(mesInicio==mesAtualq5){
-                if(diaFim<diaAtualq5)
-                    ;
+            else if(mesInicio==mesAtual){
+                if(diaFim<diaAtual)
+                    continue;
 
                 else {
                     precoAtual += valor(i);
@@ -90,3 +83,16 @@ double valor(int id){
     return precoViagem(distancia, idR);
 }
 
+void paraInt (char *string,int *diaAtual,int *mesAtual ,int *anoAtual ){
+    char *temp;
+    char *copia = strdup(string);
+
+    char *diaAtualS = strtok_r(copia, "/" , &temp);
+    char *mesAtualS = strtok_r(NULL, "/" , &temp);
+    char *anoAtualS = strtok_r(NULL, "\0", &temp);
+
+    *diaAtual = atoi(diaAtualS);
+    *mesAtual = atoi(mesAtualS);
+    *anoAtual = atoi(anoAtualS);
+
+}

@@ -34,4 +34,6 @@ double query5(char *dataInicio,char *dataFim);
 double valor(int id);
 
 double query6(char *cidade,char *dataInicio,char *dataFim);
+
+void paraInt (char *string,int *diaAtual,int *mesAtual ,int *anoAtual );
 #endif //LI3_QUERIES_H
