@@ -126,7 +126,7 @@ void userParsing (char *linha){
     head[i]='\0';
     user1->pay_method= strdup(head);
 
-    head = strtok_r(NULL,";",&tail);
+    head = strtok_r(NULL,"\n",&tail);
     i = strlen(head);
     head[i]='\0';
     user1->account_status= strdup(head);
@@ -142,23 +142,43 @@ void userParsing (char *linha){
 
 char *lookupStatusUser(char *id){
     unsigned int index = hashUser(id);
-    return hashTableUsers[index]->account_status;
+    USERS tmp = hashTableUsers[index];
+
+    while (tmp != NULL && strncmp(tmp->username, id, 50) != 0) {
+        tmp = tmp->next;
+    }
+    return tmp->account_status;
 }
 
 char *lookupNomeUser(char *id){
     unsigned int index = hashUser(id);
-    return hashTableUsers[index]->name;
+    USERS tmp = hashTableUsers[index];
+
+    while (tmp != NULL && strncmp(tmp->username, id, 50) != 0) {
+        tmp = tmp->next;
+    }
+    return tmp->name;
 }
 
 char *lookupGeneroUser(char *id){
     unsigned int index = hashUser(id);
-    return hashTableUsers[index]->gender;
+    USERS tmp = hashTableUsers[index];
+
+    while (tmp != NULL && strncmp(tmp->username, id, 50) != 0) {
+        tmp = tmp->next;
+    }
+    return tmp->gender;
 }
 
 int lookupIdadeUser(char *id){
     char *temp2;
     unsigned int index = hashUser(id);
-    char *data         = hashTableUsers[index]->birth_date;
+    USERS tmp = hashTableUsers[index];
+
+    while (tmp != NULL && strncmp(tmp->username, id, 50) != 0) {
+        tmp = tmp->next;
+    }
+    char *data= tmp->birth_date;
 
     int idade;
     int dia = 9, mes = 10, ano = 2022;

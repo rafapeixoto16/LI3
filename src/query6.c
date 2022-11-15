@@ -5,7 +5,8 @@
 #include "queries.h"
 
 double query6(char *cidade,char *dataInicio,char *dataFim) {
-    char *temp;
+    char *temp,*lixo;
+    dataFim= strtok_r(dataFim,"\n",&lixo);
 
     int diaInicio = atoi(strtok_r(dataInicio, "/", &temp));
     int mesInicio = atoi(strtok_r(NULL      , "/", &temp));
@@ -21,9 +22,14 @@ double query6(char *cidade,char *dataInicio,char *dataFim) {
         char *cidadeAtual = lookupCidadeRides(i);
         if(strcmp(cidadeAtual,cidade)==0) {
             char *data = lookupDateRides(i);
-            int diaAtual = atoi(strtok_r(data, "/", &temp));
-            int mesAtual = atoi(strtok_r(NULL, "/", &temp));
-            int anoAtual = atoi(strtok_r(NULL, "/", &temp));
+
+            char *diaAtualS = strtok_r(data, "/" , &temp);
+            char *mesAtualS = strtok_r(NULL, "/" , &temp);
+            char *anoAtualS = strtok_r(NULL, "\0", &temp);
+
+            int diaAtual = atoi(diaAtualS);
+            int mesAtual = atoi(mesAtualS);
+            int anoAtual = atoi(anoAtualS);
 
             if (anoFim < anoAtual || anoInicio > anoAtual) {
                 continue;

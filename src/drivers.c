@@ -103,7 +103,7 @@ void driversParsing(char *linha){
     head[i]='\0';
     driver1->account_creation= strdup(head);
 
-    head = strtok_r(NULL,";",&tail);
+    head = strtok_r(NULL,"\n",&tail);
     i = strlen(head);
     head[i]='\0';
     driver1->account_status= strdup(head);

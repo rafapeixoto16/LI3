@@ -18,33 +18,39 @@ double query5(char *dataInicio,char *dataFim) {
     double divide=0;
 
     for (int i = 0; i < hashMaxRides; i++) {
-        char *temp2;
         char *data=lookupDateRides(i);
-        int diaAtual = atoi(strtok_r(data, "/", &temp2));
-        int mesAtual = atoi(strtok_r(NULL, "/", &temp2));
-        int anoAtual = atoi(strtok_r(NULL, "/", &temp2));
 
-        if(anoFim<anoAtual || anoInicio>anoAtual){
+        char  *diaAtualSq5 = strtok_r(data, "/" , &temp);
+        char  *mesAtualSq5 = strtok_r(NULL, "/" , &temp);
+        char  *anoAtualSq5 = strtok_r(NULL, "\0", &temp);
+
+        int diaAtualq5 = atoi(diaAtualSq5);
+        int mesAtualq5 = atoi(mesAtualSq5);
+        int anoAtualq5 = atoi(anoAtualSq5);
+
+
+
+        if(anoFim<anoAtualq5 || anoInicio>anoAtualq5){
             continue;
         }
 
-        else if (anoInicio < anoAtual && anoAtual < anoInicio){
+        else if (anoInicio < anoAtualq5 && anoAtualq5 < anoInicio){
             precoAtual += valor(i);
             divide++;
         }
 
-        else if (anoInicio==anoAtual){
-            if(mesInicio > mesAtual)
-                continue;
+        else if (anoInicio==anoAtualq5){
+            if(mesInicio > mesAtualq5)
+                ;
 
-            else if(mesInicio<mesAtual) {
+            else if(mesInicio<mesAtualq5) {
                 precoAtual += valor(i);
                 divide++;
             }
 
-            else if(mesInicio==mesAtual){
-                if(diaInicio>diaAtual)
-                    continue;
+            else if(mesInicio==mesAtualq5){
+                if(diaInicio>diaAtualq5)
+                    ;
 
                 else{
                     precoAtual += valor(i);
@@ -56,17 +62,17 @@ double query5(char *dataInicio,char *dataFim) {
 
         else {
 
-            if(mesFim < mesAtual)
-                continue;
+            if(mesFim < mesAtualq5)
+                    ;
 
-            else if(mesFim > mesAtual) {
+            else if(mesFim > mesAtualq5) {
                 precoAtual += valor(i);
                 divide++;
             }
 
-            else if(mesInicio==mesAtual){
-                if(diaFim<diaAtual)
-                    continue;
+            else if(mesInicio==mesAtualq5){
+                if(diaFim<diaAtualq5)
+                    ;
 
                 else {
                     precoAtual += valor(i);
