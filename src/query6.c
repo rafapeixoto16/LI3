@@ -35,7 +35,7 @@ double query6(char *cidade,char *dataInicio,char *dataFim) {
                 continue;
             }
 
-            else if (anoInicio < anoAtual && anoAtual < anoInicio) {
+            else if (anoInicio < anoAtual && anoAtual < anoFim) {
                 distanciaAtual += lookupDistanceRides(i);
                 divide++;
             }

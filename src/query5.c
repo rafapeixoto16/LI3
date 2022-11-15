@@ -34,7 +34,7 @@ double query5(char *dataInicio,char *dataFim) {
             continue;
         }
 
-        else if (anoInicio < anoAtualq5 && anoAtualq5 < anoInicio){
+        else if (anoInicio < anoAtualq5 && anoAtualq5 < anoFim){
             precoAtual += valor(i);
             divide++;
         }
