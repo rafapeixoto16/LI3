@@ -85,11 +85,35 @@ double precoViagem(int distancia,char *id);
 
 bool hashTableInsertDrivers(DRIVERS driver);
 
+/*!
+ * Função que dá os status de um determinado condutor
+ * @param id ID do condutor
+ * @return Retorna os status do condutor
+ */
+
 char *lookupStatusDriver(char *id);
+
+/*!
+ * Função que dá o nome de um determinado condutor
+ * @param id ID do condutor
+ * @return Retorna o nome do condutor
+ */
 
 char *lookupNomeDriver(char *id);
 
+/*!
+ * Função que dá o genero do condutor
+ * @param id ID do condutor
+ * @return Retorna o genero do condutor
+ */
+
 char *lookupGeneroDriver(char *id);
+
+/*!
+ * Função que dá a idade do condutor
+ * @param id ID do condutor
+ * @return Retorna a idade do condutor
+ */
 
 int lookupIdadeDriver(char *id);
 
