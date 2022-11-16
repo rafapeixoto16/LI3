@@ -12,15 +12,14 @@ char *parsingQueries(char *linhaQ){
 
     switch(query){
 
-        /*case 1:{
+        case 1:{
             char *id=strtok_r(NULL,"\n",&save);
-            char retorno;
-            query1(id,&retorno);
+            char *retorno = query1(id);
 
-            string = strdup(&retorno);
+            string =retorno;
             break;
 
-        }*/
+        }
 
         /*case 2:{
             //query2

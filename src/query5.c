@@ -80,24 +80,23 @@ double query5(char *dataInicio,char *dataFim) {
 }
 
 double valor(int id){
-    char *idR      = lookupDriverRides  (id);
-    int distancia  = lookupDistanceRides(id);
+    char *idR     = lookupDriverRides  (id);
+    int distancia = lookupDistanceRides(id);
+    double retorna =precoViagem(distancia, idR);
 
-    double retorna = precoViagem(distancia, idR);
     free(idR);
-
     return retorna;
 }
 
 void paraInt (char *string,int *diaAtual,int *mesAtual ,int *anoAtual ){
+
     char *temp;
 
     char *diaAtualS = strtok_r(string, "/" , &temp);
-    char *mesAtualS = strtok_r(NULL  , "/" , &temp);
-    char *anoAtualS = strtok_r(NULL  , "\0", &temp);
-    *diaAtual       = atoi(diaAtualS);
-    *mesAtual       = atoi(mesAtualS);
-    *anoAtual       = atoi(anoAtualS);
+    char *mesAtualS = strtok_r(NULL, "/" , &temp);
+    char *anoAtualS = strtok_r(NULL, "\0", &temp);
 
-    free(diaAtual);
+    *diaAtual = atoi(diaAtualS);
+    *mesAtual = atoi(mesAtualS);
+    *anoAtual = atoi(anoAtualS);
 }

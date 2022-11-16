@@ -3,14 +3,14 @@
 //
 #include "queries.h"
 
-void query1(char *id,char *retorno){
+char *query1(char *id){
     int numero=1;
     char stringR[250];
     char *lixo;
     id = strtok_r(id,"\n",&lixo);
 
     for (int i = 0; i < strlen(id) && numero==1 ; i++) {
-        if(isdigit(id[i])==1){
+        if(isdigit(id[i])){
             continue;
         }
         else
@@ -20,14 +20,19 @@ void query1(char *id,char *retorno){
     if(numero==1){
         char *status = lookupStatusDriver(id);
 
-        if(strcmp(status,"active") == 0) {
+        if  ( strcmp(status,"inactive") == 0){
+            free(status);
+            return NULL;
+        }
+
+        if( strcmp(status,"active") == 0) {
 
             char *nome   = lookupNomeDriver(id);
             char *genero = lookupGeneroDriver(id);
             int  idade   = lookupIdadeDriver(id);
 
-            double avaliacaoMedia = 0.00;
-            int    numeroViagens  = 0;
+            double avaliacaoMedia = 0.00 ;
+            int    numeroViagens  = 0    ;
             double totalAuferido  = 0.000;
 
             lookupAvalNViagemTotAufDrivers(id,&avaliacaoMedia,&numeroViagens,&totalAuferido);
@@ -40,31 +45,34 @@ void query1(char *id,char *retorno){
                      numeroViagens,
                      totalAuferido);
 
-            *retorno=*stringR;
+
             free(nome);
             free(genero);
         }
 
-        else{
-            return;
-        }
-
+        free   (status );
+        return strdup(stringR);
     }
 
     else {
         char *status = lookupStatusUser(id);
 
-        if(strcmp(status,"active") == 0) {
-            char *nome   = lookupNomeUser   (id);
-            char *genero = lookupGeneroUser (id);
-            int  idade   = lookupIdadeUser  (id);
-            double avaliacaoMedia =0.000;
-            int    numeroViagens  =0;
-            double totalGasto     =0.000;
+        if  ( strcmp(status,"inactive") == 0){
+            free(status);
+            return NULL;
+        }
 
-            lookupAvalNViagemTotAufUser(id,&avaliacaoMedia,&numeroViagens,&totalGasto);
+        else if (strcmp(status,"active") == 0) {
+            char *nome = lookupNomeUser(id);
+            char *genero = lookupGeneroUser(id);
+            int idade = lookupIdadeUser(id);
+            double avaliacaoMedia = 0.000;
+            int numeroViagens = 0;
+            double totalGasto = 0.000;
 
-            snprintf(stringR,250,"%s;%s;%i;%.3f;%i;%.3f",
+            lookupAvalNViagemTotAufUser(id, &avaliacaoMedia, &numeroViagens, &totalGasto);
+
+            snprintf(stringR, 250, "%s;%s;%i;%.3f;%i;%.3f",
                      nome,
                      genero,
                      idade,
@@ -72,13 +80,12 @@ void query1(char *id,char *retorno){
                      numeroViagens,
                      totalGasto);
 
-            *retorno = *stringR;
+
             free(nome);
             free(genero);
         }
 
-        else{
-            return;
-        }
+        free(status);
+        return strdup(stringR);
     }
 }

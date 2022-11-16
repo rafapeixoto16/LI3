@@ -130,7 +130,8 @@ int lookupDistanceRides(int i){
 }
 
 char *lookupDateRides(int i){
-    return strdup(hashTableRides[i]->date);
+    char *retorna = strdup(hashTableRides[i]->date);
+    return retorna;
 }
 
 void lookupAvalNViagemTotAufDrivers (char *id,double *avaliacaoMedia,int *numeroViagens,double *totalAuferido){
@@ -139,27 +140,31 @@ void lookupAvalNViagemTotAufDrivers (char *id,double *avaliacaoMedia,int *numero
 
     for (int i = 0; i < hashMaxRides; i++){
         if(strcmp(hashTableRides[i]->driver,id)==0){
-            avaliacao += atoi(hashTableRides[i]->score_driver);
-            dinheiro  += atoi(hashTableRides[i]->tip) + precoViagem(atoi(hashTableRides[i]->distance),id);
+            avaliacao  += atoi(hashTableRides[i]->score_driver);
+            dinheiro   += atoi(hashTableRides[i]->tip) + precoViagem(atoi(hashTableRides[i]->distance),id);
             nV++;
             divide++;
         }
     }
-    *avaliacaoMedia = avaliacao/divide;
+    *avaliacaoMedia = (double )(avaliacao/(double )divide);
     *totalAuferido  = dinheiro;
     *numeroViagens  = nV;
 }
 
 void lookupAvalNViagemTotAufUser(char *id,double *avaliacaoMedia,int *numeroViagens,double *totalGasto){
-    double divide=0;
+    int divide = 0,nV = 0;
+    double avaliacao = 0.000, dinheiro =0.000;
 
     for (int i = 0; i < hashMaxRides; i++) {
-        if(strcmp(hashTableRides[i]->user,id)==0){
-            *avaliacaoMedia += atoi(hashTableRides[i]->score_user);
-            *totalGasto     += atoi(hashTableRides[i]->tip) + precoViagem(atoi(hashTableRides[i]->distance),hashTableRides[i]->driver);
-            numeroViagens++;
+
+        if(strcmp(hashTableRides[i]->user,id) == 0){
+            avaliacao  += atoi(hashTableRides[i]->score_user);
+            dinheiro   += atoi(hashTableRides[i]->tip) + precoViagem(atoi(hashTableRides[i]->distance),hashTableRides[i]->driver);
+            nV++;
             divide++;
         }
     }
-    *avaliacaoMedia=*avaliacaoMedia/divide;
+    *avaliacaoMedia =(double ) (avaliacao/(double )divide);
+    *totalGasto     = dinheiro;
+    *numeroViagens  = nV;
 }

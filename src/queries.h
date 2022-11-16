@@ -19,7 +19,7 @@
 char *parsingQueries(char *linhaQ);
 
 
-void query1(char *id,char *retorno);
+char *query1(char *id);
 
 /*!
  * Esta funçao vai a hashtable de "corridas" (rides) e procura na hashtable as ocorrencias da cidade e faz o valor medio gasto (sem tips).

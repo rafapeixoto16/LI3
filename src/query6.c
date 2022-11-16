@@ -29,9 +29,8 @@ double query6(char *cidade,char *dataInicio,char *dataFim) {
             paraInt(data,&diaAtual,&mesAtual,&anoAtual);
             free(data);
 
-            if (anoFim < anoAtual || anoInicio > anoAtual) {
-                continue;
-            }
+            if (anoFim < anoAtual || anoInicio > anoAtual);
+
 
             else if (anoInicio < anoAtual && anoAtual < anoFim) {
                 distanciaAtual += lookupDistanceRides(i);
@@ -40,8 +39,7 @@ double query6(char *cidade,char *dataInicio,char *dataFim) {
 
             else if (anoInicio == anoAtual) {
 
-                if (mesInicio > mesAtual)
-                    continue;
+                if (mesInicio > mesAtual);
 
                 else if (mesInicio < mesAtual) {
                     distanciaAtual += lookupDistanceRides(i);
@@ -49,8 +47,8 @@ double query6(char *cidade,char *dataInicio,char *dataFim) {
                 }
 
                 else if (mesInicio == mesAtual) {
-                    if (diaInicio > diaAtual)
-                        continue;
+                    if (diaInicio > diaAtual);
+
                     else {
                         distanciaAtual += lookupDistanceRides(i);
                         divide++;
@@ -60,8 +58,7 @@ double query6(char *cidade,char *dataInicio,char *dataFim) {
 
             else {
 
-                if (mesFim < mesAtual)
-                    continue;
+                if (mesFim < mesAtual);
 
                 else if (mesFim > mesAtual) {
                     distanciaAtual += lookupDistanceRides(i);
@@ -69,8 +66,7 @@ double query6(char *cidade,char *dataInicio,char *dataFim) {
                 }
 
                 else if (mesInicio == mesAtual) {
-                    if (diaFim < diaAtual)
-                        continue;
+                    if (diaFim < diaAtual);
                     else {
                         distanciaAtual += lookupDistanceRides(i);
                         divide++;

@@ -1,7 +1,7 @@
 all: final
 
 final:
-	gcc -Wall -g ./src/main.c ./src/drivers.c ./src/rides.c ./src/users.c ./src/parsing.c ./src/queries.c ./src/query4.c ./src/query5.c ./src/query6.c  ./src/parsingInput.c ./src/query1.c -o final #-O2
+	gcc -Wall -g -march=native -mtune=native ./src/main.c ./src/drivers.c ./src/rides.c ./src/users.c ./src/parsing.c ./src/queries.c ./src/query4.c ./src/query5.c ./src/query6.c  ./src/parsingInput.c ./src/query1.c -o final -O2
 
 main.o:		./src/main.c 	./src/parsing.h
 	gcc -c ./src/main.c
