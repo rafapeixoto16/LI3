@@ -46,9 +46,9 @@ void printTableRides();
 bool hashTableInsertRides(RIDES ride);
 
 /*!
-* Função que procura por um dado condutor (driver).
-* @param id Id do condutor esperado.
-* @return Dados da corrida (ride).
+* Função que retorna verdadeiro ou falso.
+* @param i Posição na hashtable.
+* @return Retorna true se a cidade na posição da hash table é igual á do input.
 */
 
 RIDES hashTableLookupRides(char *id);
@@ -77,18 +77,39 @@ int lookupDistanceRides(int i);
 char *lookupDriverRides(int i);
 
 /*!
-* Função que retorna verdadeiro ou falso.
+* Função que dá uma determinada cidade
 * @param i Posição na hashtable.
 * @param cidade Uma cidade.
-* @return Retorna true se a cidade na posição da hash table é igual á do input.
+* @return Retorna a cidade
 */
+
 char *lookupCidadeRides(int i);
 
+/*!
+ * Função dá uma determinada data
+ * @param i Posição na hashtable
+ * @return Retorna a data
+ */
 
 char *lookupDateRides(int i);
 
+/*!
+ *
+ * @param id ID do condutor
+ * @param avaliacaoMedia A avaliação média
+ * @param numeroViagens Número de viagens
+ * @param totalAuferido Valor gasto no total
+ */
+
 void lookupAvalNViagemTotAufDrivers(char *id,double *avaliacaoMedia,int *numeroViagens,double *totalAuferido);
 
+/*!
+ *
+ * @param id
+ * @param avaliacaoMedia
+ * @param numeroViagens
+ * @param totalGasto
+ */
 
 void lookupAvalNViagemTotAufUser(char *id   ,double *avaliacaoMedia,int *numeroViagens,double *totalGasto);
 #endif
