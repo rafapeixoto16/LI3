@@ -34,4 +34,4 @@ query6.o:	./src/query6.c 	./src/queries.h
 	gcc -c ./src/query6.c
 
 clean:
-	rm *.o final
+	rm -f *.o final
