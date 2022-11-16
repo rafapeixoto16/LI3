@@ -78,3 +78,4 @@ char *parsingQueries(char *linhaQ){
     }
     return string;
 }
+

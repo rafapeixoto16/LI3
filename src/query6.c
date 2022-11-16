@@ -27,6 +27,7 @@ double query6(char *cidade,char *dataInicio,char *dataFim) {
             int diaAtual,mesAtual,anoAtual;
 
             paraInt(data,&diaAtual,&mesAtual,&anoAtual);
+            free(data);
 
             if (anoFim < anoAtual || anoInicio > anoAtual) {
                 continue;
@@ -77,6 +78,7 @@ double query6(char *cidade,char *dataInicio,char *dataFim) {
                 }
             }
         }
+        free(cidadeAtual);
     }
     return (distanciaAtual/divide);
 }

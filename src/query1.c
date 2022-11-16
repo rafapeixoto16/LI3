@@ -41,6 +41,8 @@ void query1(char *id,char *retorno){
                      totalAuferido);
 
             *retorno=*stringR;
+            free(nome);
+            free(genero);
         }
 
         else{
@@ -60,7 +62,7 @@ void query1(char *id,char *retorno){
             int    numeroViagens  =0;
             double totalGasto     =0.000;
 
-            //lookupAvalNViagemTotAufUser(id,&avaliacaoMedia,&numeroViagens,&totalGasto);
+            lookupAvalNViagemTotAufUser(id,&avaliacaoMedia,&numeroViagens,&totalGasto);
 
             snprintf(stringR,250,"%s;%s;%i;%.3f;%i;%.3f",
                      nome,
@@ -71,6 +73,8 @@ void query1(char *id,char *retorno){
                      totalGasto);
 
             *retorno = *stringR;
+            free(nome);
+            free(genero);
         }
 
         else{

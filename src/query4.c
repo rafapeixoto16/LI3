@@ -17,7 +17,10 @@ double query4 (char *cidade) {
             int distancia = lookupDistanceRides(i);
             valor        += precoViagem(distancia, id);
             divide++;
+
+            free(id);
         }
+        free(cidadeAtual);
     }
     return (valor/divide);
 }

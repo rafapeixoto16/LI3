@@ -132,30 +132,30 @@ double precoViagem(int distancia,char *id){
     DRIVERS tmp= hashTableLookupDrivers(id);
 
     if(strcmp("basic",tmp->car_class)==0)
-        valor=3.25+0.62*distancia;
+        valor=3.25+(double )0.62*distancia;
 
     else if(strcmp("green",tmp->car_class)==0){
-        valor=4.00+0.79*distancia;
+        valor=4.00+(double )0.79*distancia;
     }
     else if(strcmp("premium",tmp->car_class)==0)
-        valor=5.20+0.94*distancia;
+        valor=5.20+(double )0.94*distancia;
 
     return valor;
 }
 
 char *lookupStatusDriver(char *id){
     unsigned int index = hashDrivers(id);
-    return hashTableDrivers[index]->account_status;
+    return strdup(hashTableDrivers[index]->account_status);
 }
 
 char *lookupNomeDriver(char *id){
     unsigned int index = hashDrivers(id);
-    return hashTableDrivers[index]->name;
+    return strdup(hashTableDrivers[index]->name);
 }
 
 char *lookupGeneroDriver(char *id){
     unsigned int index = hashDrivers(id);
-    return hashTableDrivers[index]->gender;
+    return strdup(hashTableDrivers[index]->gender);
 }
 
 int lookupIdadeDriver(char *id){

@@ -136,7 +136,7 @@ void userParsing (char *linha){
     bool bools =hashTableInsertUsers(user1);
 
     if(!bools){
-
+        //segunda fase com tamanhos maiores
     }
 }
 
@@ -147,7 +147,7 @@ char *lookupStatusUser(char *id){
     while (tmp != NULL && strncmp(tmp->username, id, 50) != 0) {
         tmp = tmp->next;
     }
-    return tmp->account_status;
+    return strdup(tmp->account_status);
 }
 
 char *lookupNomeUser(char *id){
@@ -157,7 +157,7 @@ char *lookupNomeUser(char *id){
     while (tmp != NULL && strncmp(tmp->username, id, 50) != 0) {
         tmp = tmp->next;
     }
-    return tmp->name;
+    return strdup(tmp->name);
 }
 
 char *lookupGeneroUser(char *id){
@@ -167,7 +167,7 @@ char *lookupGeneroUser(char *id){
     while (tmp != NULL && strncmp(tmp->username, id, 50) != 0) {
         tmp = tmp->next;
     }
-    return tmp->gender;
+    return strdup(tmp->gender);
 }
 
 int lookupIdadeUser(char *id){

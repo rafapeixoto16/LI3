@@ -117,12 +117,12 @@ void ridesParsing (char *linha){
 
 }
 
-char *lookupCidadeRides(int i ){
-    return hashTableRides[i]->city;
+char *lookupCidadeRides (int i){
+    return strdup(hashTableRides[i]->city);
 }
 
-char *lookupDriverRides(int i){
-    return hashTableRides[i]->driver;
+char *lookupDriverRides (int i){
+    return strdup(hashTableRides[i]->driver);
 }
 
 int lookupDistanceRides(int i){
@@ -130,8 +130,7 @@ int lookupDistanceRides(int i){
 }
 
 char *lookupDateRides(int i){
-    char *retorna = hashTableRides[i]->date;
-    return retorna;
+    return strdup(hashTableRides[i]->date);
 }
 
 void lookupAvalNViagemTotAufDrivers (char *id,double *avaliacaoMedia,int *numeroViagens,double *totalAuferido){
@@ -157,7 +156,7 @@ void lookupAvalNViagemTotAufUser(char *id,double *avaliacaoMedia,int *numeroViag
     for (int i = 0; i < hashMaxRides; i++) {
         if(strcmp(hashTableRides[i]->user,id)==0){
             *avaliacaoMedia += atoi(hashTableRides[i]->score_user);
-            *totalGasto  += atoi(hashTableRides[i]->tip) + precoViagem(atoi(hashTableRides[i]->distance),hashTableRides[i]->driver);
+            *totalGasto     += atoi(hashTableRides[i]->tip) + precoViagem(atoi(hashTableRides[i]->distance),hashTableRides[i]->driver);
             numeroViagens++;
             divide++;
         }
