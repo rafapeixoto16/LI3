@@ -1,12 +1,8 @@
-//
-// Created by rafael on 04-11-2022.
-//
-
 #ifndef LI3_USERS_H
 #define LI3_USERS_H
 
-#include<string.h>
-#include<stdio.h>
+#include <string.h>
+#include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
 
@@ -54,8 +50,8 @@ unsigned int hashUser(char *username);
 void printTableUsers();
 
 /*!
- * Função que vai ao indice do username e caso.
- * @param username Username a ser apagado da hashtable.
+ *
+ * @param username
  * @return
  */
 
@@ -88,7 +84,7 @@ char *lookupGeneroUser(char *username);
 /*!
  * Função que vai ao indice do user na hashtable e paga na sua idade.
  * @param username O username.
- * @return Retorna uma cópia da idade
+ * @return Retorna uma cópia da idade.
  */
 
 int lookupIdadeUser(char *username);
