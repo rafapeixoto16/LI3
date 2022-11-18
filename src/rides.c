@@ -15,16 +15,27 @@ struct ride {
 
 RIDES hashTableRides[hashMaxRides];
 
+// --------------------------------------------
+// hashRides
+// --------------------------------------------
+
 unsigned int hashRides(char *id){
     return ((atoi(id)-1));
 }
 
+// --------------------------------------------
+// initHashTableRides
+// --------------------------------------------
 
 void initHashTableRides(){
     for (int i = 0; i < hashMaxRides; i++) {
         hashTableRides[i]=NULL;
     }
 }
+
+// --------------------------------------------
+// printTableRides
+// --------------------------------------------
 
 void printTableRides(){
     for (int i = 0; i < hashMaxRides; i++){
@@ -34,6 +45,10 @@ void printTableRides(){
         printf("errou\n");
     }
 }
+
+// --------------------------------------------
+// hashTableInsertRides
+// --------------------------------------------
 
 bool hashTableInsertRides(RIDES ride){
     if(ride==NULL) return false;
@@ -45,6 +60,10 @@ bool hashTableInsertRides(RIDES ride){
     return true;
 }
 
+// --------------------------------------------
+// hashTableLookupRides
+// --------------------------------------------
+
 /*RIDES hashTableLookupRides(char *id){
     unsigned int index = hashRides(id);
     if(hashTableRides[index]!=NULL && strcmp((hashTableRides[index])->id,id)==0)
@@ -53,6 +72,10 @@ bool hashTableInsertRides(RIDES ride){
         return NULL;
 
 }*/
+
+// --------------------------------------------
+// ridesParsing
+// --------------------------------------------
 
 void ridesParsing (char *linha){
 
@@ -118,22 +141,42 @@ void ridesParsing (char *linha){
 
 }
 
+// --------------------------------------------
+// lookupCidadeRides
+// --------------------------------------------
+
 char *lookupCidadeRides (int i){
     return strdup(hashTableRides[i]->city);
 }
+
+// --------------------------------------------
+// lookupDriverRides
+// --------------------------------------------
 
 char *lookupDriverRides (int i){
     return strdup(hashTableRides[i]->driver);
 }
 
+// --------------------------------------------
+// lookupDistanceRides
+// --------------------------------------------
+
 int lookupDistanceRides(int i){
     return atoi(hashTableRides[i]->distance);
 }
+
+// --------------------------------------------
+// lookupDateRides
+// --------------------------------------------
 
 char *lookupDateRides(int i){
     char *retorna = strdup(hashTableRides[i]->date);
     return retorna;
 }
+
+// --------------------------------------------
+// lookupAvalNViagemTotAufDrivers
+// --------------------------------------------
 
 void lookupAvalNViagemTotAufDrivers (char *id,double *avaliacaoMedia,int *numeroViagens,double *totalAuferido){
     int divide=0,nV = 0;
@@ -151,6 +194,10 @@ void lookupAvalNViagemTotAufDrivers (char *id,double *avaliacaoMedia,int *numero
     *totalAuferido  =  dinheiro;
     *numeroViagens  =  nV;
 }
+
+// --------------------------------------------
+// lookupAvalNViagemTotGastoUser
+// --------------------------------------------
 
 void lookupAvalNViagemTotGastoUser(char *id,double *avaliacaoMedia,int *numeroViagens,double *totalGasto){
     int nV = 0;
