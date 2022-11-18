@@ -23,7 +23,7 @@ int main (int argc,char *argv[]){
     parsingInput(input);
 
     //Free dataset
-    freeDataset
+    freeDataset();
 
     return 0;
 }

@@ -1,6 +1,3 @@
-//
-// Created by rafael on 10-11-2022.
-//
 #include "queries.h"
 
 char *query1(char *id){

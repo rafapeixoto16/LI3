@@ -154,13 +154,13 @@ void lookupAvalNViagemTotAufDrivers (char *id,double *avaliacaoMedia,int *numero
 
 void lookupAvalNViagemTotGastoUser(char *id,double *avaliacaoMedia,int *numeroViagens,double *totalGasto){
     int nV = 0;
-    double avaliacao = 0.000, dinheiro =0.000,divide = 0;
+    double avaliacao = 0.000, dinheiro =0.000, divide = 0;
 
     for (int i = 0; i < hashMaxRides; i++) {
 
         if(strcmp(hashTableRides[i]->user,id) == 0){
             avaliacao  += atoi(hashTableRides[i]->score_user);
-            dinheiro   += (double ) atof(hashTableRides[i]->tip) + precoViagem(atoi(hashTableRides[i]->distance),hashTableRides[i]->driver);
+            dinheiro   += (double ) atof(hashTableRides[i]->tip) + (double )precoViagem(atoi(hashTableRides[i]->distance),hashTableRides[i]->driver);
             nV++;
             divide++;
         }
