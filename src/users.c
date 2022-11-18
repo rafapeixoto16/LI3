@@ -246,23 +246,21 @@ void freeUsers (){
 
             USERS tmp = hashTableUsers[i];
             while (tmp != NULL){
+                USERS next  = tmp->next;
+                USERS atual = tmp;
 
-                USERS next = tmp->next;
-
-                char *username = tmp->username;
-                free        (username);
-
-                char *accountS =tmp->account_status;
-                free  (accountS);
-
-
-                free          (tmp->gender);
-                free      (tmp->birth_date);
-                free            (tmp->name);
-                free      (tmp->pay_method);
+                free(tmp->name);
+                free(tmp->username);
+                free(tmp->gender);
+                free(tmp->account_status);
+                free(tmp->birth_date);
                 free(tmp->account_creation);
-                tmp = tmp->next;
-                free            (next);
+                free(tmp->pay_method);
+                free(tmp);
+                tmp = next;
+                free(atual);
+                hashTableUsers[i]=next;
+
             }
         }
     }
