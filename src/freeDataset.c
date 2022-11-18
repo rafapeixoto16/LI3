@@ -6,6 +6,6 @@ void freeDataset(){
 
     freeRides   ();
 
-    freeUsers   ();
+    //freeUsers   ();
 
 }

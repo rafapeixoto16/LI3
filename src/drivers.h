@@ -107,4 +107,7 @@ int lookupIdadeDriver(char *id);
 
 double precoViagem(int distancia,char *id);
 
+
+void freeDrivers ();
+
 #endif //LI3_DRIVERS_H

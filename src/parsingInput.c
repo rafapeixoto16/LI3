@@ -18,14 +18,14 @@ void parsingInput(char *input){
         char *retorno = parsingQueries(linha);
 
         if(retorno!=NULL) {
-            snprintf(nomeFile, 250, "%s%i%s", "resultados/command", contador, "_output.txt");
+            snprintf(nomeFile, 250, "%s%i%s", "Resultados/command", contador, "_output.txt");
             FILE *fileopen = fopen(nomeFile, "w");
             fprintf(fileopen, "%s", retorno);
             fclose(fileopen);
         }
 
         else {
-            snprintf(nomeFile, 250, "%s%i%s", "resultados/command", contador, "_output.txt");
+            snprintf(nomeFile, 250, "%s%i%s", "Resultados/command", contador, "_output.txt");
             FILE *fileopen = fopen(nomeFile, "w");
             fclose(fileopen);
         }

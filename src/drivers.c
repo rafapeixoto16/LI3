@@ -184,3 +184,18 @@ double precoViagem(int distancia,char *id){
 
     return valor;
 }
+
+
+void freeDrivers (){
+    for (int i = 0; i < hashMaxDrivers; i++) {
+        free(hashTableDrivers[i]->id);
+        free(hashTableDrivers[i]->car_class);
+        free(hashTableDrivers[i]->name);
+        free(hashTableDrivers[i]->gender);
+        free(hashTableDrivers[i]->account_status);
+        free(hashTableDrivers[i]->birth_day);
+        free(hashTableDrivers[i]->city);
+        free(hashTableDrivers[i]->license_plate);
+        free(hashTableDrivers[i]->account_creation);
+    }
+}

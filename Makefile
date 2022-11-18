@@ -1,7 +1,9 @@
+
 all: programa-principal
 
 programa-principal:
-	gcc  -g -march=native -mtune=native ./src/main.c ./src/drivers.c ./src/rides.c ./src/users.c ./src/parsing.c ./src/queries.c ./src/query4.c ./src/query5.c ./src/query6.c  ./src/parsingInput.c ./src/query1.c -o programa-principal -O2
+	@mkdir -p "Resultados"
+	gcc  -g -march=native -mtune=native ./src/main.c ./src/drivers.c ./src/rides.c ./src/users.c ./src/parsing.c ./src/queries.c ./src/query4.c ./src/query5.c ./src/query6.c  ./src/parsingInput.c ./src/query1.c ./src/freeDataset.c -o programa-principal -O2
 
 main.o:		./src/main.c 	./src/parsing.h
 	gcc -c -Wall ./src/main.c

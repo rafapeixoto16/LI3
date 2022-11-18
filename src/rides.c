@@ -216,3 +216,19 @@ void lookupAvalNViagemTotGastoUser(char *id,double *avaliacaoMedia,int *numeroVi
     *totalGasto     =  dinheiro;
     *numeroViagens  =  nV;
 }
+
+
+void freeRides (){
+    for (int i = 0; i < hashMaxRides ; i++) {
+        free     (hashTableRides[i]->distance);
+        free       (hashTableRides[i]->driver);
+        free           (hashTableRides[i]->id);
+        free          (hashTableRides[i]->tip);
+        free         (hashTableRides[i]->date);
+        free         (hashTableRides[i]->city);
+        free   (hashTableRides[i]->score_user);
+        free         (hashTableRides[i]->user);
+        free (hashTableRides[i]->score_driver);
+        free      (hashTableRides[i]->comment);
+    }
+}

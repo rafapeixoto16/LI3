@@ -6,7 +6,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-#define hashMaxUsers 100000
+#define hashMaxUsers 100003
 
 /*!
  * Define a struct user.
