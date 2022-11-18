@@ -11,7 +11,9 @@
 #include <string.h>
 
 #define hashMaxDrivers 10000
+
 #define dataAniv (09/10/2022)
+
 /*!
  * Informaçoes do condutor (driver).
  !*/
@@ -19,7 +21,7 @@
 typedef struct driver *DRIVERS;
 
 /*!
- * Funçao hash que atribui uma posiçao na tabela dependendo do id.
+ * Função hash que atribui uma posiçao na tabela dependendo do id.
  * @param id Id do condutor (driver).
  * @return Retorna o indice da posiçao na hashtable.
  */
@@ -27,19 +29,19 @@ typedef struct driver *DRIVERS;
 unsigned int hashDrivers(char *id);
 
 /*!
- * Inicializa a hashtabela com todas as posiçoes a NULL.
+ * Inicializa a hashtable com todas as posições a NULL.
  */
 
 void initHashTableDrivers();
 
 /*!
- * Da print a todos os elementos da hashtable do condutores (drivers).
+ * Dá print a todos os elementos da hashtable dos condutores (drivers).
  */
 
 void printTableDrivers();
 
 /*!
- * Esta funçao cria um objeto do tipo *DRIVERS e depois adiciona-o a hashtable.
+ * Esta função cria um objeto do tipo *DRIVERS e depois adiciona-o a hashtable.
  * @param linha Recebe um linha com toda a informação do condutor (driver).
  */
 
@@ -47,14 +49,14 @@ void driversParsing(char *linha);
 
 /*!
  * Busca um condutor.
- * @param id Id do condutor (drivers).
+ * @param id Id do condutor (driver).
  * @return Retorna um DRIVERS.
  */
 
 DRIVERS hashTableLookupDrivers(char *id);
 
 /*!
- * Da print de um driver.
+ * Da print de um contutor (driver).
  * @param drivers DRIVERS a dar print.
  */
 
@@ -62,7 +64,7 @@ void printDriver(DRIVERS drivers);
 
 /*!
  * Procura um condutor (drivers) com o seu id.
- * @param i Id do condutor
+ * @param i Id do condutor (driver).
  * @return re
  */
 //nao usada
@@ -70,9 +72,9 @@ char *lookupDrivers(char *i);
 
 /*!
  * Calcula o preço de viagem.
- * @param distancia Distancia em Km.
- * @param id Id do condutor.
- * @return
+ * @param distancia Distância em Km.
+ * @param id Id do condutor (driver).
+ * @return Retorna o valor da viagem.
  */
 
 double precoViagem(int distancia,char *id);
@@ -80,39 +82,39 @@ double precoViagem(int distancia,char *id);
 /*!
  * Adiciona um condutor (driver) a hashtable.
  * @param driver Condutor (driver) a ser adicionado.
- * @return Retorna True se conseguio adicionar o condutor (driver),False se nao conseguio.
+ * @return Retorna True se conseguiu adicionar o condutor (driver),False se nao conseguiu.
  */
 
 bool hashTableInsertDrivers(DRIVERS driver);
 
 /*!
- * Função que dá os status de um determinado condutor
- * @param id ID do condutor
- * @return Retorna os status do condutor
+ * Função que dá os status de um determinado condutor.
+ * @param id ID do condutor (driver).
+ * @return Retorna os status do condutor (driver).
  */
 
 char *lookupStatusDriver(char *id);
 
 /*!
- * Função que dá o nome de um determinado condutor
- * @param id ID do condutor
- * @return Retorna o nome do condutor
+ * Função que dá o nome de um determinado condutor (driver).
+ * @param id ID do condutor (driver).
+ * @return Retorna o nome do condutor (driver).
  */
 
 char *lookupNomeDriver(char *id);
 
 /*!
- * Função que dá o genero do condutor
- * @param id ID do condutor
- * @return Retorna o genero do condutor
+ * Função que dá o genero do condutor (driver).
+ * @param id ID do condutor (driver).
+ * @return Retorna o genero do condutor (driver).
  */
 
 char *lookupGeneroDriver(char *id);
 
 /*!
- * Função que dá a idade do condutor
- * @param id ID do condutor
- * @return Retorna a idade do condutor
+ * Função que dá a idade do condutor (driver).
+ * @param id ID do condutor (driver).
+ * @return Retorna a idade do condutor (driver).
  */
 
 int lookupIdadeDriver(char *id);
