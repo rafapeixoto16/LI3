@@ -1,5 +1,9 @@
 #include "queries.h"
 
+// --------------------------------------------
+// parsingQueries
+// --------------------------------------------
+
 char *parsingQueries(char *linhaQ){
     char *save,*string;
 

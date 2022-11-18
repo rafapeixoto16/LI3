@@ -2,6 +2,10 @@
 #include "queries.h"
 #include <stdio.h>
 
+// --------------------------------------------
+// parsingInput
+// --------------------------------------------
+
 void parsingInput(char *input){
     char linha[250];
     char nomeFile[250];

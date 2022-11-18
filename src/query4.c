@@ -1,5 +1,8 @@
 #include "queries.h"
 
+// --------------------------------------------
+// query4
+// --------------------------------------------
 
 double query4 (char *cidade) {
     double divide = 0, valor = 0;

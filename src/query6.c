@@ -1,5 +1,8 @@
 #include "queries.h"
 
+// --------------------------------------------
+// query6
+// --------------------------------------------
 
 double query6(char *cidade,char *dataInicio,char *dataFim) {
     char *temp,*lixo;

@@ -1,5 +1,9 @@
 #include "queries.h"
 
+// --------------------------------------------
+// query5
+// --------------------------------------------
+
 double query5(char *dataInicio,char *dataFim) {
     char *temp;
 
@@ -121,6 +125,10 @@ double query5(char *dataInicio,char *dataFim) {
     return (precoAtual/divide);
 }
 
+// --------------------------------------------
+// valor
+// --------------------------------------------
+
 double valor(int id){
     char *idR     = lookupDriverRides  (id);
     int distancia = lookupDistanceRides(id);
@@ -129,6 +137,10 @@ double valor(int id){
     free(idR);
     return retorna;
 }
+
+// --------------------------------------------
+// paraInt
+// --------------------------------------------
 
 void paraInt (char *string,int *diaAtual,int *mesAtual ,int *anoAtual ){
 
