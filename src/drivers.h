@@ -63,14 +63,6 @@ DRIVERS hashTableLookupDrivers(char *id);
 void printDriver(DRIVERS drivers);
 
 /*!
- * Procura um condutor (drivers) com o seu id.
- * @param i Id do condutor (driver).
- * @return re
- */
-//nao usada
-char *lookupDrivers(char *i);
-
-/*!
  * Calcula o preço de viagem.
  * @param distancia Distância em Km.
  * @param id Id do condutor (driver).

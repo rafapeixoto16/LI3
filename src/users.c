@@ -17,6 +17,9 @@ struct user {
 
 USERS hashTableUsers [hashMaxUsers];
 
+// --------------------------------------------
+// hashUser
+// --------------------------------------------
 unsigned int hashUser(char *username){
     unsigned int length = strnlen(username,150);
     unsigned int hashTableUserV = 0;
@@ -27,12 +30,18 @@ unsigned int hashUser(char *username){
     return hashTableUserV;
 }
 
+// --------------------------------------------
+// initHashTableUsers
+// --------------------------------------------
 void initHashTableUsers(){
     for (int i = 0; i < hashMaxUsers; i++) {
         hashTableUsers[i]=NULL;
     }
 }
 
+// --------------------------------------------
+// printTableUsers
+// --------------------------------------------
 void printTableUsers() {
     int j =1;
     for (int i = 0; i < hashMaxUsers; i++) {
@@ -50,6 +59,9 @@ void printTableUsers() {
     }
 }
 
+// --------------------------------------------
+// hashTableInsertUsers
+// --------------------------------------------
 bool hashTableInsertUsers (USERS user){
     if(user==NULL)
         return false;
@@ -59,7 +71,9 @@ bool hashTableInsertUsers (USERS user){
     return true;
 }
 
-
+// --------------------------------------------
+// hashTableLookupUsers
+// --------------------------------------------
 USERS hashTableLookupUsers(char *username) {
     unsigned int index = hashUser(username);
     USERS tmp = hashTableUsers[index];
@@ -69,6 +83,9 @@ USERS hashTableLookupUsers(char *username) {
     return tmp;
 }
 
+// --------------------------------------------
+// hashTableDeleteUsers
+// --------------------------------------------
 USERS hashTableDeleteUsers (char *username) {
     unsigned int index = hashUser(username);
     USERS tmp = hashTableUsers[index];
@@ -89,6 +106,9 @@ USERS hashTableDeleteUsers (char *username) {
     return tmp;
 }
 
+// --------------------------------------------
+// userParsing
+// --------------------------------------------
 void userParsing (char *linha){
 
     USERS user1 = malloc(sizeof (struct user));
@@ -140,42 +160,54 @@ void userParsing (char *linha){
     }
 }
 
-char *lookupStatusUser(char *id){
-    unsigned int index = hashUser(id);
+// --------------------------------------------
+// lookupStatusUser
+// --------------------------------------------
+char *lookupStatusUser(char *username){
+    unsigned int index = hashUser(username);
     USERS tmp = hashTableUsers[index];
 
-    while (tmp != NULL && strncmp(tmp->username, id, 50) != 0) {
+    while (tmp != NULL && strncmp(tmp->username, username, 50) != 0) {
         tmp = tmp->next;
     }
     return strdup(tmp->account_status);
 }
 
-char *lookupNomeUser(char *id){
-    unsigned int index = hashUser(id);
+// --------------------------------------------
+// lookupNomeUser
+// --------------------------------------------
+char *lookupNomeUser(char *username){
+    unsigned int index = hashUser(username);
     USERS tmp = hashTableUsers[index];
 
-    while (tmp != NULL && strncmp(tmp->username, id, 50) != 0) {
+    while (tmp != NULL && strncmp(tmp->username, username, 50) != 0) {
         tmp = tmp->next;
     }
     return strdup(tmp->name);
 }
 
-char *lookupGeneroUser(char *id){
-    unsigned int index = hashUser(id);
+// --------------------------------------------
+// lookupGeneroUser
+// --------------------------------------------
+char *lookupGeneroUser(char *username){
+    unsigned int index = hashUser(username);
     USERS tmp = hashTableUsers[index];
 
-    while (tmp != NULL && strncmp(tmp->username, id, 50) != 0) {
+    while (tmp != NULL && strncmp(tmp->username, username, 50) != 0) {
         tmp = tmp->next;
     }
     return strdup(tmp->gender);
 }
 
-int lookupIdadeUser(char *id){
+// --------------------------------------------
+// lookupIdadeUser
+// --------------------------------------------
+int lookupIdadeUser(char *username){
     char *temp2;
-    unsigned int index = hashUser(id);
+    unsigned int index = hashUser(username);
     USERS tmp = hashTableUsers[index];
 
-    while (tmp != NULL && strncmp(tmp->username, id, 50) != 0) {
+    while (tmp != NULL && strncmp(tmp->username, username, 50) != 0) {
         tmp = tmp->next;
     }
     char *data= tmp->birth_date;

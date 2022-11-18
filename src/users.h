@@ -40,7 +40,7 @@ void userParsing(char *linha);
 bool hashTableInsertUsers (USERS user);
 
 /*!
- * Função que atribui uma posição na tabela dependento do username.
+ * Função que atribui uma posição na tabela dependendo do username.
  * @param username O username.
  * @return Retorna o indice do user na hashtable.
  */
@@ -54,15 +54,7 @@ unsigned int hashUser(char *username);
 void printTableUsers();
 
 /*!
- *
- * @param username
- * @return
- */
-
-USERS hashTableLook(char *username);
-
-/*!
- * Função que vai ao indice do username e caso
+ * Função que vai ao indice do username e caso.
  * @param username Username a ser apagado da hashtable.
  * @return
  */
@@ -70,36 +62,36 @@ USERS hashTableLook(char *username);
 USERS hashTableDeleteUsers (char *username);
 
 /*!
- *
- * @param id
- * @return
+ * Função que vai ao indice do user na hash table e pega nos seus status.
+ * @param username O username.
+ * @return Retorna uma cópia dos status do user.
  */
 
-char *lookupStatusUser(char *id);
+char *lookupStatusUser(char *username);
 
 /*!
- * F
- * @param id
- * @return
+ * Função que vai ao indice do user na hashtable e pega o seu nome.
+ * @param username O username.
+ * @return Retorna uma cópia do nome do user.
  */
 
-char *lookupNomeUser(char *id);
+char *lookupNomeUser(char *username);
 
 /*!
- *
- * @param id
- * @return
+ * Função que vai ao indice do user na hashtable e pega o seu género.
+ * @param username O username.
+ * @return Retorna uma cópia do género.
  */
 
-char *lookupGeneroUser(char *id);
+char *lookupGeneroUser(char *username);
 
 /*!
- *
- * @param id
- * @return
+ * Função que vai ao indice do user na hashtable e paga na sua idade.
+ * @param username O username.
+ * @return Retorna uma cópia da idade
  */
 
-int lookupIdadeUser(char *id);
+int lookupIdadeUser(char *username);
 
 
 #endif //LI3_USERS_H
