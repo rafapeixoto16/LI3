@@ -90,4 +90,6 @@ char *lookupGeneroUser(char *username);
 int lookupIdadeUser(char *username);
 
 
+void freeUsers ();
+
 #endif //LI3_USERS_H

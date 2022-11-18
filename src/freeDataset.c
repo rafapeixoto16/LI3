@@ -1,5 +1,11 @@
-//
-// Created by rafael on 18-11-2022.
-//
-
 #include "freeDataset.h"
+
+void freeDataset(){
+
+    freeDrivers ();
+
+    freeRides   ();
+
+    freeUsers   ();
+
+}

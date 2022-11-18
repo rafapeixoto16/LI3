@@ -236,3 +236,29 @@ int lookupIdadeUser(char *username){
     return idade;
 }
 
+
+void freeUsers (){
+    for (int i = 0; i < hashMaxUsers; i++) {
+        if (hashTableUsers[i] == NULL) {
+            continue;
+        }
+        else{
+            USERS tmp = hashTableUsers[i];
+
+            while (tmp != NULL){
+                USERS next = tmp->next;
+                free        (tmp->username);
+                free  (tmp->account_status);
+                free          (tmp->gender);
+                free      (tmp->birth_date);
+                free            (tmp->name);
+                free      (tmp->pay_method);
+                free(tmp->account_creation);
+                free            (tmp->next);
+                tmp=next;
+            }
+        }
+    }
+}
+
+
