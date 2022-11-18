@@ -4,18 +4,14 @@
 #include "queries.h"
 
 char *query1(char *id){
-    int numero=1;
     char stringR[250];
     char *lixo;
     id = strtok_r(id,"\n",&lixo);
 
-    for (int i = 0; i < strlen(id) && numero==1 ; i++) {
-        if(isdigit(id[i])){
-            continue;
-        }
-        else
-            numero=0;
-    }
+    int numero = 0;
+    if(isdigit(id[0]))
+        numero=1;
+
 
     if(numero==1){
         char *status = lookupStatusDriver(id);
@@ -30,6 +26,7 @@ char *query1(char *id){
             char *nome   = lookupNomeDriver(id);
             char *genero = lookupGeneroDriver(id);
             int  idade   = lookupIdadeDriver(id);
+
 
             double avaliacaoMedia = 0.00 ;
             int    numeroViagens  = 0    ;

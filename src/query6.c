@@ -4,6 +4,7 @@
 
 #include "queries.h"
 
+
 double query6(char *cidade,char *dataInicio,char *dataFim) {
     char *temp,*lixo;
     dataFim= strtok_r(dataFim,"\n",&lixo);
@@ -29,27 +30,83 @@ double query6(char *cidade,char *dataInicio,char *dataFim) {
             paraInt(data,&diaAtual,&mesAtual,&anoAtual);
             free(data);
 
-            if (anoFim < anoAtual || anoInicio > anoAtual);
-
+            if (anoFim < anoAtual || anoInicio > anoAtual) {
+                free(cidadeAtual);
+                continue;
+            }
 
             else if (anoInicio < anoAtual && anoAtual < anoFim) {
                 distanciaAtual += lookupDistanceRides(i);
                 divide++;
             }
 
-            else if (anoInicio == anoAtual) {
+            else if(anoAtual == anoInicio && anoAtual == anoFim){
+                if (mesAtual < mesInicio || mesAtual > mesFim){
+                    free(cidadeAtual);
+                    continue;
+                }
 
-                if (mesInicio > mesAtual);
-
-                else if (mesInicio < mesAtual) {
+                else if(mesInicio < mesAtual && mesAtual < mesFim){
                     distanciaAtual += lookupDistanceRides(i);
                     divide++;
                 }
 
-                else if (mesInicio == mesAtual) {
-                    if (diaInicio > diaAtual);
+                else if (mesInicio == mesAtual && mesAtual == mesFim){
+                    if(diaAtual < diaInicio || diaAtual>  diaFim){
+                        free(cidadeAtual);
+                        continue;
+                    }
+                    else if(diaInicio <= diaAtual && diaAtual <= diaFim){
+                        distanciaAtual += lookupDistanceRides(i);
+                        divide++;
+                    }
+                }
 
-                    else {
+                else if(mesInicio == mesAtual){
+                    if (diaAtual < diaInicio){
+                        free(cidadeAtual);
+                        continue;
+                    }
+
+                    else{
+                        distanciaAtual += lookupDistanceRides(i);
+                        divide++;
+                    }
+                }
+
+                else if(mesFim == mesAtual){
+                    if (diaAtual > diaFim){
+                        free(cidadeAtual);
+                        continue;
+                    }
+
+                    else{
+                        distanciaAtual += lookupDistanceRides(i);
+                        divide++;
+                    }
+                }
+            }
+
+            else if (anoInicio == anoAtual) {
+
+                if (mesInicio > mesAtual){
+                    free(cidadeAtual);
+                    continue;
+                }
+
+                else if (mesInicio < mesAtual ) {
+                    distanciaAtual += lookupDistanceRides(i);
+                    divide++;
+                }
+
+
+                else if (mesInicio == mesAtual) {
+                    if (diaInicio > diaAtual){
+                        free(cidadeAtual);
+                        continue;
+                    }
+
+                    else if(diaInicio < diaAtual) {
                         distanciaAtual += lookupDistanceRides(i);
                         divide++;
                     }
@@ -58,7 +115,10 @@ double query6(char *cidade,char *dataInicio,char *dataFim) {
 
             else {
 
-                if (mesFim < mesAtual);
+                if (mesFim < mesAtual){
+                    free(cidadeAtual);
+                    continue;
+                }
 
                 else if (mesFim > mesAtual) {
                     distanciaAtual += lookupDistanceRides(i);
@@ -66,7 +126,10 @@ double query6(char *cidade,char *dataInicio,char *dataFim) {
                 }
 
                 else if (mesInicio == mesAtual) {
-                    if (diaFim < diaAtual);
+                    if (diaFim < diaAtual) {
+                        free(cidadeAtual);
+                        continue;
+                    }
                     else {
                         distanciaAtual += lookupDistanceRides(i);
                         divide++;

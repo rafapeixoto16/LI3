@@ -12,13 +12,13 @@ void parsing(char *dataset){
     initHashTableRides   ();
     initHashTableUsers   ();
 
-
     char linha[250];
+
 
     //Drivers
     FILE *fpDrivers;
 
-    snprintf(linha,250,"%s%s",dataset,"drivers.csv");
+    snprintf          (linha,250,"%s%s",dataset,"drivers.csv");
     fpDrivers = fopen (linha,"r");
 
     char *drop1 = fgets(linha,250,fpDrivers);//linha lixo
@@ -36,10 +36,10 @@ void parsing(char *dataset){
     //Rides
     FILE *fpRides;
 
-    snprintf(linha,250,"%s%s",dataset,"rides.csv");
-    fpRides = fopen (linha,"r");//linha lixo
+    snprintf        (linha,250,"%s%s",dataset,"rides.csv");
+    fpRides = fopen (linha,"r");
 
-    char *drop2 = fgets(linha,250,fpRides);
+    char *drop2 = fgets(linha,250,fpRides);//linha lixo
 
     if(drop2 != NULL ){
         while (fgets(linha, 250, fpRides) != NULL) {
@@ -48,13 +48,13 @@ void parsing(char *dataset){
     }
 
     //printTableRides();
-
     fclose(fpRides);
+
 
     //Users
     FILE *fpUsers;
 
-    snprintf(linha,250,"%s%s",dataset,"users.csv");
+    snprintf        (linha,250,"%s%s",dataset,"users.csv");
     fpUsers = fopen (linha,"r");
 
     char *drop3 = fgets(linha,250,fpUsers);//linha lixo
@@ -66,8 +66,6 @@ void parsing(char *dataset){
     }
 
     //printTableUsers();
-
     fclose(fpUsers);
-
 
 }

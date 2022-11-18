@@ -141,30 +141,30 @@ void lookupAvalNViagemTotAufDrivers (char *id,double *avaliacaoMedia,int *numero
     for (int i = 0; i < hashMaxRides; i++){
         if(strcmp(hashTableRides[i]->driver,id)==0){
             avaliacao  += atoi(hashTableRides[i]->score_driver);
-            dinheiro   += atoi(hashTableRides[i]->tip) + precoViagem(atoi(hashTableRides[i]->distance),id);
+            dinheiro   += atof(hashTableRides[i]->tip) + precoViagem(atoi(hashTableRides[i]->distance),id);
             nV++;
             divide++;
         }
     }
-    *avaliacaoMedia = (double )(avaliacao/(double )divide);
-    *totalAuferido  = dinheiro;
-    *numeroViagens  = nV;
+    *avaliacaoMedia = (avaliacao/divide);
+    *totalAuferido  =  dinheiro;
+    *numeroViagens  =  nV;
 }
 
 void lookupAvalNViagemTotAufUser(char *id,double *avaliacaoMedia,int *numeroViagens,double *totalGasto){
-    int divide = 0,nV = 0;
-    double avaliacao = 0.000, dinheiro =0.000;
+    int nV = 0;
+    double avaliacao = 0.000, dinheiro =0.000,divide = 0;
 
     for (int i = 0; i < hashMaxRides; i++) {
 
         if(strcmp(hashTableRides[i]->user,id) == 0){
             avaliacao  += atoi(hashTableRides[i]->score_user);
-            dinheiro   += atoi(hashTableRides[i]->tip) + precoViagem(atoi(hashTableRides[i]->distance),hashTableRides[i]->driver);
+            dinheiro   += (double ) atof(hashTableRides[i]->tip) + precoViagem(atoi(hashTableRides[i]->distance),hashTableRides[i]->driver);
             nV++;
             divide++;
         }
     }
-    *avaliacaoMedia =(double ) (avaliacao/(double )divide);
-    *totalGasto     = dinheiro;
-    *numeroViagens  = nV;
+    *avaliacaoMedia = (avaliacao/divide);
+    *totalGasto     =  dinheiro;
+    *numeroViagens  =  nV;
 }

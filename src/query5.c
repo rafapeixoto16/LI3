@@ -29,9 +29,55 @@ double query5(char *dataInicio,char *dataFim) {
             continue;
         }
 
+
         else if (anoInicio < anoAtual && anoAtual < anoFim){
             precoAtual += valor(i);
             divide++;
+        }
+
+
+        else if(anoAtual == anoInicio && anoAtual == anoFim){
+            if (mesAtual < mesInicio || mesAtual > mesFim){
+                continue;
+            }
+
+            else if(mesInicio < mesAtual && mesAtual < mesFim){
+                precoAtual += valor(i);
+                divide++;
+            }
+
+            else if (mesInicio == mesAtual && mesAtual == mesFim){
+                if(diaAtual < diaInicio || diaAtual>  diaFim){
+
+                    continue;
+                }
+                else if(diaInicio <= diaAtual && diaAtual <= diaFim){
+                    precoAtual += valor(i);
+                    divide++;
+                }
+            }
+
+            else if(mesInicio == mesAtual){
+                if (diaAtual < diaInicio){
+                    continue;
+                }
+
+                else{
+                    precoAtual += valor(i);
+                    divide++;
+                }
+            }
+
+            else if(mesFim == mesAtual){
+                if (diaAtual > diaFim){
+                    continue;
+                }
+
+                else{
+                    precoAtual += valor(i);
+                    divide++;
+                }
+            }
         }
 
         else if (anoInicio==anoAtual){

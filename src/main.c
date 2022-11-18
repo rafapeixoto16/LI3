@@ -13,7 +13,8 @@ int main (int argc,char *argv[]){
     }
 
     if(dataset==NULL || input==NULL)
-        return 1;
+        //segunda fase
+        return 0;
 
     //Parsing dos ficheiros(csv)
     parsing(dataset);
