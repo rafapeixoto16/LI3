@@ -1,7 +1,7 @@
-all: final
+all: programa-principal
 
-final:
-	gcc  -g -march=native -mtune=native ./src/main.c ./src/drivers.c ./src/rides.c ./src/users.c ./src/parsing.c ./src/queries.c ./src/query4.c ./src/query5.c ./src/query6.c  ./src/parsingInput.c ./src/query1.c -o final -O2
+programa-principal:
+	gcc  -g -march=native -mtune=native ./src/main.c ./src/drivers.c ./src/rides.c ./src/users.c ./src/parsing.c ./src/queries.c ./src/query4.c ./src/query5.c ./src/query6.c  ./src/parsingInput.c ./src/query1.c -o programa-principal -O2
 
 main.o:		./src/main.c 	./src/parsing.h
 	gcc -c -Wall ./src/main.c
@@ -33,5 +33,8 @@ query5.o:	./src/query5.c 	./src/queries.h
 query6.o:	./src/query6.c 	./src/queries.h
 	gcc -c -Wall ./src/query6.c
 
+freeDataset.o: ./src/freeDataset.c ./src/freeDataset.h
+	gcc -c -Wall ./src/freeDataset.c
+
 clean:
-	rm -f *.o final
+	rm -f *.o programa-principal

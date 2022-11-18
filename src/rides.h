@@ -112,4 +112,7 @@ void lookupAvalNViagemTotAufDrivers(char *id,double *avaliacaoMedia,int *numeroV
 
 void lookupAvalNViagemTotGastoUser(char *id   ,double *avaliacaoMedia,int *numeroViagens,double *totalGasto);
 
+
+void freeRides   ()
+
 #endif

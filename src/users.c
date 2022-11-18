@@ -255,6 +255,7 @@ void freeUsers (){
                 free      (tmp->pay_method);
                 free(tmp->account_creation);
                 free            (tmp->next);
+                free                  (tmp);
                 tmp=next;
             }
         }
