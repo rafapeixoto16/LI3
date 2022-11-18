@@ -1,8 +1,7 @@
-//
-// Created by rafael on 04-11-2022.
-//
-
 #include "drivers.h"
+
+DRIVERS hashTableDrivers[hashMaxDrivers];
+
 
 struct driver {
     char *id;
@@ -16,18 +15,18 @@ struct driver {
     char *account_status;
 };
 
+
 unsigned int hashDrivers(char *id){
     return ((atoi(id)-1));
 }
 
-
-DRIVERS hashTableDrivers[hashMaxDrivers];
 
 void initHashTableDrivers(){
     for (int i = 0; i < hashMaxDrivers; i++) {
         hashTableDrivers[i]=NULL;
     }
 }
+
 
 void printTableDrivers() {
     for (int i = 0; i < hashMaxDrivers; i++) {
@@ -37,6 +36,7 @@ void printTableDrivers() {
             printf("errou\n");
     }
 }
+
 
 bool hashTableInsertDrivers(DRIVERS driver){
     if(driver==NULL) return false;
@@ -48,6 +48,7 @@ bool hashTableInsertDrivers(DRIVERS driver){
     return true;
 }
 
+
 DRIVERS hashTableLookupDrivers(char *id){
     unsigned int index = hashDrivers(id);
     if(hashTableDrivers[index]!=NULL && strcmp((hashTableDrivers[index])->id,id)==0)
@@ -55,6 +56,7 @@ DRIVERS hashTableLookupDrivers(char *id){
     else
         return NULL;
 }
+
 
 void driversParsing(char *linha){
 
@@ -114,6 +116,7 @@ void driversParsing(char *linha){
 
 }
 
+
 void printDriver(DRIVERS drivers){
     printf("id = %s, name = %s, birth_day = %s, gender = %s, car_class = %s, license_plate = %s, city = %s, accou_creation = %s, account_status = %s \n",
            drivers -> id,
@@ -127,36 +130,24 @@ void printDriver(DRIVERS drivers){
            drivers -> account_status);
 }
 
-double precoViagem(int distancia,char *id){
-    double valor=0;
-    DRIVERS tmp= hashTableLookupDrivers(id);
-
-    if(strcmp("basic",tmp->car_class)==0)
-        valor=3.25+(double )0.62*distancia;
-
-    else if(strcmp("green",tmp->car_class)==0){
-        valor=4.00+(double )0.79*distancia;
-    }
-    else if(strcmp("premium",tmp->car_class)==0)
-        valor=5.20+(double )0.94*distancia;
-
-    return valor;
-}
 
 char *lookupStatusDriver(char *id){
     unsigned int index = hashDrivers(id);
     return strdup(hashTableDrivers[index]->account_status);
 }
 
+
 char *lookupNomeDriver(char *id){
     unsigned int index = hashDrivers(id);
     return strdup(hashTableDrivers[index]->name);
 }
 
+
 char *lookupGeneroDriver(char *id){
     unsigned int index = hashDrivers(id);
     return strdup(hashTableDrivers[index]->gender);
 }
+
 
 int lookupIdadeDriver(char *id){
     char *temp2;
@@ -175,4 +166,21 @@ int lookupIdadeDriver(char *id){
         idade = idade + 1;
 
     return idade;
+}
+
+
+double precoViagem(int distancia,char *id){
+    double valor=0;
+    DRIVERS tmp= hashTableLookupDrivers(id);
+
+    if(strcmp("basic",tmp->car_class)==0)
+        valor=3.25+(double )0.62*distancia;
+
+    else if(strcmp("green",tmp->car_class)==0){
+        valor=4.00+(double )0.79*distancia;
+    }
+    else if(strcmp("premium",tmp->car_class)==0)
+        valor=5.20+(double )0.94*distancia;
+
+    return valor;
 }

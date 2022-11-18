@@ -1,8 +1,6 @@
-//
-// Created by rafael on 04-11-2022.
-//
-
 #include "users.h"
+
+USERS hashTableUsers [hashMaxUsers];
 
 struct user {
     char *username;
@@ -15,11 +13,11 @@ struct user {
     struct user * next;
 };
 
-USERS hashTableUsers [hashMaxUsers];
 
 // --------------------------------------------
 // hashUser
 // --------------------------------------------
+
 unsigned int hashUser(char *username){
     unsigned int length = strnlen(username,150);
     unsigned int hashTableUserV = 0;
@@ -30,18 +28,22 @@ unsigned int hashUser(char *username){
     return hashTableUserV;
 }
 
+
 // --------------------------------------------
 // initHashTableUsers
 // --------------------------------------------
+
 void initHashTableUsers(){
     for (int i = 0; i < hashMaxUsers; i++) {
         hashTableUsers[i]=NULL;
     }
 }
 
+
 // --------------------------------------------
 // printTableUsers
 // --------------------------------------------
+
 void printTableUsers() {
     int j =1;
     for (int i = 0; i < hashMaxUsers; i++) {
@@ -62,6 +64,7 @@ void printTableUsers() {
 // --------------------------------------------
 // hashTableInsertUsers
 // --------------------------------------------
+
 bool hashTableInsertUsers (USERS user){
     if(user==NULL)
         return false;
@@ -74,6 +77,7 @@ bool hashTableInsertUsers (USERS user){
 // --------------------------------------------
 // hashTableLookupUsers
 // --------------------------------------------
+
 USERS hashTableLookupUsers(char *username) {
     unsigned int index = hashUser(username);
     USERS tmp = hashTableUsers[index];
@@ -86,6 +90,7 @@ USERS hashTableLookupUsers(char *username) {
 // --------------------------------------------
 // hashTableDeleteUsers
 // --------------------------------------------
+
 USERS hashTableDeleteUsers (char *username) {
     unsigned int index = hashUser(username);
     USERS tmp = hashTableUsers[index];
@@ -109,6 +114,7 @@ USERS hashTableDeleteUsers (char *username) {
 // --------------------------------------------
 // userParsing
 // --------------------------------------------
+
 void userParsing (char *linha){
 
     USERS user1 = malloc(sizeof (struct user));
@@ -163,6 +169,7 @@ void userParsing (char *linha){
 // --------------------------------------------
 // lookupStatusUser
 // --------------------------------------------
+
 char *lookupStatusUser(char *username){
     unsigned int index = hashUser(username);
     USERS tmp = hashTableUsers[index];
@@ -176,6 +183,7 @@ char *lookupStatusUser(char *username){
 // --------------------------------------------
 // lookupNomeUser
 // --------------------------------------------
+
 char *lookupNomeUser(char *username){
     unsigned int index = hashUser(username);
     USERS tmp = hashTableUsers[index];
@@ -189,6 +197,7 @@ char *lookupNomeUser(char *username){
 // --------------------------------------------
 // lookupGeneroUser
 // --------------------------------------------
+
 char *lookupGeneroUser(char *username){
     unsigned int index = hashUser(username);
     USERS tmp = hashTableUsers[index];
@@ -202,6 +211,7 @@ char *lookupGeneroUser(char *username){
 // --------------------------------------------
 // lookupIdadeUser
 // --------------------------------------------
+
 int lookupIdadeUser(char *username){
     char *temp2;
     unsigned int index = hashUser(username);

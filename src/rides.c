@@ -13,11 +13,12 @@ struct ride {
 	char *comment;
 };
 
+RIDES hashTableRides[hashMaxRides];
+
 unsigned int hashRides(char *id){
     return ((atoi(id)-1));
 }
 
-RIDES hashTableRides[hashMaxRides];
 
 void initHashTableRides(){
     for (int i = 0; i < hashMaxRides; i++) {
@@ -151,7 +152,7 @@ void lookupAvalNViagemTotAufDrivers (char *id,double *avaliacaoMedia,int *numero
     *numeroViagens  =  nV;
 }
 
-void lookupAvalNViagemTotAufUser(char *id,double *avaliacaoMedia,int *numeroViagens,double *totalGasto){
+void lookupAvalNViagemTotGastoUser(char *id,double *avaliacaoMedia,int *numeroViagens,double *totalGasto){
     int nV = 0;
     double avaliacao = 0.000, dinheiro =0.000,divide = 0;
 

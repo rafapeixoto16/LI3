@@ -110,6 +110,6 @@ void lookupAvalNViagemTotAufDrivers(char *id,double *avaliacaoMedia,int *numeroV
  * @param totalGasto
  */
 
-void lookupAvalNViagemTotAufUser(char *id   ,double *avaliacaoMedia,int *numeroViagens,double *totalGasto);
+void lookupAvalNViagemTotGastoUser(char *id   ,double *avaliacaoMedia,int *numeroViagens,double *totalGasto);
 
 #endif

@@ -67,7 +67,7 @@ char *query1(char *id){
             int numeroViagens = 0;
             double totalGasto = 0.000;
 
-            lookupAvalNViagemTotAufUser(id, &avaliacaoMedia, &numeroViagens, &totalGasto);
+            lookupAvalNViagemTotGastoUser(id, &avaliacaoMedia, &numeroViagens, &totalGasto);
 
             snprintf(stringR, 250, "%s;%s;%i;%.3f;%i;%.3f",
                      nome,

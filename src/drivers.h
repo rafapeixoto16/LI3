@@ -63,15 +63,6 @@ DRIVERS hashTableLookupDrivers(char *id);
 void printDriver(DRIVERS drivers);
 
 /*!
- * Calcula o preço de viagem.
- * @param distancia Distância em Km.
- * @param id Id do condutor (driver).
- * @return Retorna o valor da viagem.
- */
-
-double precoViagem(int distancia,char *id);
-
-/*!
  * Adiciona um condutor (driver) a hashtable.
  * @param driver Condutor (driver) a ser adicionado.
  * @return Retorna True se conseguiu adicionar o condutor (driver),False se nao conseguiu.
@@ -110,5 +101,14 @@ char *lookupGeneroDriver(char *id);
  */
 
 int lookupIdadeDriver(char *id);
+
+/*!
+ * Calcula o preço de viagem.
+ * @param distancia Distância em Km.
+ * @param id Id do condutor (driver).
+ * @return Retorna o valor da viagem.
+ */
+
+double precoViagem(int distancia,char *id);
 
 #endif //LI3_DRIVERS_H

@@ -22,5 +22,8 @@ int main (int argc,char *argv[]){
     //Parsing do Input (input.txt)
     parsingInput(input);
 
+    //Free dataset
+    freeDataset
+
     return 0;
 }
