@@ -39,22 +39,22 @@ void printTableRides();
 
 /*!
  * Função que insere um novo elemento á hashtable.
- * @param ride Elemento a inserir
- * @return Retorna falso se não conseguir inserir na hashtable e verdadeiro caso consiga
+ * @param ride Elemento a inserir.
+ * @return Retorna falso se não conseguir inserir na hashtable e verdadeiro caso consiga.
  */
 
 bool hashTableInsertRides(RIDES ride);
 
 /*!
 * Função que retorna verdadeiro ou falso.
-* @param i Posição na hashtable.
+* @param id Posição na hashtable.
 * @return Retorna true se a cidade na posição da hash table é igual á do input.
 */
 
 RIDES hashTableLookupRides(char *id);
 
 /*!
-* Função que cria um objeto do tipo *RIDES e adiciona-o á hashtable
+* Função que cria um objeto do tipo *RIDES e adiciona-o á hashtable.
 * @param linha Dados da corrida (ride).
 */
 
@@ -62,7 +62,7 @@ void ridesParsing(char *linha);
 
 /*!
 * Função que dá a distância de uma viagem.
-* @param linha Dados de um condutor (driver).
+* @param i Dados de um condutor (driver).
 * @return Retorna o valor da distância.
 */
 
@@ -94,7 +94,7 @@ char *lookupDateRides(int i);
 
 /*!
  *
- * @param id ID do condutor
+ * @param id ID da corrida
  * @param avaliacaoMedia A avaliação média
  * @param numeroViagens Número de viagens
  * @param totalAuferido Valor gasto no total
@@ -104,10 +104,10 @@ void lookupAvalNViagemTotAufDrivers(char *id,double *avaliacaoMedia,int *numeroV
 
 /*!
  *
- * @param id
- * @param avaliacaoMedia
- * @param numeroViagens
- * @param totalGasto
+ * @param id ID da corrida
+ * @param avaliacaoMedia A avaliação média
+ * @param numeroViagens Número de viagens
+ * @param totalGasto Valor gasto no total
  */
 
 void lookupAvalNViagemTotGastoUser(char *id   ,double *avaliacaoMedia,int *numeroViagens,double *totalGasto);
