@@ -32,7 +32,7 @@ unsigned int hashRides(char *id);
 void initHashTableRides();
 
 /*!
-* Função que dá print da hash table com todos os seus elementos.
+* Função que dá print da hashtable com todos os seus elementos.
 */
 
 void printTableRides();
@@ -79,8 +79,7 @@ char *lookupDriverRides(int i);
 /*!
 * Função que dá uma determinada cidade
 * @param i Posição na hashtable.
-* @param cidade Uma cidade.
-* @return Retorna a cidade
+* @return Retorna a cidade.
 */
 
 char *lookupCidadeRides(int i);
@@ -112,4 +111,5 @@ void lookupAvalNViagemTotAufDrivers(char *id,double *avaliacaoMedia,int *numeroV
  */
 
 void lookupAvalNViagemTotAufUser(char *id   ,double *avaliacaoMedia,int *numeroViagens,double *totalGasto);
+
 #endif
