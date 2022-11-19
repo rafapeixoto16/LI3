@@ -236,6 +236,9 @@ int lookupIdadeUser(char *username){
     return idade;
 }
 
+// --------------------------------------------
+// freeUsers
+// --------------------------------------------
 
 void freeUsers (){
     for (int i = 0; i < hashMaxUsers; i++) {

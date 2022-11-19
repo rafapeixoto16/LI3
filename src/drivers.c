@@ -185,6 +185,9 @@ double precoViagem(int distancia,char *id){
     return valor;
 }
 
+// --------------------------------------------
+// freeDrivers
+// --------------------------------------------
 
 void freeDrivers (){
     for (int i = 0; i < hashMaxDrivers; i++) {

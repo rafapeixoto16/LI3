@@ -89,6 +89,9 @@ char *lookupGeneroUser(char *username);
 
 int lookupIdadeUser(char *username);
 
+/*!
+ * Liberta a memoria usada pelos "usuarios" (Users).
+ */
 
 void freeUsers ();
 

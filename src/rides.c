@@ -217,6 +217,9 @@ void lookupAvalNViagemTotGastoUser(char *id,double *avaliacaoMedia,int *numeroVi
     *numeroViagens  =  nV;
 }
 
+// --------------------------------------------
+// freeRides
+// --------------------------------------------
 
 void freeRides (){
     for (int i = 0; i < hashMaxRides ; i++) {

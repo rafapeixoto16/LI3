@@ -107,6 +107,9 @@ int lookupIdadeDriver(char *id);
 
 double precoViagem(int distancia,char *id);
 
+/*!
+ * Liberta a memoria usada pelo "condutores" (Drivers).
+ */
 
 void freeDrivers ();
 

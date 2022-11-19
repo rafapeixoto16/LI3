@@ -112,6 +112,9 @@ void lookupAvalNViagemTotAufDrivers(char *id,double *avaliacaoMedia,int *numeroV
 
 void lookupAvalNViagemTotGastoUser(char *id   ,double *avaliacaoMedia,int *numeroViagens,double *totalGasto);
 
+/*!
+ *Liberta a memoria usado pelas "corridas" (Rides).
+ */
 
 void freeRides ();
 
