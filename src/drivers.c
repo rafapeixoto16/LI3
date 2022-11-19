@@ -197,5 +197,6 @@ void freeDrivers (){
         free(hashTableDrivers[i]->city);
         free(hashTableDrivers[i]->license_plate);
         free(hashTableDrivers[i]->account_creation);
+        free(hashTableDrivers[i]);
     }
 }

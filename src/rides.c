@@ -230,5 +230,6 @@ void freeRides (){
         free         (hashTableRides[i]->user);
         free (hashTableRides[i]->score_driver);
         free      (hashTableRides[i]->comment);
+        free(hashTableRides[i]);
     }
 }
