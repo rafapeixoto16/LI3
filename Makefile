@@ -1,4 +1,3 @@
-
 all: programa-principal
 
 programa-principal:
@@ -40,3 +39,4 @@ freeDataset.o: ./src/freeDataset.c ./src/freeDataset.h
 
 clean:
 	rm -f *.o programa-principal
+

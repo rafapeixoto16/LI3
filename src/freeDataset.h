@@ -5,6 +5,9 @@
 #include "users.h"
 #include "rides.h"
 
+/*!
+ * Liberta a memoria utilizada no parsing dos datasets.
+ */
 void freeDataset();
 
 #endif //LI3_FREEDATASET_H
