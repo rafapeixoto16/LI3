@@ -20,6 +20,7 @@ double query4 (char *cidade) {
 
             free(id);
         }
+
         free(cidadeAtual);
     }
     return (valor/divide);

@@ -68,6 +68,7 @@ void printTableUsers() {
 bool hashTableInsertUsers (USERS user){
     if(user==NULL)
         return false;
+
     unsigned int index= hashUser(user->username);
     user->next=hashTableUsers[index];
     hashTableUsers[index]=user;
@@ -78,7 +79,7 @@ bool hashTableInsertUsers (USERS user){
 // hashTableLookupUsers
 // --------------------------------------------
 
-USERS hashTableLookupUsers(char *username) {
+USERS hashTableLookupUsers (char *username) {
     unsigned int index = hashUser(username);
     USERS tmp = hashTableUsers[index];
     while (tmp != NULL && strncmp(tmp->username, username, 50) != 0) {
@@ -170,7 +171,7 @@ void userParsing (char *linha){
 // lookupStatusUser
 // --------------------------------------------
 
-char *lookupStatusUser(char *username){
+char *lookupStatusUser (char *username){
     unsigned int index = hashUser(username);
     USERS tmp = hashTableUsers[index];
 
@@ -184,7 +185,7 @@ char *lookupStatusUser(char *username){
 // lookupNomeUser
 // --------------------------------------------
 
-char *lookupNomeUser(char *username){
+char *lookupNomeUser (char *username){
     unsigned int index = hashUser(username);
     USERS tmp = hashTableUsers[index];
 
@@ -198,7 +199,7 @@ char *lookupNomeUser(char *username){
 // lookupGeneroUser
 // --------------------------------------------
 
-char *lookupGeneroUser(char *username){
+char *lookupGeneroUser (char *username){
     unsigned int index = hashUser(username);
     USERS tmp = hashTableUsers[index];
 
@@ -212,7 +213,7 @@ char *lookupGeneroUser(char *username){
 // lookupIdadeUser
 // --------------------------------------------
 
-int lookupIdadeUser(char *username){
+int lookupIdadeUser (char *username){
     char *temp2;
     unsigned int index = hashUser(username);
     USERS tmp = hashTableUsers[index];

@@ -10,6 +10,7 @@ char *query1(char *id){
     id = strtok_r(id,"\n",&lixo);
 
     int numero = 0;
+
     if(isdigit(id[0]))
         numero=1;
 

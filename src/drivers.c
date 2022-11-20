@@ -32,15 +32,19 @@ void printTableDrivers() {
     for (int i = 0; i < hashMaxDrivers; i++) {
         if (hashTableDrivers[i] != NULL) {
             printf("\t%s\n", ((hashTableDrivers[i])->id));
-        } else
+        }
+        else
             printf("errou\n");
     }
 }
 
 
 bool hashTableInsertDrivers(DRIVERS driver){
-    if(driver==NULL) return false;
+    if(driver==NULL)
+        return false;
+
     unsigned int index = hashDrivers(((driver)->id));
+
     if(hashTableDrivers[index]!=NULL){
         return false;
     }
@@ -51,8 +55,10 @@ bool hashTableInsertDrivers(DRIVERS driver){
 
 DRIVERS hashTableLookupDrivers(char *id){
     unsigned int index = hashDrivers(id);
+
     if(hashTableDrivers[index]!=NULL && strcmp((hashTableDrivers[index])->id,id)==0)
         return hashTableDrivers[index];
+
     else
         return NULL;
 }
@@ -191,15 +197,15 @@ double precoViagem(int distancia,char *id){
 
 void freeDrivers (){
     for (int i = 0; i < hashMaxDrivers; i++) {
-        free(hashTableDrivers[i]->id);
-        free(hashTableDrivers[i]->car_class);
-        free(hashTableDrivers[i]->name);
-        free(hashTableDrivers[i]->gender);
-        free(hashTableDrivers[i]->account_status);
-        free(hashTableDrivers[i]->birth_day);
-        free(hashTableDrivers[i]->city);
-        free(hashTableDrivers[i]->license_plate);
+        free              (hashTableDrivers[i]->id);
+        free       (hashTableDrivers[i]->car_class);
+        free            (hashTableDrivers[i]->name);
+        free          (hashTableDrivers[i]->gender);
+        free  (hashTableDrivers[i]->account_status);
+        free       (hashTableDrivers[i]->birth_day);
+        free            (hashTableDrivers[i]->city);
+        free   (hashTableDrivers[i]->license_plate);
         free(hashTableDrivers[i]->account_creation);
-        free(hashTableDrivers[i]);
+        free                  (hashTableDrivers[i]);
     }
 }

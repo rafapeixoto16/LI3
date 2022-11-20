@@ -13,13 +13,13 @@ struct ride {
 	char *comment;
 };
 
-RIDES hashTableRides[hashMaxRides];
+RIDES hashTableRides [hashMaxRides];
 
 // --------------------------------------------
 // hashRides
 // --------------------------------------------
 
-unsigned int hashRides(char *id){
+unsigned int hashRides (char *id){
     return ((atoi(id)-1));
 }
 
@@ -27,7 +27,7 @@ unsigned int hashRides(char *id){
 // initHashTableRides
 // --------------------------------------------
 
-void initHashTableRides(){
+void initHashTableRides (){
     for (int i = 0; i < hashMaxRides; i++) {
         hashTableRides[i]=NULL;
     }
@@ -37,7 +37,7 @@ void initHashTableRides(){
 // printTableRides
 // --------------------------------------------
 
-void printTableRides(){
+void printTableRides (){
     for (int i = 0; i < hashMaxRides; i++){
         if (hashTableRides[i]!=NULL){
             printf("\t%s--%s--%s--\n", ((hashTableRides[i])->id),(hashTableRides[i]->date),hashTableRides[i]->distance);
@@ -50,7 +50,7 @@ void printTableRides(){
 // hashTableInsertRides
 // --------------------------------------------
 
-bool hashTableInsertRides(RIDES ride){
+bool hashTableInsertRides (RIDES ride){
     if(ride==NULL) return false;
     unsigned int index = hashRides(((ride)->id));
     if(hashTableRides[index]!=NULL){
@@ -161,7 +161,7 @@ char *lookupDriverRides (int i){
 // lookupDistanceRides
 // --------------------------------------------
 
-int lookupDistanceRides(int i){
+int lookupDistanceRides (int i){
     return atoi(hashTableRides[i]->distance);
 }
 
@@ -169,7 +169,7 @@ int lookupDistanceRides(int i){
 // lookupDateRides
 // --------------------------------------------
 
-char *lookupDateRides(int i){
+char *lookupDateRides (int i){
     char *retorna = strdup(hashTableRides[i]->date);
     return retorna;
 }
@@ -199,7 +199,7 @@ void lookupAvalNViagemTotAufDrivers (char *id,double *avaliacaoMedia,int *numero
 // lookupAvalNViagemTotGastoUser
 // --------------------------------------------
 
-void lookupAvalNViagemTotGastoUser(char *id,double *avaliacaoMedia,int *numeroViagens,double *totalGasto){
+void lookupAvalNViagemTotGastoUser (char *id,double *avaliacaoMedia,int *numeroViagens,double *totalGasto){
     int nV = 0;
     double avaliacao = 0.000, dinheiro =0.000, divide = 0;
 

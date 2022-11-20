@@ -4,7 +4,7 @@
 // query5
 // --------------------------------------------
 
-double query5(char *dataInicio,char *dataFim) {
+double query5 (char *dataInicio,char *dataFim) {
     char *temp;
 
     int diaInicio = atoi(strtok_r(dataInicio,"/",&temp));
@@ -80,16 +80,16 @@ double query5(char *dataInicio,char *dataFim) {
             }
         }
 
-        else if (anoInicio==anoAtual){
+        else if (anoInicio == anoAtual){
             if(mesInicio > mesAtual)
                 continue;
 
-            else if(mesInicio<mesAtual) {
+            else if(mesInicio < mesAtual) {
                 precoAtual += valor(i);
                 divide++;
             }
 
-            else if(mesInicio==mesAtual){
+            else if(mesInicio == mesAtual){
                 if(diaInicio>diaAtual)
                     continue;
 
@@ -111,7 +111,7 @@ double query5(char *dataInicio,char *dataFim) {
                 divide++;
             }
 
-            else if(mesInicio==mesAtual){
+            else if(mesInicio == mesAtual){
                 if(diaFim<diaAtual)
                     continue;
 
@@ -129,10 +129,10 @@ double query5(char *dataInicio,char *dataFim) {
 // valor
 // --------------------------------------------
 
-double valor(int id){
-    char *idR     = lookupDriverRides  (id);
-    int distancia = lookupDistanceRides(id);
-    double retorna =precoViagem(distancia, idR);
+double valor (int id){
+    char *idR       = lookupDriverRides  (id);
+    int distancia   = lookupDistanceRides(id);
+    double retorna  = precoViagem(distancia, idR);
 
     free(idR);
     return retorna;
