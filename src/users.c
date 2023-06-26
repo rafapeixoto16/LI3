@@ -1,195 +1,136 @@
-#include "users.h"
-
-USERS hashTableUsers [hashMaxUsers];
+#include "../includes/users.h"
+#include "../includes/array.h"
 
 struct user {
     char *username;
     char *name;
-    char *gender;
+    bool gender;
     char *birth_date;
-    char *account_creation;
-    char *pay_method;
-    char *account_status;
+    int account_creation;
+    bool account_status;
     struct user * next;
 };
 
 
-// --------------------------------------------
-// hashUser
-// --------------------------------------------
-
-unsigned int hashUser(char *username){
-    unsigned int length = strnlen(username,150);
-    unsigned int hashTableUserV = 0;
-    for (int i =0;i<length;i++){
-        hashTableUserV +=username[i];
-        hashTableUserV=(hashTableUserV * username[i]) % hashTableUserV;
-    }
-    return hashTableUserV;
-}
-
-
-// --------------------------------------------
-// initHashTableUsers
-// --------------------------------------------
-
-void initHashTableUsers(){
-    for (int i = 0; i < hashMaxUsers; i++) {
-        hashTableUsers[i]=NULL;
-    }
-}
-
-
-// --------------------------------------------
-// printTableUsers
-// --------------------------------------------
-
-void printTableUsers() {
-    int j =1;
-    for (int i = 0; i < hashMaxUsers; i++) {
-        if (hashTableUsers[i] == NULL) {
-        }
-        else{
-            USERS tmp = hashTableUsers[i];
-            while (tmp!=NULL){
-                printf("%s %d- \n",tmp->username,j);
-                tmp=tmp->next;
-                j++;
-            }
-            //printf("\n");
-        }
-    }
-}
-
-// --------------------------------------------
-// hashTableInsertUsers
-// --------------------------------------------
-
-bool hashTableInsertUsers (USERS user){
-    if(user==NULL)
-        return false;
-
-    unsigned int index= hashUser(user->username);
-    user->next=hashTableUsers[index];
-    hashTableUsers[index]=user;
-    return true;
-}
-
-// --------------------------------------------
-// hashTableLookupUsers
-// --------------------------------------------
-
-USERS hashTableLookupUsers (char *username) {
-    unsigned int index = hashUser(username);
-    USERS tmp = hashTableUsers[index];
-    while (tmp != NULL && strncmp(tmp->username, username, 50) != 0) {
-        tmp = tmp->next;
-    }
-    return tmp;
-}
-
-// --------------------------------------------
-// hashTableDeleteUsers
-// --------------------------------------------
-
-USERS hashTableDeleteUsers (char *username) {
-    unsigned int index = hashUser(username);
-    USERS tmp = hashTableUsers[index];
-    USERS prev = NULL;
-    while (tmp != NULL && strncmp(tmp->username, username, 50) != 0){
-        prev=tmp;
-        tmp=tmp->next;
-    }
-    if(tmp == NULL)
-        return NULL;
-
-    if(prev == NULL)
-        hashTableUsers[index] = tmp->next;
-
-    else{
-        prev->next=tmp->next;
-    }
-    return tmp;
-}
 
 // --------------------------------------------
 // userParsing
 // --------------------------------------------
 
-void userParsing (char *linha){
-
+void userParsing (char *linha,void *arrayD){
+    ARRAYDinamico array = arrayD;
     USERS user1 = malloc(sizeof (struct user));
-    char *head;
+
     char *tail;
-    unsigned long i;
+    int i;
 
-    head = strtok_r(linha,";",&tail);
-    i = strlen(head);
-    head[i]='\0';
-    user1->username= strdup(head);
+    i = usernameUser (strtok_r(linha,";",&tail),user1);
 
-    head = strtok_r(NULL,";",&tail);
-    i = strlen(head);
-    head[i]='\0';
-    user1->name= strdup(head);
+    if(i)
+        return;
 
-    head = strtok_r(NULL,";",&tail);
-    i = strlen(head);
-    head[i]='\0';
-    user1->gender= strdup(head);
+    i = nomeUser(strtok_r(NULL,";",&tail),user1);
 
-    head = strtok_r(NULL,";",&tail);
-    i = strlen(head);
-    head[i]='\0';
-    user1->birth_date= strdup(head);
+    if(i)
+        return;
 
-    head = strtok_r(NULL,";",&tail);
-    i = strlen(head);
-    head[i]='\0';
-    user1->account_creation= strdup(head);
+    i = generoUser(strtok_r(NULL,";",&tail),user1);
 
-    head = strtok_r(NULL,";",&tail);
-    i = strlen(head);
-    head[i]='\0';
-    user1->pay_method= strdup(head);
+    if(i)
+        return;
 
-    head = strtok_r(NULL,"\n",&tail);
-    i = strlen(head);
-    head[i]='\0';
-    user1->account_status= strdup(head);
+    i = dataNascUser(strtok_r(NULL,";",&tail),user1);
 
-    user1->next=NULL;
+    if(i)
+        return;
 
-    bool bools =hashTableInsertUsers(user1);
+    i = dataCriacaoUser(strtok_r(NULL,";",&tail),user1);
 
-    if(!bools){
-        //segunda fase com tamanhos maiores
+    if(i)
+        return;
+
+    i = metodoPagUser(strtok_r(NULL,";",&tail),user1);
+
+    if(i)
+        return;
+
+    i = statusContaUser(strtok_r(NULL,"\n",&tail),user1);
+
+    if(i)
+        return;
+
+
+    user1 -> next  = NULL;
+    char *username1 = strdup(user1->username);
+    user1 -> next = posicaoTableU(array,username1);
+
+    arrayAdd(array,user1,username1);
+    free(username1);
+}
+
+
+// --------------------------------------------
+// printUsers
+// --------------------------------------------
+
+void printUsers(USERS users){
+    USERS tmp = users;
+    while(tmp != NULL) {
+        printf("username= %s, name= %s, gender= %s, birth_date= %s, account_creation= %s, account_status= %s \n",
+               tmp->username,
+               tmp->name,
+               tmp->gender == 1 ? "M":"F",
+               tmp->birth_date,
+               int2Data(tmp->account_creation),
+               tmp->account_status == 1 ?"active":"inactive");
+        tmp=tmp->next;
     }
 }
+
+// --------------------------------------------
+// freeUser
+// --------------------------------------------
+
+void freeUser(USERS user){
+    USERS tmp;
+    while(user != NULL){
+        tmp = user;
+        user = user->next;
+        free            (tmp->name);
+        free        (tmp->username);
+        free      (tmp->birth_date);
+        free                  (tmp);
+    }
+
+}
+
+
 
 // --------------------------------------------
 // lookupStatusUser
 // --------------------------------------------
 
-char *lookupStatusUser (char *username){
-    unsigned int index = hashUser(username);
-    USERS tmp = hashTableUsers[index];
+bool lookupStatusUser (USERS user1,char *username){
+    USERS tmp = user1;
 
     while (tmp != NULL && strncmp(tmp->username, username, 50) != 0) {
         tmp = tmp->next;
     }
-    return strdup(tmp->account_status);
+    if(tmp == NULL)
+        return NULL;
+
+    bool returno = tmp->account_status;
+    return returno;
 }
 
 // --------------------------------------------
 // lookupNomeUser
 // --------------------------------------------
 
-char *lookupNomeUser (char *username){
-    unsigned int index = hashUser(username);
-    USERS tmp = hashTableUsers[index];
+ char *lookupNomeUser (USERS user1, char *id){
+    USERS tmp =user1;
 
-    while (tmp != NULL && strncmp(tmp->username, username, 50) != 0) {
+    while (tmp != NULL && strncmp(tmp->username, id, 50) != 0) {
         tmp = tmp->next;
     }
     return strdup(tmp->name);
@@ -199,70 +140,243 @@ char *lookupNomeUser (char *username){
 // lookupGeneroUser
 // --------------------------------------------
 
-char *lookupGeneroUser (char *username){
-    unsigned int index = hashUser(username);
-    USERS tmp = hashTableUsers[index];
+bool lookupGeneroUser (USERS user1, char *id){
+    USERS tmp = user1;
 
-    while (tmp != NULL && strncmp(tmp->username, username, 50) != 0) {
+    while (tmp != NULL && strncmp(tmp->username, id, 50) != 0) {
         tmp = tmp->next;
     }
-    return strdup(tmp->gender);
+
+    bool retorno = tmp->gender;
+    return retorno;
+}
+
+// --------------------------------------------
+// lookupDataCriacaoUser
+// --------------------------------------------
+
+int lookupDataCriacaoUser(USERS user1,char *id){
+    USERS tmp = user1;
+
+    while (tmp != NULL && strncmp(tmp->username, id, 50) != 0) {
+        tmp = tmp->next;
+    }
+    int retorno = tmp->account_creation;
+    free(id);
+    return retorno;
 }
 
 // --------------------------------------------
 // lookupIdadeUser
 // --------------------------------------------
 
-int lookupIdadeUser (char *username){
-    char *temp2;
-    unsigned int index = hashUser(username);
-    USERS tmp = hashTableUsers[index];
+int lookupIdadeUser (USERS users,char *id){
+    USERS tmp =users;
 
-    while (tmp != NULL && strncmp(tmp->username, username, 50) != 0) {
+    while (tmp != NULL && strncmp(tmp->username, id, 50) != 0)
+    {
         tmp = tmp->next;
     }
-    char *data= tmp->birth_date;
 
-    int idade;
-    int dia = 9, mes = 10, ano = 2022;
-    int diaAniv = atoi(strtok_r(data, "/", &temp2));
-    int mesAniv = atoi(strtok_r(NULL, "/", &temp2));
-    int anoAniv = atoi(strtok_r(NULL, "/", &temp2));
+    if(tmp==NULL)
+    {
+        return -1;
+    }
 
-    idade = ano-anoAniv-1;
-
-    if((mesAniv<mes)||(mesAniv==mes && diaAniv<=dia))
-        idade = idade + 1;
-
+    char *data = strdup(tmp->birth_date);
+    int idade  = calculaIdade(data);
+    free(data);
     return idade;
 }
 
 // --------------------------------------------
-// freeUsers
+// lookupDatacriacaoUser
 // --------------------------------------------
 
-void freeUsers (){
-    for (int i = 0; i < hashMaxUsers; i++) {
-        if (hashTableUsers[i] == NULL) {
-            continue;
-        }
-        else{
+int lookupDatacriacaoUser(USERS users,char *id){
+    USERS tmp =users;
 
-            USERS tmp;
-            while (hashTableUsers[i] != NULL){
-                tmp = hashTableUsers[i];
-                hashTableUsers[i]= hashTableUsers[i]->next;
-                free            (tmp->name);
-                free        (tmp->username);
-                free          (tmp->gender);
-                free  (tmp->account_status);
-                free      (tmp->birth_date);
-                free(tmp->account_creation);
-                free      (tmp->pay_method);
-                free                  (tmp);
-            }
-        }
+    while (tmp != NULL && strncmp(tmp->username, id, 50) != 0) {
+        tmp = tmp->next;
     }
+
+    if(tmp == NULL){
+        return -1;
+    }
+
+    return tmp -> account_creation;
 }
 
+// --------------------------------------------
+// informacoesBasicasUser
+// --------------------------------------------
+
+void informacoesBasicasUser(USERS user1,char *id,bool *genero,int *idade){
+    USERS tmp = user1;
+
+    while (tmp != NULL && strncmp(tmp->username, id, 50) != 0) {
+        tmp = tmp->next;
+    }
+
+    if(tmp == NULL)
+        return;
+
+    *id     = *strdup(tmp->name);
+    *genero = tmp->gender;
+    *idade  = lookupIdadeUser(user1,id);
+}
+
+// --------------------------------------------
+// usernameUser
+// --------------------------------------------
+
+int usernameUser (char *username,USERS users){
+    username[strlen(username)] = '\0';
+
+    if(tamanhoEqual0(username)) {
+        free(users);
+        return 1;
+    }
+
+    users -> username= strdup(username);
+    return 0;
+}
+
+// --------------------------------------------
+// nomeUser
+// --------------------------------------------
+
+int nomeUser(char *nome,USERS users){
+    nome[strlen(nome)] = '\0';
+
+    if(tamanhoEqual0(nome)){
+        freeUserUsername(users);
+        return 1;
+    }
+
+    users -> name = strdup(nome);
+    return 0;
+}
+
+// --------------------------------------------
+// generoUser
+// --------------------------------------------
+
+int generoUser(char *genero,USERS users){
+    genero[strlen(genero)] = '\0';
+
+    if(tamanhoEqual0(genero)){
+        freeUserName(users);
+        return 1;
+    }
+
+    users -> gender = strcmp("M",genero) == 0 ? 1 : 0;
+    return 0;
+}
+
+// --------------------------------------------
+// dataNascUser
+// --------------------------------------------
+
+int dataNascUser(char *data,USERS users){
+    data[strlen(data)]='\0';
+
+    if(!verificaDate(data)){
+        freeUserName(users);
+        return 1;
+    }
+
+    users->birth_date = strdup(data);
+    return 0;
+}
+
+// --------------------------------------------
+// dataCriacaoUser
+// --------------------------------------------
+
+int dataCriacaoUser(char *data,USERS users){
+    data[strlen(data)]='\0';
+
+    if(!verificaDate(data)){
+        freeUserBirthday(users);
+        return 1;
+    }
+
+    users->account_creation= data2Int(data);
+    return 0;
+}
+
+// --------------------------------------------
+// metodoPagUser
+// --------------------------------------------
+
+int metodoPagUser(char *metodo,USERS users){
+    metodo[strlen(metodo)]='\0';
+
+    if(tamanhoEqual0(metodo)){
+        freeUserAcountCreation(users);
+        return 1;
+    }
+    return 0;
+}
+
+// --------------------------------------------
+// statusContaUser
+// --------------------------------------------
+
+int statusContaUser(char *status,USERS users){
+    if(status==NULL){
+        freeUserAcountCreation(users);
+        return 1;
+    }
+    status[strlen(status)]='\0';
+    toLowerString(status);
+    if(!(strcmp("active",status) == 0 || strcmp("inactive",status) == 0)){
+        freeUserAcountCreation(users);
+        return 1;
+    }
+    users->account_status = strcmp("active",status) == 0 ? true : false;
+    return 0;
+}
+
+// --------------------------------------------
+// freeUserUsername
+// --------------------------------------------
+
+void freeUserUsername(USERS users){
+    free (users->username);
+    free           (users);
+}
+
+// --------------------------------------------
+// freeUserName
+// --------------------------------------------
+
+void freeUserName(USERS users) {
+    free     (users->name);
+    free (users->username);
+    free           (users);
+}
+
+// --------------------------------------------
+// freeUserBirthday
+// --------------------------------------------
+
+void freeUserBirthday(USERS users){
+    free (users->birth_date);
+    free       (users->name);
+    free   (users->username);
+    free             (users);
+}
+
+// --------------------------------------------
+// freeUserAcountCreation
+// --------------------------------------------
+
+void freeUserAcountCreation(USERS users){
+    free (users->birth_date);
+    free       (users->name);
+    free   (users->username);
+    free             (users);
+}
 

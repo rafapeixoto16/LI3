@@ -1,34 +1,26 @@
-#include "parsing.h"
-#include "parsingInput.h"
-#include "freeDataset.h"
+#include "../includes/interacaoMenu.h"
+#include "../includes/interpretador.h"
 
 // --------------------------------------------
 // main
 // --------------------------------------------
 
+
 int main (int argc,char *argv[]){
     //Start
+    clock_t start, end;
+    double cpu_time_used;
+    start = clock();
 
-    char *dataset=argv[1];
-    char *input =argv[2];
+    if(argc == 1)
+        opcoes();
 
-    if(argc<2){
-        printf("Argumentos insufecientes\n");
-        return 0;
-    }
+    if(argc == 3)
+        interpretador(argv);
 
-    if(dataset==NULL || input==NULL)
-        //segunda fase
-        return 0;
-
-    //Parsing dos ficheiros(csv)
-    parsing(dataset);
-
-    //Parsing do Input (input.txt)
-    parsingInput(input);
-
-    //Free dataset
-    freeDataset();
+    end = clock();
+    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+    printf("Tempo Total: %f segundos \n", cpu_time_used);
 
     return 0;
 }

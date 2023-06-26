@@ -1,238 +1,447 @@
-#include "rides.h"
+#include "../includes/rides.h"
+#include "../includes/array.h"
+
 
 struct ride {
-	char *id;
-	char *date;
-	char *driver;
-	char *user;
-	char *city;
-	char *distance;
-	char *score_user;
-	char *score_driver;
-	char *tip;
-	char *comment;
+    char *id;
+    int  date;
+    char *driver;
+    char *user;
+    char *city;
+    char *distance;
+    char *score_user;
+    char *score_driver;
+    char *tip;
 };
 
-RIDES hashTableRides [hashMaxRides];
-
-// --------------------------------------------
-// hashRides
-// --------------------------------------------
-
-unsigned int hashRides (char *id){
-    return ((atoi(id)-1));
-}
-
-// --------------------------------------------
-// initHashTableRides
-// --------------------------------------------
-
-void initHashTableRides (){
-    for (int i = 0; i < hashMaxRides; i++) {
-        hashTableRides[i]=NULL;
-    }
-}
-
-// --------------------------------------------
-// printTableRides
-// --------------------------------------------
-
-void printTableRides (){
-    for (int i = 0; i < hashMaxRides; i++){
-        if (hashTableRides[i]!=NULL){
-            printf("\t%s--%s--%s--\n", ((hashTableRides[i])->id),(hashTableRides[i]->date),hashTableRides[i]->distance);
-    } else
-        printf("errou\n");
-    }
-}
-
-// --------------------------------------------
-// hashTableInsertRides
-// --------------------------------------------
-
-bool hashTableInsertRides (RIDES ride){
-    if(ride==NULL) return false;
-    unsigned int index = hashRides(((ride)->id));
-    if(hashTableRides[index]!=NULL){
-        return false;
-    }
-    hashTableRides[index]=ride;
-    return true;
-}
-
-// --------------------------------------------
-// hashTableLookupRides
-// --------------------------------------------
-
-/*RIDES hashTableLookupRides(char *id){
-    unsigned int index = hashRides(id);
-    if(hashTableRides[index]!=NULL && strcmp((hashTableRides[index])->id,id)==0)
-        return hashTableRides[index];
-    else
-        return NULL;
-
-}*/
 
 // --------------------------------------------
 // ridesParsing
 // --------------------------------------------
 
-void ridesParsing (char *linha){
 
+void ridesParsing (char *linha,void* arrayD){
+    ARRAYDinamico array = arrayD;
     RIDES ride1 = malloc(sizeof (struct ride));
-    char *head;
-    char *tail;
-    unsigned long i;
 
-    head = strtok_r(linha,";",&tail);
-    i = strlen(head);
-    head[i]='\0';
-    ride1->id= strdup(head);
+    char *tail = NULL;
+    int i;
 
-    head = strtok_r(NULL,";",&tail);
-    i = strlen(head);
-    head[i]='\0';
-    ride1->date= strdup(head);
+    i = idRide (strtok_r(linha,";",&tail), ride1);
 
-    head = strtok_r(NULL,";",&tail);
-    i = strlen(head);
-    head[i]='\0';
-    ride1->driver= strdup(head);
+    if(i)
+        return;
 
-    head = strtok_r(NULL,";",&tail);
-    i = strlen(head);
-    head[i]='\0';
-    ride1->user= strdup(head);
+    i = dataCorridaRide (strtok_r(NULL,";",&tail), ride1);
 
-    head = strtok_r(NULL,";",&tail);
-    i = strlen(head);
-    head[i]='\0';
-    ride1->city= strdup(head);
+    if(i)
+        return;
 
-    head = strtok_r(NULL,";",&tail);
-    i = strlen(head);
-    head[i]='\0';
-    ride1->distance= strdup(head);
+    i = idDriverRide (strtok_r(NULL,";",&tail), ride1);
 
-    head = strtok_r(NULL,";",&tail);
-    i = strlen(head);
-    head[i]='\0';
-    ride1->score_user= strdup(head);
+    if(i)
+        return;
 
-    head = strtok_r(NULL,";",&tail);
-    i = strlen(head);
-    head[i]='\0';
-    ride1->score_driver= strdup(head);
+    i = nomeUserRide (strtok_r(NULL,";",&tail), ride1);
 
-    head = strtok_r(NULL,";",&tail);
-    i = strlen(head);
-    head[i]='\0';
-    ride1->tip= strdup(head);
+    if(i)
+        return;
 
-    head = strtok_r(NULL,";",&tail);
-    i = strlen(head);
-    head[i]='\0';
-    ride1->comment=strdup(head);
+    i = cidadeRide (strtok_r(NULL,";",&tail), ride1);
 
-    bool bools =hashTableInsertRides(ride1);
-    if(!bools){
+    if(i)
+        return;
 
+    i = distanciaRide (strtok_r(NULL,";",&tail), ride1);
+
+    if(i)
+        return;
+
+    i = scoreUserRide (strtok_r(NULL,";",&tail), ride1);
+
+    if(i)
+        return;
+
+    i = scoreDriverRide (strtok_r(NULL,";",&tail), ride1);
+
+    if(i)
+        return;
+
+    i = tipRide (strtok_r(NULL,";",&tail), ride1);
+
+    if(i)
+        return;
+
+    arrayAdd(array,ride1, strdup(ride1->id));
+}
+
+// --------------------------------------------
+// idRide
+// --------------------------------------------
+
+int idRide(char *id, RIDES rides){
+    id[strlen(id)] = '\0';
+
+    if(tamanhoEqual0(id)){
+        free(id);
+        return 1;
     }
 
+    rides -> id = strdup(id);
+    return 0;
+}
+
+// --------------------------------------------
+// dataCorridaRide
+// --------------------------------------------
+
+int dataCorridaRide (char *data, RIDES rides){
+    data[strlen(data)] = '\0';
+
+    if(!verificaDate(data)){
+        freeRideId(rides);
+        return 1;
+    }
+
+    rides -> date = data2Int(data);
+    return 0;
+}
+
+// --------------------------------------------
+// idDriverRide
+// --------------------------------------------
+
+int idDriverRide (char *id, RIDES rides){
+    id[strlen(id)] = '\0';
+
+    if(tamanhoEqual0(id)){
+        freeRideDate(rides);
+        return 1;
+    }
+
+    rides -> driver = strdup(id);
+    return 0;
+}
+
+// --------------------------------------------
+// nomeUserRide
+// --------------------------------------------
+
+int nomeUserRide(char *nome, RIDES rides){
+    nome[strlen(nome)] = '\0';
+
+    if(tamanhoEqual0(nome)){
+        freeRideDriver(rides);
+        return 1;
+    }
+
+    rides -> user = strdup(nome);
+    return 0;
+}
+
+// --------------------------------------------
+// cidadeRide
+// --------------------------------------------
+
+int cidadeRide(char *cidade, RIDES rides){
+    cidade[strlen(cidade)] = '\0';
+
+    if(tamanhoEqual0(cidade)){
+        freeRideUser(rides);
+        return 1;
+    }
+
+    rides -> city = strdup(cidade);
+    return 0;
+}
+
+// --------------------------------------------
+// distanciaRide
+// --------------------------------------------
+
+int distanciaRide(char *distancia, RIDES rides){
+    distancia[strlen(distancia)] = '\0';
+
+    if (!(isInteger(distancia) && atoi(distancia) > 0)){
+        freeRideCity(rides);
+        return 1;
+    }
+
+    rides -> distance = strdup(distancia);
+    return 0;
+}
+
+// --------------------------------------------
+// scoreUserRide
+// --------------------------------------------
+
+int scoreUserRide(char *scoreU,RIDES rides){
+    scoreU[strlen(scoreU)] = '\0';
+
+    if(!(isInteger(scoreU) && atoi(scoreU) > 0)){
+        freeRideDistance(rides);
+        return 1;
+    }
+
+    rides -> score_user = strdup(scoreU);
+    return 0;
+}
+
+// --------------------------------------------
+// scoreDriverRide
+// --------------------------------------------
+
+int scoreDriverRide(char *scoreD, RIDES rides){
+    scoreD[strlen(scoreD)] = '\0';
+
+    if(!(isInteger(scoreD) && atoi(scoreD) > 0)){
+        freeRideScore_User(rides);
+        return 1;
+    }
+
+    rides->score_driver= strdup(scoreD);
+    return 0;
+}
+
+// --------------------------------------------
+// tipRide
+// --------------------------------------------
+
+int tipRide(char *tip, RIDES rides){
+    tip[strlen(tip)] = '\0';
+
+    if(isNumber(tip) || atoi(tip) < 0){
+        freeRideScore_Driver(rides);
+        return 1;
+    }
+
+    rides->tip= strdup(tip);
+    return 0;
+}
+
+// --------------------------------------------
+// printRide
+// --------------------------------------------
+
+void printRide(RIDES rides){
+    printf("id= %s, date= %i,driver= %s, user= %s, city= %s, distance= %s, scrore_user= %s, score_driver= %s, tip = %s \n ",
+            rides->id,
+            rides->date,
+            rides->driver,
+            rides->user,
+            rides->city,
+            rides->distance,
+            rides->score_user,
+            rides->score_driver,
+            rides->tip);
 }
 
 // --------------------------------------------
 // lookupCidadeRides
 // --------------------------------------------
 
-char *lookupCidadeRides (int i){
-    return strdup(hashTableRides[i]->city);
+char *lookupCidadeRides (RIDES ride1){
+    return strdup(ride1->city);
 }
 
 // --------------------------------------------
 // lookupDriverRides
 // --------------------------------------------
 
-char *lookupDriverRides (int i){
-    return strdup(hashTableRides[i]->driver);
+char *lookupDriverRides (RIDES ride1){
+    return strdup(ride1->driver);
+}
+
+// --------------------------------------------
+// lookupDriverIntRides
+// --------------------------------------------
+
+int lookupDriverIntRides(RIDES ride1){
+    return atoi(ride1->driver);
+}
+
+// --------------------------------------------
+// lookupUserRides
+// --------------------------------------------
+
+char *lookupUserRides (RIDES ride1) {
+    return strdup(ride1->user);
 }
 
 // --------------------------------------------
 // lookupDistanceRides
 // --------------------------------------------
 
-int lookupDistanceRides (int i){
-    return atoi(hashTableRides[i]->distance);
+int lookupDistanceRides (RIDES ride1){
+    return atoi(ride1->distance);
 }
 
 // --------------------------------------------
 // lookupDateRides
 // --------------------------------------------
 
-char *lookupDateRides (int i){
-    char *retorna = strdup(hashTableRides[i]->date);
+int lookupDateRides (RIDES ride1){
+    int retorna = ride1 -> date;
     return retorna;
 }
 
 // --------------------------------------------
-// lookupAvalNViagemTotAufDrivers
+// lookupTipRides
 // --------------------------------------------
 
-void lookupAvalNViagemTotAufDrivers (char *id,double *avaliacaoMedia,int *numeroViagens,double *totalAuferido){
-    int divide=0,nV = 0;
-    double avaliacao = 0.000, dinheiro =0.000;
 
-    for (int i = 0; i < hashMaxRides; i++){
-        if(strcmp(hashTableRides[i]->driver,id)==0){
-            avaliacao  += atoi(hashTableRides[i]->score_driver);
-            dinheiro   += atof(hashTableRides[i]->tip) + precoViagem(atoi(hashTableRides[i]->distance),id);
-            nV++;
-            divide++;
-        }
-    }
-    *avaliacaoMedia = (avaliacao/divide);
-    *totalAuferido  =  dinheiro;
-    *numeroViagens  =  nV;
+double lookupTipRides (RIDES ride1){
+    return atof(ride1->tip);
 }
 
 // --------------------------------------------
-// lookupAvalNViagemTotGastoUser
+// lookupScoreUserRides
 // --------------------------------------------
 
-void lookupAvalNViagemTotGastoUser (char *id,double *avaliacaoMedia,int *numeroViagens,double *totalGasto){
-    int nV = 0;
-    double avaliacao = 0.000, dinheiro =0.000, divide = 0;
 
-    for (int i = 0; i < hashMaxRides; i++) {
-
-        if(strcmp(hashTableRides[i]->user,id) == 0){
-            avaliacao  += atoi(hashTableRides[i]->score_user);
-            dinheiro   += (double ) atof(hashTableRides[i]->tip) + (double )precoViagem(atoi(hashTableRides[i]->distance),hashTableRides[i]->driver);
-            nV++;
-            divide++;
-        }
-    }
-    *avaliacaoMedia = (avaliacao/divide);
-    *totalGasto     =  dinheiro;
-    *numeroViagens  =  nV;
+double lookupScoreUserRides (RIDES ride1){
+    return atof(ride1->score_user);
 }
 
 // --------------------------------------------
-// freeRides
+// lookupScoreDriverRides
 // --------------------------------------------
 
-void freeRides (){
-    for (int i = 0; i < hashMaxRides ; i++) {
-        free     (hashTableRides[i]->distance);
-        free       (hashTableRides[i]->driver);
-        free           (hashTableRides[i]->id);
-        free          (hashTableRides[i]->tip);
-        free         (hashTableRides[i]->date);
-        free         (hashTableRides[i]->city);
-        free   (hashTableRides[i]->score_user);
-        free         (hashTableRides[i]->user);
-        free (hashTableRides[i]->score_driver);
-        free      (hashTableRides[i]->comment);
-        free(hashTableRides[i]);
-    }
+double lookupScoreDriverRides (RIDES ride1){
+    return atof(ride1->score_driver);
+}
+
+// --------------------------------------------
+// lookupIdViagem
+// --------------------------------------------
+
+char *lookupIdViagem(RIDES rides1){
+    return strdup(rides1->id);
+}
+
+// --------------------------------------------
+// lookupIdViagemInt
+// --------------------------------------------
+
+int lookupIdViagemInt(RIDES ride1){
+    return (int )atoi(ride1->id);
+}
+
+// --------------------------------------------
+// freeRide
+// --------------------------------------------
+
+
+void freeRide(RIDES ride){
+    free            (ride->id);
+    free        (ride->driver);
+    free          (ride->user);
+    free          (ride->city);
+    free      (ride->distance);
+    free    (ride->score_user);
+    free  (ride->score_driver);
+    free           (ride->tip);
+    free                (ride);
+}
+
+// --------------------------------------------
+// freeRideId
+// --------------------------------------------
+
+
+void freeRideId(RIDES rides){
+    free            (rides->id);
+    free                (rides);
+}
+
+// --------------------------------------------
+// freeRideDate
+// --------------------------------------------
+
+
+void freeRideDate(RIDES rides){
+    free            (rides->id);
+    free                (rides);
+}
+
+
+// --------------------------------------------
+// freeRideDriver
+// --------------------------------------------
+
+
+void freeRideDriver(RIDES rides){
+    free            (rides->id);
+    free        (rides->driver);
+    free                (rides);
+}
+
+// --------------------------------------------
+// freeRideUser
+// --------------------------------------------
+
+
+void freeRideUser(RIDES rides){
+    free            (rides->id);
+    free        (rides->driver);
+    free          (rides->user);
+    free                (rides);
+}
+
+// --------------------------------------------
+// freeRideCity
+// --------------------------------------------
+
+
+void freeRideCity(RIDES rides){
+    free            (rides->id);
+    free        (rides->driver);
+    free          (rides->user);
+    free          (rides->city);
+    free                (rides);
+}
+
+// --------------------------------------------
+// freeRideDistance
+// --------------------------------------------
+
+
+void freeRideDistance(RIDES rides){
+    free            (rides->id);
+    free        (rides->driver);
+    free          (rides->user);
+    free          (rides->city);
+    free      (rides->distance);
+    free                (rides);
+}
+
+// --------------------------------------------
+// freeRideScore_User
+// --------------------------------------------
+
+
+void freeRideScore_User(RIDES rides){
+    free            (rides->id);
+    free        (rides->driver);
+    free          (rides->user);
+    free          (rides->city);
+    free      (rides->distance);
+    free    (rides->score_user);
+    free                (rides);
+}
+
+// --------------------------------------------
+// freeRideScore_Driver
+// --------------------------------------------
+
+
+void freeRideScore_Driver(RIDES rides){
+    free            (rides->id);
+    free        (rides->driver);
+    free          (rides->user);
+    free          (rides->city);
+    free      (rides->distance);
+    free    (rides->score_user);
+    free  (rides->score_driver);
+    free                (rides);
 }

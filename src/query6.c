@@ -1,142 +1,48 @@
-#include "queries.h"
+#include "../includes/queries.h"
 
 // --------------------------------------------
 // query6
 // --------------------------------------------
 
-double query6 (char *cidade,char *dataInicio,char *dataFim) {
-    char *temp,*lixo;
-    dataFim= strtok_r(dataFim,"\n",&lixo);
+double query6 (char *cidade,char *dataInicio,char *dataFim,ARRAYDinamico ride){
 
-    int diaInicio = atoi(strtok_r(dataInicio, "/", &temp));
-    int mesInicio = atoi(strtok_r(NULL      , "/", &temp));
-    int anoInicio = atoi(strtok_r(NULL      , "/", &temp));
-    int diaFim    = atoi(strtok_r(dataFim   , "/", &temp));
-    int mesFim    = atoi(strtok_r(NULL      , "/", &temp));
-    int anoFim    = atoi(strtok_r(NULL      , "/", &temp));
+    // Medição de tempo
+    clock_t start, end;
+    double cpu_time_used;
+    start = clock();
 
-    double distanciaAtual = 0;
-    double divide = 0;
+    double distanciaAtual = 0.0;
+    double divide = 0.0;
 
-    for (int i = 0; i < hashMaxRides; i++) {
-        char *cidadeAtual = lookupCidadeRides(i);
+    int dataInicioInt = data2Int(dataInicio);
+    int dataFimInt    = data2Int(dataFim);
 
-        if(strcmp(cidadeAtual,cidade) == 0) {
+    int primeiraData = lookupDateRides(posicaoTableRides(ride,0));
+    int ultimaData   = lookupDateRides(posicaoTableRides(ride, tamanhoOcupadoArray(ride)-1));
 
-            char *data = lookupDateRides(i);
-            int diaAtual,mesAtual,anoAtual;
+    verificaDataQueries(&dataInicioInt,&dataFimInt,&primeiraData,&ultimaData);
 
-            paraInt(data,&diaAtual,&mesAtual,&anoAtual);
-            free(data);
+    if(dataInicioInt == -1 || dataFimInt ==-1)
+        return -1;
 
-            if (anoFim < anoAtual || anoInicio > anoAtual) {
-                free(cidadeAtual);
-                continue;
-            }
+    int tamanho = tamanhoOcupadoArray(ride);
 
-            else if (anoInicio < anoAtual && anoAtual < anoFim) {
-                distanciaAtual += lookupDistanceRides(i);
+    for (int i = procuraPosicaoInicial(ride,dataInicioInt); i < tamanho && lookupDateRides(posicaoTableRides(ride,i))<=dataFimInt; i++) {
+        int dataAtual = lookupDateRides(posicaoTableRides(ride, i));
+        if (dataInicioInt <= dataAtual && dataAtual <= dataFimInt) {
+            char *cidadeAtual = lookupCidadeRides(posicaoTableRides(ride, i));
+            if(strcmp(cidade,cidadeAtual) == 0){
+                distanciaAtual += lookupDistanceRides(posicaoTableRides(ride,i));
                 divide++;
             }
-
-            else if(anoAtual == anoInicio && anoAtual == anoFim){
-                if (mesAtual < mesInicio || mesAtual > mesFim){
-                    free(cidadeAtual);
-                    continue;
-                }
-
-                else if(mesInicio < mesAtual && mesAtual < mesFim){
-                    distanciaAtual += lookupDistanceRides(i);
-                    divide++;
-                }
-
-                else if (mesInicio == mesAtual && mesAtual == mesFim){
-                    if(diaAtual < diaInicio || diaAtual>  diaFim){
-                        free(cidadeAtual);
-                        continue;
-                    }
-                    else if(diaInicio <= diaAtual && diaAtual <= diaFim){
-                        distanciaAtual += lookupDistanceRides(i);
-                        divide++;
-                    }
-                }
-
-                else if(mesInicio == mesAtual){
-                    if (diaAtual < diaInicio){
-                        free(cidadeAtual);
-                        continue;
-                    }
-
-                    else{
-                        distanciaAtual += lookupDistanceRides(i);
-                        divide++;
-                    }
-                }
-
-                else if(mesFim == mesAtual){
-                    if (diaAtual > diaFim){
-                        free(cidadeAtual);
-                        continue;
-                    }
-
-                    else{
-                        distanciaAtual += lookupDistanceRides(i);
-                        divide++;
-                    }
-                }
-            }
-
-            else if (anoInicio == anoAtual) {
-
-                if (mesInicio > mesAtual){
-                    free(cidadeAtual);
-                    continue;
-                }
-
-                else if (mesInicio < mesAtual ) {
-                    distanciaAtual += lookupDistanceRides(i);
-                    divide++;
-                }
-
-
-                else if (mesInicio == mesAtual) {
-                    if (diaInicio > diaAtual){
-                        free(cidadeAtual);
-                        continue;
-                    }
-
-                    else if(diaInicio < diaAtual) {
-                        distanciaAtual += lookupDistanceRides(i);
-                        divide++;
-                    }
-                }
-            }
-
-            else {
-
-                if (mesFim < mesAtual){
-                    free(cidadeAtual);
-                    continue;
-                }
-
-                else if (mesFim > mesAtual) {
-                    distanciaAtual += lookupDistanceRides(i);
-                    divide++;
-                }
-
-                else if (mesInicio == mesAtual) {
-                    if (diaFim < diaAtual) {
-                        free(cidadeAtual);
-                        continue;
-                    }
-                    else {
-                        distanciaAtual += lookupDistanceRides(i);
-                        divide++;
-                    }
-                }
-            }
+            free(cidadeAtual);
         }
-        free(cidadeAtual);
     }
-    return (distanciaAtual/divide);
+
+    // Medição de tempo
+    end = clock();
+    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+    printf("Fim da Q6 - %f segundos \n", cpu_time_used);
+
+    return divide == 0 ? -1 : (double )(distanciaAtual / divide);
 }

@@ -1,156 +1,47 @@
-#include "queries.h"
+#include "../includes/queries.h"
 
 // --------------------------------------------
 // query5
 // --------------------------------------------
 
-double query5 (char *dataInicio,char *dataFim) {
-    char *temp;
+double query5(char *dataInicio, char *dataFim, ARRAYDinamico ride,ARRAYDinamico driver) {
+    // Medição de tempo
+    clock_t start, end;
+    double cpu_time_used;
+    start = clock();
 
-    int diaInicio = atoi(strtok_r(dataInicio,"/",&temp));
-    int mesInicio = atoi(strtok_r(NULL      ,"/",&temp));
-    int anoInicio = atoi(strtok_r(NULL      ,"/",&temp));
-    int diaFim    = atoi(strtok_r(dataFim   ,"/",&temp));
-    int mesFim    = atoi(strtok_r(NULL      ,"/",&temp));
-    int anoFim    = atoi(strtok_r(NULL      ,"/",&temp));
+    int dataInicioInt = data2Int(dataInicio);
+    int dataFimInt = data2Int(dataFim);
 
-    double precoAtual=0;
-    double divide=0;
+    double precoAtual = 0.0;
+    double divide = 0.0;
 
-    for (int i = 0; i < hashMaxRides; i++) {
-        char *data=lookupDateRides(i);
+    int primeiraData = lookupDateRides(posicaoTableRides(ride,0));
+    int ultimaData   = lookupDateRides(posicaoTableRides(ride, tamanhoOcupadoArray(ride)-1));
 
-        int diaAtual ,mesAtual ,anoAtual;
-        paraInt(data,&diaAtual,&mesAtual,&anoAtual);
-        free(data);
+    verificaDataQueries(&dataInicioInt,&dataFimInt,&primeiraData,&ultimaData);
 
+    if(dataInicioInt == -1 || dataFimInt ==-1)
+        return -1;
 
-        if(anoFim < anoAtual || anoInicio > anoAtual){
-            continue;
-        }
+    int tamanho = tamanhoOcupadoArray(ride);
 
+    for (int i = procuraPosicaoInicial(ride,dataInicioInt); i < tamanho && lookupDateRides(posicaoTableRides(ride,i))<=dataFimInt; i++) {
+        int dataAtual = lookupDateRides(posicaoTableRides(ride, i));
 
-        else if (anoInicio < anoAtual && anoAtual < anoFim){
-            precoAtual += valor(i);
+        if (dataInicioInt <= dataAtual && dataAtual <= dataFimInt) {
+            char *id      = lookupDriverRides(posicaoTableRides(ride,i));
+            int distancia = lookupDistanceRides(posicaoTableRides(ride,i));
+            precoAtual   += precoViagem(distancia, posicaoTableD(driver,id));
             divide++;
-        }
-
-
-        else if(anoAtual == anoInicio && anoAtual == anoFim){
-            if (mesAtual < mesInicio || mesAtual > mesFim){
-                continue;
-            }
-
-            else if(mesInicio < mesAtual && mesAtual < mesFim){
-                precoAtual += valor(i);
-                divide++;
-            }
-
-            else if (mesInicio == mesAtual && mesAtual == mesFim){
-                if(diaAtual < diaInicio || diaAtual>  diaFim){
-
-                    continue;
-                }
-                else if(diaInicio <= diaAtual && diaAtual <= diaFim){
-                    precoAtual += valor(i);
-                    divide++;
-                }
-            }
-
-            else if(mesInicio == mesAtual){
-                if (diaAtual < diaInicio){
-                    continue;
-                }
-
-                else{
-                    precoAtual += valor(i);
-                    divide++;
-                }
-            }
-
-            else if(mesFim == mesAtual){
-                if (diaAtual > diaFim){
-                    continue;
-                }
-
-                else{
-                    precoAtual += valor(i);
-                    divide++;
-                }
-            }
-        }
-
-        else if (anoInicio == anoAtual){
-            if(mesInicio > mesAtual)
-                continue;
-
-            else if(mesInicio < mesAtual) {
-                precoAtual += valor(i);
-                divide++;
-            }
-
-            else if(mesInicio == mesAtual){
-                if(diaInicio>diaAtual)
-                    continue;
-
-                else{
-                    precoAtual += valor(i);
-                    divide++;
-                }
-            }
-        }
-
-
-        else {
-
-            if(mesFim < mesAtual)
-                continue;
-
-            else if(mesFim > mesAtual) {
-                precoAtual += valor(i);
-                divide++;
-            }
-
-            else if(mesInicio == mesAtual){
-                if(diaFim<diaAtual)
-                    continue;
-
-                else {
-                    precoAtual += valor(i);
-                    divide++;
-                }
-            }
+            free(id);
         }
     }
-    return (precoAtual/divide);
-}
 
-// --------------------------------------------
-// valor
-// --------------------------------------------
+    // Medição de tempo
+     end = clock();
+    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+    printf("Fim da Q5 - %f segundos \n", cpu_time_used);
 
-double valor (int id){
-    char *idR       = lookupDriverRides  (id);
-    int distancia   = lookupDistanceRides(id);
-    double retorna  = precoViagem(distancia, idR);
-
-    free(idR);
-    return retorna;
-}
-
-// --------------------------------------------
-// paraInt
-// --------------------------------------------
-
-void paraInt (char *string,int *diaAtual,int *mesAtual ,int *anoAtual ){
-
-    char *temp;
-
-    char *diaAtualS = strtok_r(string, "/" , &temp);
-    char *mesAtualS = strtok_r(NULL, "/" , &temp);
-    char *anoAtualS = strtok_r(NULL, "\0", &temp);
-
-    *diaAtual = atoi(diaAtualS);
-    *mesAtual = atoi(mesAtualS);
-    *anoAtual = atoi(anoAtualS);
+    return divide == 0? -1 : (precoAtual / divide);
 }
